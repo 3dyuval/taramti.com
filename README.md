@@ -1,32 +1,18 @@
-# vue-blood-donation
+# Vue 3 + TypeScript + Vite
 
-[The website](https://nmeisels.github.io/vue-blood-donation/)
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-The official [Mada website](https://www.mdais.org/blood-donation) for blood drives does not let you filter by city or other parameters.
-The site only lets you see the blood drive sites for a specific day.
-This makes it complicated to find when the next blood drive is in a specific city. 
-For these reasons I have developed this project that gives you a site with a grid and filter to see all of the blood drives.
+## Recommended IDE Setup
 
-I was inspired by [park_n_recs](https://github.com/NivRichter/park_n_recs) which was later integrated into the Israel Nature and Parks Authority website. If anyone has connections with Mada website please contact me :) 
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-# Backend
-[FastAPI](https://fastapi.tiangolo.com/) server deployed using [deta](https://www.deta.sh/)
+## Type Support For `.vue` Imports in TS
 
-(I had issues with [cors](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) and this was my way of bypassing it)
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-# FrontEnd
-Written in [Vue.js](https://vuejs.org/) using [ag-grid](https://www.ag-grid.com/)
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-# Disclaimer
-This is a fun side project. I'm not a frontend developer. Any feedback how to improve the code is welcome!
-
-# Sources
-- [Vue.js Data Grid Getting Started With AG Grid](https://www.youtube.com/watch?v=V14w_NFuZB4&list=PLsZlhayVgqNz5iC0wFQDgixcAepFyrWbP&index=1&ab_channel=ag-Grid)
-- [Deploy FastAPI on Deta](https://fastapi.tiangolo.com/deployment/deta/)
-- [Deploying Vue Apps to Github Pages](https://medium.com/swlh/deploy-vue-app-to-github-pages-2ada48d7397e)
-
-# Future ideas
-- Telegram bot
-- The ability to set reminders to donate with city preference etc.
-- Push notification if you are close to a place with an ongoing blood drive
-- More?
+1. Disable the built-in TypeScript Extension
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.

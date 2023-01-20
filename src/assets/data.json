@@ -1,0 +1,2672 @@
+[
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "  ביג כרמיאל                                         ",
+    "City": "",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "קרית מוצקין",
+    "Street": "החשמונאים",
+    "NumHouse": "75",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "חולון",
+    "Street": "הרוקמים",
+    "NumHouse": "1",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "נתניה",
+    "Street": "מינץ",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "התרמה בשכונת נווה זאב רח' יוהנה זבוטינסקי",
+    "City": "באר שבע",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "רח' הרפואה 1 (תחנה נגישה)                                     ",
+    "City": "אשדוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:30",
+    "Name": "דודג' סנטר                            ",
+    "City": "נוף הגליל",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "מרכז מסחרי- מול קניון לב העיר                      ",
+    "City": "קרית גת",
+    "Street": "שד' לכיש",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:45",
+    "Name": "קניון רמות - ברחבה ליד הסופר פארם",
+    "City": "ירושלים",
+    "Street": "שדרות גולדה מאיר",
+    "NumHouse": "225",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:45",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:45",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:30",
+    "Name": "ביג דנילוף בכניסה הראשית  ",
+    "City": "טבריה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "תחנת מד\"א חדרה ",
+    "City": "חדרה",
+    "Street": "אביאור",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "13:00",
+    "Name": "בכניסה לקניון ערים",
+    "City": "כפר סבא",
+    "Street": "דוד אלעזר ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  במד\"א  אשקלון                                      ",
+    "City": "אשקלון",
+    "Street": "התחיה",
+    "NumHouse": "1",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:30",
+    "Name": "תחנה מרכזית החדשה באולם הנוסעים ליד רציף 10             ",
+    "City": "עפולה",
+    "Street": "קהילת ציון ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "מד\"א",
+    "City": "ראשון לציון",
+    "Street": "זבוטינסקי",
+    "NumHouse": "104",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "מד\"א רחובות",
+    "City": "רחובות",
+    "Street": "דוד רמז",
+    "NumHouse": "69",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "תחנה מרכזית                                  ",
+    "City": "באר שבע",
+    "Street": "יצחק בן צבי",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  געתון ליד המשביר                                   ",
+    "City": "נהריה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-20T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "צופי שבט אפעל                                        ",
+    "City": "רמת אפעל",
+    "Street": "הערבה",
+    "NumHouse": "1",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "16:00",
+    "Name": "תחנה מרכזית                                  ",
+    "City": "באר שבע",
+    "Street": "יצחק בן צבי",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:00",
+    "Name": "בנין אדגר",
+    "City": "פתח תקווה",
+    "Street": "אפעל",
+    "NumHouse": "35",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מתחם קניות מיקס חדרה ליד יינות ביתן",
+    "City": "חדרה",
+    "Street": "צה\"ל ",
+    "NumHouse": "35",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:30",
+    "Name": "כיכר אנטין                                         ",
+    "City": "תל אביב יפו",
+    "Street": "חיים לבנון פינת אינשטיין",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "בני עקיבא ",
+    "City": "אריאל",
+    "Street": "ברק ",
+    "NumHouse": "12",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "16:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:30",
+    "Name": "בית הכנסת פייגנסון שכונת נופי אביב",
+    "City": "בית שמש",
+    "Street": "השושן",
+    "NumHouse": "29",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "20:00",
+    "Name": "  במרכז-ליד המועצה                                   ",
+    "City": "חצור הגלילית",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מתנ\"ס                                           ",
+    "City": "שבלי",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "סניף בני עקיבא ",
+    "City": "יד בנימין",
+    "Street": "הראל פינת הרימון ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "14:00",
+    "ToHour": "21:00",
+    "Name": "מתנ\"ס",
+    "City": "מוקייבלה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "10:30",
+    "ToHour": "17:00",
+    "Name": "קניון הסיטי",
+    "City": "אשדוד",
+    "Street": "הרצל פינת מנחם בגין",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "14:00",
+    "ToHour": "19:00",
+    "Name": "התרמה בניצן",
+    "City": "ניצן",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "20:00",
+    "Name": "במרכז פנאי",
+    "City": "משגב עם",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "12:00",
+    "ToHour": "19:30",
+    "Name": "מרכז הנגב מול גלידה גולדה",
+    "City": "באר שבע",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "20:00",
+    "Name": "  בית הקשיש                                          ",
+    "City": "מנחמיה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "  ביג כרמיאל                                         ",
+    "City": "",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-22T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "17:00",
+    "Name": "",
+    "City": "",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "  מועדון                                             ",
+    "City": "יגור",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:30",
+    "ToHour": "19:30",
+    "Name": "ליד המגדל",
+    "City": "נגבה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מתנ\"ס                                ",
+    "City": "טורעאן",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "ביג פאשן ",
+    "City": "ירכא",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "14:30",
+    "ToHour": "19:30",
+    "Name": "באולם סטון כפר הנוער בן שמן ",
+    "City": "בן שמן כפר נוער",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:00",
+    "Name": "בית חולים שערי צדק - חדר אירוח קומה 4",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "20:00",
+    "Name": "מכינה קד\"צ                                            ",
+    "City": "משכיות",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "15:00",
+    "Name": "בי\"ח רמב\"ם - קניון סגול",
+    "City": "חיפה",
+    "Street": "העליה השניה",
+    "NumHouse": "8",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "תחנת מד\"א                                         ",
+    "City": "פתח תקווה",
+    "Street": "המכבים ",
+    "NumHouse": "30",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:00",
+    "Name": "  במרכז ליד הדואר                                    ",
+    "City": "פרדס חנה כרכור",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:00",
+    "Name": "בכניסה למיון כירורגי בית חולים ברזילי",
+    "City": "אשקלון",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:30",
+    "ToHour": "21:30",
+    "Name": "סינמה סיטי                                        ",
+    "City": "ראשון לציון",
+    "Street": "ילדי טהרן",
+    "NumHouse": "3",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "21:00",
+    "Name": "קאנטרי חוף התמרים - באולם",
+    "City": "עכו",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "16:00",
+    "Name": "תחנה מרכזית                                  ",
+    "City": "באר שבע",
+    "Street": "יצחק בן צבי",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "ספורטק",
+    "City": "רעננה",
+    "Street": "סשה ארגוב",
+    "NumHouse": "38",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-23T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "ליד סופר פארם",
+    "City": "שפרעם",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "16:00",
+    "Name": "תחנה מרכזית                                  ",
+    "City": "באר שבע",
+    "Street": "יצחק בן צבי",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "21:00",
+    "Name": "מד\"א רחובות",
+    "City": "רחובות",
+    "Street": "דוד רמז",
+    "NumHouse": "69",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "18:00",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "15:00",
+    "Name": "בי\"ח משפחה קדושה                                      ",
+    "City": "נצרת",
+    "Street": "6004",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מתחם מרכז העיר",
+    "City": "הרצליה",
+    "Street": "סוקולוב פינת בן גוריון",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "21:00",
+    "Name": "מתחם מרכז העיר",
+    "City": "הרצליה",
+    "Street": "סוקולוב פינת בן גוריון",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:59",
+    "Name": "מתחם מרכז העיר",
+    "City": "הרצליה",
+    "Street": "סוקולוב פינת בן גוריון",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "מועדון ליד בית הכנסת ",
+    "City": "גבעת הראל",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "14:00",
+    "ToHour": "20:00",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "12:00",
+    "ToHour": "20:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "15:00",
+    "Name": "המרכז הרפואי ע\"ש ברוך פדה פוריה",
+    "City": "פוריה עילית",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "במרכז הכפר ליד מסעדת אחים מנדלאוי",
+    "City": "כפר מנדא",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "אולם המסגד",
+    "City": "עילוט",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-24T00:00:00",
+    "FromHour": "10:30",
+    "ToHour": "17:00",
+    "Name": "",
+    "City": "",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "12:00",
+    "ToHour": "20:00",
+    "Name": "הילולה נתיבות",
+    "City": "נתיבות",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "21:00",
+    "Name": "  מועדון                                             ",
+    "City": "געתון",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:30",
+    "Name": "אולם ברונפמן אוני הר הצופים",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "כיכר אל מנרה ",
+    "City": "באקה אל ע'רביה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "20:00",
+    "Name": "ליד קניון לב קצרין                                 ",
+    "City": "קצרין",
+    "Street": "דליות",
+    "NumHouse": "4",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "קריה אקדמית אשקלון",
+    "City": "אשקלון",
+    "Street": "בן צבי",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "בניין העירייה",
+    "City": "סח'נין",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "מרכז הכפר ליד שווארמה עאנוטי",
+    "City": "טמרה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-25T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "12:00",
+    "ToHour": "19:00",
+    "Name": "תחנת מד\"א ב\"ש",
+    "City": "באר שבע",
+    "Street": "סוקולוב ",
+    "NumHouse": "4",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מרכז נתנאל, רחבת המדיטק",
+    "City": "חולון",
+    "Street": "גולדה מאיר",
+    "NumHouse": "6",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "כיכר העיר",
+    "City": "כפר סבא",
+    "Street": "ויצמן",
+    "NumHouse": "63",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "בוטיק מעצבים קומה מינוס 1 דיזנגוף סנטר",
+    "City": "תל אביב יפו",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "17:30",
+    "ToHour": "22:00",
+    "Name": "בחניה ליד בית ספר \"יונתן\"",
+    "City": "צופים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "  מרכז פיס   ישוב פסגות                                        ",
+    "City": "פסגות",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:00",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "סניף בני עקיבא מרכז ",
+    "City": "ירושלים",
+    "Street": "יהושע יבין",
+    "NumHouse": "19",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "17:00",
+    "Name": "  ל.קניון נחמיה                                      ",
+    "City": "קרית שמונה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "20:00",
+    "Name": "במרכז ליד חומוס הארבעס",
+    "City": "קרית טבעון",
+    "Street": "כיכר בן גוריון",
+    "NumHouse": "1",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "בית הקשיש",
+    "City": "בית דגן",
+    "Street": "מנחם בגין ",
+    "NumHouse": "38",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "21:00",
+    "Name": "אולם נאגי אלעלי ליד בי\"ס אלבטוף",
+    "City": "עראבה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:00",
+    "Name": "ביג קרית מלאכי",
+    "City": "באר טוביה",
+    "Street": "א.ת.",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "אשכול פיס",
+    "City": "מגאר",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:30",
+    "ToHour": "20:30",
+    "Name": "בני ראם ליד המכולת ",
+    "City": "בני ראם",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "בנין ועד מקומי",
+    "City": "עין אל אסד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "15:30",
+    "Name": "במתנ\"ס ג'דידה-מכר",
+    "City": "",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "18:00",
+    "Name": "הילולה נתיבות",
+    "City": "נתיבות",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-26T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "19:30",
+    "Name": "התרמה במועדון",
+    "City": "צוחר",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "נתניה",
+    "Street": "מינץ",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "אשקלון",
+    "Street": "התחיה",
+    "NumHouse": "1",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "רח' הרפואה 1 (תחנה נגישה)                                     ",
+    "City": "אשדוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "חולון",
+    "Street": "הרוקמים",
+    "NumHouse": "1",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "קרית מוצקין",
+    "Street": "החשמונאים",
+    "NumHouse": "75",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:30",
+    "Name": "דודג' סנטר                            ",
+    "City": "נוף הגליל",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  ביג יקנעם בכניסה                                  ",
+    "City": "יקנעם",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "13:00",
+    "Name": "מודיעין סנטר",
+    "City": "מודיעין מכבים רעות",
+    "Street": "צאלון",
+    "NumHouse": "21",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:15",
+    "Name": "מרכז מסחרי- מול קניון לב העיר                      ",
+    "City": "קרית גת",
+    "Street": "שד' לכיש",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "13:00",
+    "Name": "ככר פנינה בר סבר",
+    "City": "גבעתיים",
+    "Street": "הרב הרצוג",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "תחנת מד\"א חדרה ",
+    "City": "חדרה",
+    "Street": "אביאור",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "תחנת מד\"א                                         ",
+    "City": "פתח תקווה",
+    "Street": "המכבים ",
+    "NumHouse": "30",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "מד\"א רחובות",
+    "City": "רחובות",
+    "Street": "דוד רמז",
+    "NumHouse": "69",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-29T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-29T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-29T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "16:45",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-30T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-30T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "17:00",
+    "Name": "מועדון הקיבוץ                              ",
+    "City": "סאסא",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-30T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-30T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "15:00",
+    "Name": " מגדל מידטאון",
+    "City": "תל אביב יפו",
+    "Street": "דרך מנחם בגין",
+    "NumHouse": "144",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "21:00",
+    "Name": "אולם שמחות כפר עציון",
+    "City": "כפר עציון",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "18:00",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "20:00",
+    "Name": "מועדון                                          ",
+    "City": "מלכיה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "  אולם הכנסיה הקתולית                                      ",
+    "City": "ריינה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מוצב נועם",
+    "City": "",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "15:00",
+    "Name": "בית חולים אסף הרופא",
+    "City": "",
+    "Street": "בבית ספר לפיזיותרפיה קומה 1 מעל התא לחץ ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "20:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-01-31T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "שכונת כרמי גת/קריית גת ",
+    "City": "קרית גת",
+    "Street": "אבי החושן ",
+    "NumHouse": "74",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-01T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-01T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "19:00",
+    "Name": "התרמה במועדון הקיבוץ",
+    "City": "בית קמה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-01T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "שבט תמיד צופי קדימה ",
+    "City": "קדימה צורן",
+    "Street": "הרב אבקסיס ",
+    "NumHouse": "4",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-01T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-02T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-02T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "סניף בני עקיבא דרום גבעת שמואל ",
+    "City": "גבעת שמואל",
+    "Street": "פרדס רוזנבלום ",
+    "NumHouse": "5",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-02T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "21:00",
+    "Name": "מועדון לחבר                                      ",
+    "City": "היוגב",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-02T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:45",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "13:00",
+    "Name": "אולם ספורט  מנהל קהילתי בקעה  ביס אפרתה ",
+    "City": "ירושלים",
+    "Street": "גד ",
+    "NumHouse": "2",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "קרית מוצקין",
+    "Street": "החשמונאים",
+    "NumHouse": "75",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "נתניה",
+    "Street": "מינץ",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "רח' הרפואה 1 (תחנה נגישה)                                     ",
+    "City": "אשדוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-03T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "תחנת מד\"א חדרה ",
+    "City": "חדרה",
+    "Street": "אביאור",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-05T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-05T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "21:30",
+    "Name": "קדרון",
+    "City": "קדרון",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-05T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "16:45",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-05T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-06T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-06T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "20:00",
+    "Name": "  מועדון לחבר                                        ",
+    "City": "כינרת קבוצה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-06T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-07T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "18:00",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-07T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-07T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "20:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-07T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "19:30",
+    "Name": "  במועדון                                            ",
+    "City": "להב",
+    "Street": "ד.נ. נגב",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-08T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-08T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-08T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מכינת ארז ירושלים",
+    "City": "ירושלים",
+    "Street": "משה שרת ",
+    "NumHouse": "2",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-09T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-09T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-09T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:30",
+    "Name": "מבנה בני עקיבא יבנה",
+    "City": "יבנה",
+    "Street": "הלילך ",
+    "NumHouse": "7",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-09T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "כרמי קטיף",
+    "City": "כרמי קטיף",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-09T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:30",
+    "Name": "  בית הארחה הפסגה 8                                  ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-09T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "במועדון לחבר",
+    "City": "עין הנצי''ב",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "רח' הרפואה 1 (תחנה נגישה)                                     ",
+    "City": "אשדוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "נתניה",
+    "Street": "מינץ",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "קרית מוצקין",
+    "Street": "החשמונאים",
+    "NumHouse": "75",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:45",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-10T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "תחנת מד\"א חדרה ",
+    "City": "חדרה",
+    "Street": "אביאור",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-12T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-12T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "16:45",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-12T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-13T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-13T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-14T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "18:00",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-14T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "צופי רמת גן שבט צופי ירדן",
+    "City": "רמת גן",
+    "Street": "פנחס רוטנברג ",
+    "NumHouse": "89",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-14T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-14T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "20:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-15T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-15T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-16T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-16T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:45",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "  קניון קרית אונו                                    ",
+    "City": "קרית אונו",
+    "Street": "לוי אשכול פינת שלמה המלך",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "קרית מוצקין",
+    "Street": "החשמונאים",
+    "NumHouse": "75",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "נתניה",
+    "Street": "מינץ",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-17T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "רח' הרפואה 1 (תחנה נגישה)                                     ",
+    "City": "אשדוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-19T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "אחוזת אתרוג",
+    "City": "מרכז שפירא",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-19T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:00",
+    "Name": "בית חולים שערי צדק - חדר אירוח קומה 4",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-19T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "16:45",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-19T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-19T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-19T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": " אולם שירת מרים                           ",
+    "City": "קדומים",
+    "Street": "קדומים צפון",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-20T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-20T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-21T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "18:00",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-21T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-21T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "20:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-22T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:30",
+    "Name": "  בנין מנהלה   אוני' הר הצופים גבעת רם                                      ",
+    "City": "ירושלים",
+    "Street": "שער מגנס",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-22T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-22T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-23T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-23T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:30",
+    "Name": "מכינה עין פרת",
+    "City": "כפר אדומים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-23T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "  מנהל קהילתי  פסגת זאב                    ",
+    "City": "ירושלים",
+    "Street": "שדרות משה דיין    ",
+    "NumHouse": "135",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "12:45",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "רח' הרפואה 1 (תחנה נגישה)                                     ",
+    "City": "אשדוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "קרית מוצקין",
+    "Street": "החשמונאים",
+    "NumHouse": "75",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "",
+    "City": "נתניה",
+    "Street": "מינץ",
+    "NumHouse": "7",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": "  רח' יצחק שדה 10 (תחנה נגישה)",
+    "City": "חיפה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-24T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "12:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-26T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-26T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:30",
+    "Name": "  פארק עומר                                          ",
+    "City": "עומר",
+    "Street": "מנהלת גן תעשיה",
+    "NumHouse": "3001",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-26T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-26T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "16:45",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-27T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-27T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "14:30",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-27T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "20:00",
+    "Name": "  מועדון                                             ",
+    "City": "כנף",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-28T00:00:00",
+    "FromHour": "08:00",
+    "ToHour": "18:00",
+    "Name": " מש\"ד מד\"א (תחנה נגישה)                                             ",
+    "City": "רמת גן",
+    "Street": "דרך שיבא",
+    "NumHouse": "",
+    "AccountType": " - שרותי הדם מד\"א"
+  },
+  {
+    "DateDonation": "2023-02-28T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "16:30",
+    "Name": "משביר י-ם",
+    "City": "ירושלים",
+    "Street": "המלך ג'ורג'",
+    "NumHouse": "20",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-02-28T00:00:00",
+    "FromHour": "13:00",
+    "ToHour": "20:00",
+    "Name": "  רח' המ\"ג 7 רוממה  (תחנה נגישה)                                 ",
+    "City": "ירושלים",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": " - תחנת מד\"א"
+  },
+  {
+    "DateDonation": "2023-03-03T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "12:30",
+    "Name": "  במועדון                                            ",
+    "City": "שובל",
+    "Street": "ד.נ.הנגב",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-03T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "צמוד לקניון הוד השרון                              ",
+    "City": "הוד השרון",
+    "Street": "ז'בוטינסקי",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-06T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "מועדונית ",
+    "City": "משמר דוד",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-07T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "22:00",
+    "Name": "צופי קריית אונו שבט און",
+    "City": "קרית אונו",
+    "Street": "דרך רפאל איתן",
+    "NumHouse": "2",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-12T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "20:00",
+    "Name": "בי\"ס צאלון",
+    "City": "באר יעקב",
+    "Street": "הדקל",
+    "NumHouse": "3",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-13T00:00:00",
+    "FromHour": "10:00",
+    "ToHour": "15:00",
+    "Name": "מועצת דרום השרון",
+    "City": "נווה ירק",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-15T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "קרית עקרון                                       ",
+    "City": "קרית עקרון",
+    "Street": "הרצל",
+    "NumHouse": "44",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-15T00:00:00",
+    "FromHour": "17:30",
+    "ToHour": "22:30",
+    "Name": "אולם שמחות מתחת לביה\"כ המרכזי חלמיש-נווה צוף",
+    "City": "חלמיש",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-16T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "מרכז  קנגרו לגיל הרך  מנהל קהילתי דרום בשיתוף בוגרי בני עקיבא",
+    "City": "ירושלים",
+    "Street": "בר יוחאי גוננים",
+    "NumHouse": "5",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-16T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "אולפנת אהבת ישראל  בית שמש ",
+    "City": "בית שמש",
+    "Street": "נחל דולב ",
+    "NumHouse": "14",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-20T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "14:00",
+    "Name": "בית ספר תיכון אזורי עין גדי",
+    "City": "עין גדי",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-20T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:30",
+    "Name": "  בנין מנהלה   אוני' הר הצופים גבעת רם                                      ",
+    "City": "ירושלים",
+    "Street": "שער מגנס",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-21T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "15:00",
+    "Name": "מכללת הדסה אולם 2505",
+    "City": "ירושלים",
+    "Street": "הנביאים",
+    "NumHouse": "37",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-21T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "20:00",
+    "Name": "בי\"ס קוגל ",
+    "City": "חולון",
+    "Street": "אהרון יריב",
+    "NumHouse": "8",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-26T00:00:00",
+    "FromHour": "15:00",
+    "ToHour": "20:00",
+    "Name": "בבית הספר הדר",
+    "City": "כפר יונה",
+    "Street": "שד' מנחם בגין ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-29T00:00:00",
+    "FromHour": "09:30",
+    "ToHour": "15:30",
+    "Name": "  בנין מנהלה   אוני' הר הצופים גבעת רם                                      ",
+    "City": "ירושלים",
+    "Street": "שער מגנס",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-03-30T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "בכניסה לקניון ערים",
+    "City": "כפר סבא",
+    "Street": "דוד אלעזר ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-04-21T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "  קניון איילון- שער ברק                              ",
+    "City": "רמת גן",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-04-21T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "  קניון איילון- שער ברק                              ",
+    "City": "רמת גן",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-04-23T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "15:00",
+    "Name": "מכללת הדסה אולם 2505",
+    "City": "ירושלים",
+    "Street": "הנביאים",
+    "NumHouse": "37",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-04-27T00:00:00",
+    "FromHour": "16:00",
+    "ToHour": "21:00",
+    "Name": "בכניסה לקניון ערים",
+    "City": "כפר סבא",
+    "Street": "דוד אלעזר ",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-05-05T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "13:00",
+    "Name": "ככר פנינה בר סבר",
+    "City": "גבעתיים",
+    "Street": "הרב הרצוג",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-05-12T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "  מגדיאל                                             ",
+    "City": "הוד השרון",
+    "Street": "מגדיאל",
+    "NumHouse": "67",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-05-12T00:00:00",
+    "FromHour": "08:30",
+    "ToHour": "13:00",
+    "Name": "בנק לאומי ",
+    "City": "הוד השרון",
+    "Street": "הבנים",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-06-01T00:00:00",
+    "FromHour": "17:00",
+    "ToHour": "22:00",
+    "Name": "בית הכנסת משכן צפורה",
+    "City": "אפרת",
+    "Street": "זית שמן",
+    "NumHouse": "5",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-06-06T00:00:00",
+    "FromHour": "17:30",
+    "ToHour": "21:30",
+    "Name": "מבואה אולם ספורט                              ",
+    "City": "גבעת אלה",
+    "Street": "",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-07-07T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "13:00",
+    "Name": "ככר פנינה בר סבר",
+    "City": "גבעתיים",
+    "Street": "הרב הרצוג",
+    "NumHouse": "",
+    "AccountType": ""
+  },
+  {
+    "DateDonation": "2023-08-11T00:00:00",
+    "FromHour": "09:00",
+    "ToHour": "13:00",
+    "Name": "ככר פנינה בר סבר",
+    "City": "גבעתיים",
+    "Street": "הרב הרצוג",
+    "NumHouse": "",
+    "AccountType": ""
+  }
+]
