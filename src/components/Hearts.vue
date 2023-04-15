@@ -18,6 +18,7 @@ const emit = defineEmits<{
       v-for="heart in hearts"
       @click="emit('input:search', heart)"
       @remove="emit('heart:remove', heart)"
+      :class="{ selected: searchText == heart }"
       :icon="searchText == heart ? 'pi pi-heart-fill' : 'pi pi-heart'"
       :label="heart"
     >
@@ -30,17 +31,26 @@ const emit = defineEmits<{
   gap: 12px;
   display: flex;
   justify-content: center;
-}
+  transition: outline 500ms ease-in-out;
 
-.p-chip {
-  background-color: var(--heart000);
-  &:hover {
-    outline: 2px solid var(--heart200);
-    cursor: pointer;
-  }
+  .p-chip {
+    &.selected {
+      color: white;
+      background-color: var(--heart100);
+    }
+    background-color: var(--heart000);
+    &:hover {
+      background-color: var(--heart100);
+      cursor: pointer;
+    }
 
-  .p-chip-icon::before {
-    color: var(--heart100);
+    .p-chip-icon::before {
+      color: var(--heart200);
+
+      &.selected {
+        color: var(--heart000);
+      }
+    }
   }
 }
 </style>

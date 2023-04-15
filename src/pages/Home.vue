@@ -1,21 +1,24 @@
 <script setup lang="ts">
+import Error from '@/components/Error.vue'
 import Loading from '@/components/Loading.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import SearchInputSettings from '@/components/SearchInputSettings.vue'
-import Main from '@/components/SearchResults.vue'
-import { onBeforeMount, ref } from 'vue'
+import SearchResult from '@/components/SearchResults.vue'
+import { onErrorCaptured, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Card from 'primevue/card'
 import { computed } from '@vue/reactivity'
 import Hearts from '@/components/Hearts.vue'
-import fetchMada from '@/assets/fetchMada'
 const toast = useToast()
 const searchText = ref('')
 const searchSettings = ref({})
 
-onBeforeMount(() => {
-  fetchMada.then((res) => alert(res.json())).catch(console.error)
+const errored = ref<string | null>(null)
+
+onErrorCaptured((err: string) => {
+  errored.value = err
 })
+
 function handleSearch() {
   toast.add({
     severity: 'info',
@@ -52,13 +55,15 @@ function deleteHeated(key: string) {
 
 <template>
   <header class="padding-large">
-    <hearts
-      :key="key"
-      :hearts="hearts"
-      :search-text="searchText"
-      @input:search="searchText = $event"
-    />
-    <card>
+    <card class="header-card">
+      <template #header>
+        <hearts
+          :key="key"
+          :hearts="hearts"
+          :search-text="searchText"
+          @input:search="searchText = $event"
+        />
+      </template>
       <template #content>
         <search-input
           v-model="searchText"
@@ -67,23 +72,27 @@ function deleteHeated(key: string) {
           @heart-remove="deleteHeated"
           :is-heart="isHeart"
         />
-        <search-input-settings @update="handleSearchSettings" />
       </template>
     </card>
   </header>
   <suspense>
     <template #fallback>
-      <loading />
+      <loading v-if="!errored" />
+      <error v-else :error-message="errored"></error>
     </template>
     <template #default>
       <main class="padding-large">
-        <Main />
+        <search-result :mada="mada" />
       </main>
     </template>
   </suspense>
 </template>
 
 <style lang="scss">
+.header-card {
+  overflow: hidden;
+}
+
 .padding-large {
   padding: 24px;
   margin: 12px;

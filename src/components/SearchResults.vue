@@ -7,15 +7,9 @@ import Loading from '@/components/Loading.vue'
 import PlaceDetails from '@/components/PlaceDetails.vue'
 
 const rows = ref(data)
-await new Promise((resolve) => setTimeout(resolve, 1000))
 
-// onMounted(() => {
-// fetch('https://d6ebtk.deta.dev/api/get-data', {})
-// .then((result) => result.json())
-// .then((remoteRowData) => {
-// rows.value = remoteRowData
-// })
-// })
+// const result = await fetch('http://yuval.live/getBlood')
+// rows.value = result.json()
 </script>
 
 <template>
