@@ -1,3 +1,10 @@
 body {
   overflow: hidden;
 }
+
+:root {
+  --heart000: #e7ab79;
+  --heart100: #b25068;
+  --heart200: #774360;
+  --heart300: #4c3a51;
+}

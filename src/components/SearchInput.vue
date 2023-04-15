@@ -83,6 +83,6 @@ function handleClickHeart() {
 
 <style scoped>
 .red {
-  color: var(--red-300);
+  color: var(--heart300);
 }
 </style>

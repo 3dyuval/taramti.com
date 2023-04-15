@@ -13,13 +13,13 @@ import {
 import { useToast } from 'primevue/usetoast'
 import Card from 'primevue/card'
 import { computed } from '@vue/reactivity'
+import Hearts from '@/components/Hearts.vue'
+
 const toast = useToast()
 const searchText = ref('')
 const searchSettings = ref({})
-import Hearts from '@/components/Hearts.vue'
 
 function handleSearch() {
-  console.log(searchText.value)
   toast.add({
     severity: 'info',
     summary: searchText.value,
@@ -55,13 +55,19 @@ function deleteHeated(key: string) {
 
 <template>
   <header class="padding-large">
-    <hearts :key="key" :hearts="hearts" @input:search="searchText = $event" />
+    <hearts
+      :key="key"
+      :hearts="hearts"
+      :search-text="searchText"
+      @input:search="searchText = $event"
+    />
     <card>
       <template #content>
         <search-input
           v-model="searchText"
           @click="handleSearch"
           @click:heart="addHearted"
+          @heart-remove="deleteHeated"
           :is-heart="isHeart"
         />
         <search-input-settings @update="handleSearchSettings" />
