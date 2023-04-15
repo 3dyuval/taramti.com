@@ -10,6 +10,7 @@ import { computed } from '@vue/reactivity'
 const toast = useToast()
 const searchText = ref('')
 const searchSettings = ref({})
+import Hearts from '@/components/Hearts.vue'
 
 function handleSearch() {
   console.log(searchText.value)
@@ -22,7 +23,7 @@ function handleSearch() {
 
 function handleSearchSettings() {}
 
-const heart = computed({
+const hearts = computed({
   get: getHeartedItems,
   set: setHeartedItems,
 })
@@ -44,6 +45,10 @@ function deleteHeatedItem(key: string) {
 
 <template>
   <header class="padding-large">
+    <hearts
+      :hearts="Object.values(hearts)"
+      @input:search="searchText = $event"
+    />
     <card>
       <template #content>
         <search-input
