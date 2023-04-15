@@ -4,7 +4,7 @@ import Toast from 'primevue/toast'
 </script>
 
 <template>
-  <Toast />
+  <toast />
   <home />
 </template>
 

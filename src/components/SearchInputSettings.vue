@@ -1,8 +1,31 @@
 <script setup lang="ts">
 import Dropdown from 'primevue/dropdown'
 import Checkbox from 'primevue/checkbox'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import Panel from 'primevue/panel'
+import type { Row } from '@/@types'
+import cities from '@/assets/cities.json'
+
+const props = withDefaults(
+  defineProps<{
+    rows: Row[]
+  }>(),
+  {
+    rows: () => [],
+  }
+)
+
+const formattedCities = computed(function () {
+  return props.rows.reduce((acc, val) => {
+    return [
+      acc,
+      {
+        label: val.City,
+        icon: 'pi-map-marker',
+      },
+    ]
+  }, [])
+})
 </script>
 
 <template>
@@ -12,7 +35,7 @@ import Panel from 'primevue/panel'
         <div class="p-inputgroup">
           <Dropdown
             v-model="selectedCity"
-            :options="cities"
+            :options="formattedCities"
             optionLabel="name"
             placeholder="Select a City"
           />
