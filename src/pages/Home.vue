@@ -3,22 +3,19 @@ import Loading from '@/components/Loading.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import SearchInputSettings from '@/components/SearchInputSettings.vue'
 import Main from '@/components/SearchResults.vue'
-import {
-  ComputedGetter,
-  ComputedRef,
-  WritableComputedOptions,
-  reactive,
-  ref,
-} from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Card from 'primevue/card'
 import { computed } from '@vue/reactivity'
 import Hearts from '@/components/Hearts.vue'
-
+import fetchMada from '@/assets/fetchMada'
 const toast = useToast()
 const searchText = ref('')
 const searchSettings = ref({})
 
+onBeforeMount(() => {
+  fetchMada.then((res) => alert(res.json())).catch(console.error)
+})
 function handleSearch() {
   toast.add({
     severity: 'info',

@@ -41,21 +41,11 @@ function handleClickHeart() {
   <div class="col-12 md:col-4">
     <div class="p-inputgroup">
       <Button
-        v-if="searchDisabled"
         :disabled="true"
-        label="הכניסו חיפוש"
-        type="button"
-        class="p-button-success"
+        :label="searchDisabled ? '' : 'חיפוש'"
+        class="search-button"
+        :class="{ 'search-disabled': searchDisabled }"
         icon="pi pi-search"
-      />
-      <SplitButton
-        v-else
-        class="p-button-success green-600"
-        style="font-size: 1.5rem"
-        icon="pi pi-search"
-        label="חיפוש"
-        :button-props="{ onClick: handleOnSearch }"
-        :model="items"
       />
       <input-text
         @keyup.enter="handleOnSearch"
@@ -67,13 +57,13 @@ function handleClickHeart() {
       />
       <span class="p-inputgroup-addon" @click="handleClickHeart">
         <i
-          class="pi"
+          class="pi search-heart"
           :class="[
             searchDisabled
               ? 'pi-heart'
               : isHeart
-              ? 'pi-heart-fill red'
-              : 'pi-heart red',
+              ? 'pi-heart-fill'
+              : 'pi-heart',
           ]"
         ></i>
       </span>
@@ -81,8 +71,24 @@ function handleClickHeart() {
   </div>
 </template>
 
-<style scoped>
-.red {
-  color: var(--heart300);
+<style lang="scss">
+.search-button {
+  font-size: 1.5rem !important;
+}
+
+.search-disabled {
+  background-color: var(--success000) !important;
+  color: var(--success200) !important;
+}
+.search-button:not(.search-disabled) {
+  background-color: var(--success200) !important;
+  color: var(--success000) !important;
+}
+
+.search-heart {
+  color: var(--heart000);
+  &.pi-heart-fill {
+    color: var(--heart100);
+  }
 }
 </style>

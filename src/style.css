@@ -7,4 +7,12 @@ body {
   --heart100: #b25068;
   --heart200: #774360;
   --heart300: #4c3a51;
+
+  --success000: #eef5db;
+  --success100: #c7efcf;
+  --success200: #06978d;
+
+  --warning100: #ffeaa5;
+
+  --error100: #fe5f55;
 }
