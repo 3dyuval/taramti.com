@@ -6,12 +6,13 @@ import { computed } from 'vue'
 
 const props = defineProps<{
   modelValue: string
+  isHeart: boolean
 }>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
   (event: 'click'): void
-  (event: 'handleHeart'): void
+  (event: 'click:heart'): void
 }>()
 
 function handleInputChange(e: Event) {
@@ -28,6 +29,11 @@ const items = [
 function handleOnSearch(e) {
   if (searchDisabled.value) return
   emit('click')
+}
+
+function handleClickHeart() {
+  if (props.isHeart || searchDisabled.value) return
+  emit('click:heart')
 }
 </script>
 <template>
@@ -59,10 +65,16 @@ function handleOnSearch(e) {
         style="font-size: 1.5rem"
         placeholder="חפשו מקום לתרום דם לפי שם, עיר, מקום, או יום"
       />
-      <span class="p-inputgroup-addon" @click="emit('handleHeart')">
+      <span class="p-inputgroup-addon" @click="handleClickHeart">
         <i
           class="pi"
-          :class="[searchDisabled ? 'pi-heart' : 'pi-heart red']"
+          :class="[
+            searchDisabled
+              ? 'pi-heart'
+              : isHeart
+              ? 'pi-heart-fill red'
+              : 'pi-heart red',
+          ]"
         ></i>
       </span>
     </div>

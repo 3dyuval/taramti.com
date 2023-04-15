@@ -3,7 +3,13 @@ import Loading from '@/components/Loading.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import SearchInputSettings from '@/components/SearchInputSettings.vue'
 import Main from '@/components/SearchResults.vue'
-import { ref } from 'vue'
+import {
+  ComputedGetter,
+  ComputedRef,
+  WritableComputedOptions,
+  reactive,
+  ref,
+} from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Card from 'primevue/card'
 import { computed } from '@vue/reactivity'
@@ -23,38 +29,40 @@ function handleSearch() {
 
 function handleSearchSettings() {}
 
-const hearts = computed({
-  get: getHeartedItems,
-  set: setHeartedItems,
-})
+let key = 0
+
+const hearts = ref(getHeartedItems())
+
+const isHeart = computed<boolean>(() => hearts.value.includes(searchText.value))
 
 function getHeartedItems() {
   const savedItems = localStorage.getItem('heart')
-  return savedItems ? JSON.parse(savedItems) : {}
+  return savedItems ? JSON.parse(savedItems) : []
 }
 
-function setHeartedItems(searchInput: string) {
-  const items = { searchInput, ...getHeartedItems() }
+function addHearted(): void {
+  const items = [searchText.value, ...getHeartedItems()]
   localStorage.setItem('heart', JSON.stringify(items))
+  hearts.value = items
 }
 
-function deleteHeatedItem(key: string) {
-  const items = getHeartedItems()
+function deleteHeated(key: string) {
+  const filteredItems = getHeartedItems().filter((i) => i === key)
+  localStorage.setItem('heart', JSON.stringify(filteredItems))
+  hearts.value = filteredItems
 }
 </script>
 
 <template>
   <header class="padding-large">
-    <hearts
-      :hearts="Object.values(hearts)"
-      @input:search="searchText = $event"
-    />
+    <hearts :key="key" :hearts="hearts" @input:search="searchText = $event" />
     <card>
       <template #content>
         <search-input
           v-model="searchText"
           @click="handleSearch"
-          @handle-heart="heart = searchText"
+          @click:heart="addHearted"
+          :is-heart="isHeart"
         />
         <search-input-settings @update="handleSearchSettings" />
       </template>
