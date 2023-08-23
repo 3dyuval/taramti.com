@@ -15,7 +15,7 @@ const emit = defineEmits<{
   (event: 'click:heart'): void
 }>()
 
-function handleInputChange(e: Event) {
+function handleInputChange(e: any) {
   emit('update:modelValue', e.target.value)
 }
 
@@ -26,7 +26,8 @@ const items = [
   { label: 'מחק תוצאות', command: () => emit('update:modelValue', '') },
 ]
 
-function handleOnSearch(e) {
+// TODO type event
+function handleOnSearch(e: any) {
   if (searchDisabled.value) return
   emit('click')
 }

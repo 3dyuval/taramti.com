@@ -9,15 +9,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*", "./netlify/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist", "src/**/*.spec.ts", "src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.test.js", "src/**/*.spec.js", "@fawmi/vue-google-maps", "fast-deep-equal"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

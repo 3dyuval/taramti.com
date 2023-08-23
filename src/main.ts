@@ -3,8 +3,8 @@ import './style.css'
 import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import VueGoogleMaps from '@fawmi/vue-google-maps'
-import LottieAnimation from 'lottie-web-vue'
 import ToastService from 'primevue/toastservice'
+
 
 import 'primevue/resources/themes/saga-blue/theme.css' //theme
 import 'primevue/resources/primevue.min.css       ' //core css
@@ -20,5 +20,4 @@ app.use(VueGoogleMaps, {
     installComponents: true,
   },
 })
-app.use(LottieAnimation)
 app.mount('#app')

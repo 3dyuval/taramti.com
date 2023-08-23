@@ -15,7 +15,7 @@ const emit = defineEmits<{
   (event: 'deselect', index: number): void
 }>()
 
-const dateComparator = function (dataFromFilter, cellValue) {
+const dateComparator = function (dataFromFilter: any, cellValue: any) {
   // dates are stored as yyyy-mm-ddThh:mm:ss
   // We create a Date object for comparison against the filter date
   const dateParts = cellValue.split('-')

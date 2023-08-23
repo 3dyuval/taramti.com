@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const center = ref({ lat: 51.093048, lng: 6.84212 })
 
-const { errorToast } = useErrorCapture('אין כתובת להצגה במפה')
+const { toastError } = useErrorCapture({summary: 'אין כתובת להצגה במפה'})
 const googleGeocoding =
   new Request(`https://maps.googleapis.com/maps/api/geocode/json?&key=${
     import.meta.env.VITE_GOOGLE_MAP_API_KEY
@@ -22,7 +22,7 @@ try {
   const data = await response.json()
   center.value = data.results[0].geometry.location
 } catch (err) {
-  errorToast(err)
+  toastError(`${err}`)
 }
 </script>
 

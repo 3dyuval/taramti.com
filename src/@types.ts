@@ -1,9 +1,10 @@
 export type Row = {
-  AccountType: string
-  Name: string
-  City: string
+  DateDonation: string
   FromHour: string
   ToHour: string
-  NumHouse: string
+  Name: string
+  City: string
   Street: string
+  NumHouse: string
+  AccountType: string
 }

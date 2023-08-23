@@ -2,7 +2,6 @@
 import Error from '@/components/Error.vue'
 import Loading from '@/components/Loading.vue'
 import SearchInput from '@/components/SearchInput.vue'
-import SearchInputSettings from '@/components/SearchInputSettings.vue'
 import SearchResult from '@/components/SearchResults.vue'
 import { onErrorCaptured, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
@@ -47,7 +46,7 @@ function addHearted(): void {
 }
 
 function deleteHeated(key: string) {
-  const filteredItems = getHeartedItems().filter((i) => i === key)
+  const filteredItems = getHeartedItems().filter((i: any) => i === key)
   localStorage.setItem('heart', JSON.stringify(filteredItems))
   hearts.value = filteredItems
 }
@@ -82,7 +81,7 @@ function deleteHeated(key: string) {
     </template>
     <template #default>
       <main class="padding-large">
-        <search-result :mada="mada" />
+        <search-result />
       </main>
     </template>
   </suspense>

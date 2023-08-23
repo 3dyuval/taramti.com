@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import type { UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 
@@ -8,7 +9,15 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
+  build: {
+    rollupOptions: {
+      external: [/\.css$/u],
+    }
+  },
   optimizeDeps: {
     include: ['@fawmi/vue-google-maps', 'fast-deep-equal'],
+    esbuildOptions: {
+      tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+    },
   },
-})
+}) satisfies UserConfigExport

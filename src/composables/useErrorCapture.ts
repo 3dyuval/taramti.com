@@ -6,13 +6,15 @@ export default function useErrorCapture({
 }) {
   const toast = useToast()
 
-  const errorToast = (error = detail) =>
+  const toastError = (error = detail) => {
+    console.error(`${detail}: ${error}`)
+
     toast.add({
       severity: 'error',
       summary: summary,
-      detail: `${error}`,
+      detail: `${detail}: ${error}`,
       life: 2000,
     })
-
-  return { errorToast }
+  }
+  return { toastError }
 }

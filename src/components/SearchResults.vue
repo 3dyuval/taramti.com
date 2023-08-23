@@ -1,15 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import MapView from '@/components/Map.vue'
-import data from '@/assets/data.json'
 import DataTable from '@/components/Table.vue'
 import Loading from '@/components/Loading.vue'
 import PlaceDetails from '@/components/PlaceDetails.vue'
+import type { Row } from '@/@types'
+import useErrorCapture from '@/composables/useErrorCapture'
 
-const rows = ref(data)
 
-// const result = await fetch('http://yuval.live/getBlood')
-// rows.value = result.json()
+const { toastError } = useErrorCapture({
+  summary: 'לא הצלחנו להביא את הנתונים',
+})
+
+const rows = ref<Row[]>([])
+
+
+if (import.meta.env.MODE === 'development') {
+    rows.value = await import('@/assets/data.json') as Row[]
+} else if (import.meta.env.MODE === 'production'){
+  rows.value = await fetch('./netlify/functions/fetchmada')
+  .then(result => result.json())
+  .then((data) => data as Row[])
+  .catch(err => {
+    toastError(err.message)
+    return []
+  })
+
+}
+
+
+
+
+
 </script>
 
 <template>
