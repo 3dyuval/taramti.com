@@ -25,7 +25,7 @@ if (!!import.meta.env.DEV) {
     const json = await import('../assets/data.json')
     rows.value = json.default as Row[]
 } else if (import.meta.env.MODE === 'production'){
-  rows.value = await fetch('./netlify/functions/fetchmada')
+  rows.value = await fetch('./.netlify/functions/fetchmada')
   .then(result => result.json())
   .then((data) => data as Row[])
   .catch(err => {
