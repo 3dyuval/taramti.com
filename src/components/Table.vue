@@ -3,6 +3,8 @@ import DataTable, { DataTableFilterMeta } from 'primevue/datatable'
 import Column from 'primevue/column'
 import { ref, computed } from 'vue'
 import type { Row } from '@/@types'
+import Hearts from './Hearts.vue'
+
 
 const props = defineProps<{
   value: Row[]
@@ -41,21 +43,22 @@ const dateComparator = function (dataFromFilter: any, cellValue: any) {
     class="data-table"
     :value="value"
     :filters="filters" 
-    v-model:expandedRows="expandedRows"
+    :expandedRows="expandedRows"
+    @row-expand="expandedRows = [$event.data]"
     :scrollable="true"
     scrollHeight="60vh"
   >
     <template #header>
       <div class="table-header">
-        תוצאות בדיקות דם
-        <i class="pi pi-heart-fill" />
+      <hearts  />
+       תוצאות חיפוש
       </div>
     </template>
-    <column field="expand" header="פרטים" :expander="true" />
-    <column field="FromHour" header="משעה" :sortable="true"> </column>
-    <column field="ToHour" header="עד שעה" :sortable="true"> </column>
-    <column field="Name" header="שם" :sortable="true"> </column>
     <column field="City" header="עיר" :sortable="true"> </column>
+    <column field="Name" header="שם" :sortable="true"> </column>
+    <column field="ToHour" header="עד שעה" :sortable="true"> </column>
+    <column field="FromHour" header="משעה" :sortable="true"> </column>
+    <column field="expand" header="פרטים" :expander="true" />
     <template #expansion="{ data }">
       <slot name="expansion" :data="data"> </slot>
     </template>

@@ -3,12 +3,13 @@ import mapStylesSilver from "@/assets/map-styles-silver.json";
 import { ref } from "vue";
 import useErrorCapture from "@/composables/useErrorCapture";
 import type { Row } from "@/@types";
+import Error from "@/components/Error.vue";
 
 const props = defineProps<{
   row: Row;
 }>();
 
-const isError = ref<string | null>(null);
+const error = ref<string | null>(null);
 
 type Coords = {
   lat: number;
@@ -30,12 +31,12 @@ try {
   center.value = data.results[0].geometry.location;
 } catch (err) {
   toastError(`${err}`);
-  isError.value = errorSummary;
+  error.value = errorSummary;
 }
 </script>
 
 <template>
-  <error v-if="isError" :error-message="isError" />
+  <Error v-if="error" :error-message="error" small />
   <loading v-else-if="!center" />
   <GMapMap
     v-else

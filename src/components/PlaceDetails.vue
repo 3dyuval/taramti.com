@@ -1,59 +1,72 @@
 <script setup lang="ts">
-import type { Row } from '@/@types'
-import Button from 'primevue/button'
-import Calendar from 'primevue/calendar'
-import Card from 'primevue/card'
-import Tooltip from 'primevue/tooltip'
-import CardBody from 'primevue/card'
-import Chip from 'primevue/chip'
-import { computed } from 'vue'
+import type { Row } from "@/@types";
+import Button from "primevue/button";
+import Calendar from "primevue/calendar";
+import Card from "primevue/card";
+import Tooltip from "primevue/tooltip";
+import CardBody from "primevue/card";
+import Chip from "primevue/chip";
+import { computed } from "vue";
 const props = defineProps<{
-  row: Row
-}>()
+  row: Row;
+}>();
 
-const formattedAddress = `${props.row.City} ${props.row.Name} ,${props.row.NumHouse} ,${props.row?.City} ${props.row.AccountType}`
+const formattedAddress = `${props.row.City} ${props.row.Name} ,${props.row.NumHouse} ,${props.row?.City} ${props.row.AccountType}`;
 const placeName = props.row.Street
   ? props.row.Street
   : props.row.AccountType
   ? props.row?.NumHouse
-  : props.row.Name
-
+  : props.row.Name;
 </script>
 
 <template>
-  <card>
+  <card style="flex: .8;">
     <template #title>
-      {{ placeName }}
-    </template>
-    <template #content>
-      <chip class="" :label="formattedAddress" icon="pi pi-map-marker" />
+      <div class="card-content-head">
+        {{ placeName }}
+        <chip class="" :label="formattedAddress" icon="pi pi-map-marker" />
+      </div>
     </template>
     <template #footer>
-      <Button icon="pi pi-share-alt" label="שתף">שתף</Button>
-      <Button icon="pi pi-directions-alt" label="גוגל מפות"></Button>
+      <div class="card-content-actions">
+        <Button class="pi pi-share-alt" plain text label="שתף"></Button>
+        <Button class="pi pi-heart" plain-text color="var(--heart100)" label="אהבתי"></Button>
+        <Button class="pi pi-directions-alt" plain text label="פתח בגוגל מפות"></Button>
+      </div>
     </template>
   </card>
 </template>
 
-<style scoped>
-.p-title {
-  font-size: 32px;
-  color: var(--red-700);
+<style lang="scss">
+.card-content-head {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: right;
+
+  .p-title {
+    font-size: 32px;
+    color: var(--red-700);
+  }
+
+  .p-chip {
+    color: var(--red-700);
+  }
 }
 
-.p-chip {
-  color: var(--red-700);
-}
-.p-card {
-  width: 50%;
-  padding: 24px;
-  background-color: var(--gray-100);
-}
-.actions {
+.card-content-actions {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  gap: 1rem;
   width: 100%;
   align-items: baseline;
+  .p-button-label {
+    margin: 0 0.5em;
+  }
+  button {
+    direction: ltr;
+  }
+  .pi.pi-directions-alt{
+    justify-self: flex-end;
+  }
 }
 </style>

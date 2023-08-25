@@ -1,41 +1,27 @@
 <script setup lang="ts">
-import SplitButton from 'primevue/splitbutton'
-import Button from 'primevue/button'
-import InputText from 'primevue/inputtext'
-import { computed } from 'vue'
+import SplitButton from "primevue/splitbutton";
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
+import { computed } from "vue";
 
 const props = defineProps<{
-  modelValue: string
-  isHeart: boolean
-}>()
+  search: string;
+  isHeart: boolean;
+}>();
 
 const emit = defineEmits<{
-  (event: 'update:model-value', value: string): void
-  (event: 'click'): void
-  (event: 'click:heart'): void
-}>()
+  "update:search": [value: string];
+}>();
 
 function handleInputChange(e: any) {
-  emit('update:model-value', e.target.value)
+  emit("update:search", e.target.value);
 }
 
-const searchDisabled = computed<boolean>(() => !props.modelValue.trim().length)
+const searchDisabled = computed<boolean>(() => !props.search.trim().length);
 
-const items = [
-  { label: 'שתף תוצאות', command: () => console.log('clean') },
-  { label: 'מחק תוצאות', command: () => emit('update:model-value', '') },
-]
+const items = [{ label: "מחק תוצאות", command: () => emit("update:search", "") }];
 
-// TODO type event
-function handleOnSearch(e: any) {
-  if (searchDisabled.value) return
-  emit('click')
-}
 
-function handleClickHeart() {
-  if (props.isHeart || searchDisabled.value) return
-  emit('click:heart')
-}
 </script>
 <template>
   <div class="p-inputgroup"></div>
@@ -49,23 +35,16 @@ function handleClickHeart() {
         icon="pi pi-search"
       />
       <input-text
-        @keyup.enter="handleOnSearch"
         dir="rtl"
-        :value="modelValue"
+        :value="search"
         @input="handleInputChange"
         style="font-size: 1.5rem"
-        placeholder="חפשו מקום לתרום דם לפי שם, עיר, מקום, או יום"
+        placeholder="חפשו מקום לתרום דם לפי עיר או שם"
       />
-      <span class="p-inputgroup-addon" @click="handleClickHeart">
+      <span class="p-inputgroup-addon">
         <i
           class="pi search-heart"
-          :class="[
-            searchDisabled
-              ? 'pi-heart'
-              : isHeart
-              ? 'pi-heart-fill'
-              : 'pi-heart',
-          ]"
+          :class="[searchDisabled ? 'pi-heart' : isHeart ? 'pi-heart-fill' : 'pi-heart']"
         ></i>
       </span>
     </div>

@@ -1,25 +1,70 @@
 <script setup lang="ts">
-import Chip from 'primevue/chip'
+import { computed, ref } from "@vue/reactivity";
+import Chip from "primevue/chip";
+import { watch } from "vue";
 
-defineProps<{
-  hearts: string[]
-  searchText?: string
-}>()
+const props = defineProps<{
+  search: string;
+}>();
 
 const emit = defineEmits<{
-  (event: 'input:search', payload: string): void
-  (event: 'heart:remove', payload: string): void
-}>()
+  "update:search": [payload: string];
+  "update:is-heart": [payload: boolean];
+}>();
+
+let key = 0;
+
+const hearts = ref(getHeartedItems());
+
+const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
+
+watch(isHeart, (value) => {
+  emit("update:is-heart", value);
+}, {
+  immediate: true
+});
+
+function getHeartedItems() {
+  const savedItems = localStorage.getItem("heart");
+  return savedItems ? JSON.parse(savedItems) : [];
+}
+
+function addHeart(): void {
+  const items = [props.search, ...getHeartedItems()];
+  localStorage.setItem("heart", JSON.stringify(items));
+  hearts.value = items;
+}
+
+function deleteHeart(key: string) {
+  const filteredItems = getHeartedItems().filter((i: any) => i === key);
+  localStorage.setItem("heart", JSON.stringify(filteredItems));
+  hearts.value = filteredItems;
+  emit('update:search', '')
+}
+
+function onSelectHeart(event) {
+  const {value} = event.target
+  if (value !== props.search) {
+    emit("update:search", value);
+  }
+}
+
+function isCurrent(searchText: string, heart: string) {
+  return heart === searchText;
+}
+
+
 </script>
 
 <template>
   <div class="chips">
     <Chip
       v-for="heart in hearts"
-      @click="emit('input:search', heart)"
-      @remove="emit('heart:remove', heart)"
-      :class="{ selected: searchText == heart }"
-      :icon="searchText == heart ? 'pi pi-heart-fill' : 'pi pi-heart'"
+      @click="onSelectHeart($event)"
+      :class="{ selected: isCurrent(search, heart) }"
+      :icon="isCurrent(search, heart) ? 'pi pi-heart-fill' : 'pi pi-heart'"
+      :removable="isCurrent(search, heart)"
+      @remove="deleteHeart"
       :label="heart"
     >
     </Chip>

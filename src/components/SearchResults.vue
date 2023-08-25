@@ -8,10 +8,16 @@ import type { Row } from '@/@types'
 import useErrorCapture from '@/composables/useErrorCapture'
 import Error from '@/components/Error.vue'
 import { computed } from '@vue/reactivity'
+import { DataTableFilterMeta } from 'primevue/datatable'
 
-const props = defineProps<{ searchText: string }>()
+const props = defineProps<{ search: string }>()
 
-const isError = ref(false)
+const emit = defineEmits<{
+  'update:search': [payload: string]
+  'update:is-heart': [payload: boolean]
+
+}>()
+
 let errorMsg = 'לא הצלחנו להביא את הנתונים'
 
 const { toastError } = useErrorCapture({
@@ -24,53 +30,54 @@ const rows = ref<Row[]>([])
 if (!!import.meta.env.DEV) {
     const json = await import('../assets/data.json')
     rows.value = json.default as Row[]
-} else if (import.meta.env.MODE === 'production'){
+} else if (import.meta.env.PROD){
   rows.value = await fetch('./.netlify/functions/fetchmada')
   .then(result => result.json())
   .then((data) => data as Row[])
   .catch(err => {
-    isError.value = true
-    toastError(err.message)
-    return []
+    toastError(errorMsg)
+    return Promise.reject(errorMsg)
   })
 }
 
-// write a function for primevue data-table filter
 // https://www.primefaces.org/primevue/showcase/#/datatable/filter
-
-
-const filters = computed(() => ({
+const filters = computed<DataTableFilterMeta>(() => ({
   City: {
-    value: props.searchText,
+    value: props.search,
     matchMode: 'contains',
   },
+  Name: {
+    value: props.search,
+    matchMode: 'contains',
+  }
 }))
-
-
 </script>
 
 <template>
   <div class="result">
-  <data-table :filters="filters"  :value="rows" >
-    <template #expansion="slotProps">
-    <div class="expansion">
+    <data-table :filters="filters" :value="rows">
+      <template #header>
+        <hearts
+          @update:is-heart="emit('update:is-heart', $event)"
+          @update:search="emit('update:search', $event)"
+          :search="search"
+        />
+      </template>
+      <template #expansion="slotProps">
+        <div class="expansion">
           <place-details :row="slotProps.data" />
           <map-view :row="slotProps.data" />
-    </div>
-    </template>
-  </data-table>
+        </div>
+      </template>
+    </data-table>
   </div>
 </template>
 
 <style lang="scss">
-
-
-  .expansion {
+.expansion {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   width: 100%;
-  }
-
-
+}
 </style>
