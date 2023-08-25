@@ -6,8 +6,7 @@ import VueGoogleMaps from '@fawmi/vue-google-maps'
 import ToastService from 'primevue/toastservice'
 
 
-import 'primevue/resources/themes/saga-blue/theme.css' //theme
-import 'primevue/resources/primevue.min.css       ' //core css
+import 'primevue/resources/themes/saga-blue/theme.css' //the  me
 import 'primeicons/primeicons.css'
 
 const app = createApp(App)

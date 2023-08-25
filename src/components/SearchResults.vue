@@ -7,6 +7,7 @@ import PlaceDetails from '@/components/PlaceDetails.vue'
 import type { Row } from '@/@types'
 import useErrorCapture from '@/composables/useErrorCapture'
 
+defineProps<{ searchText: string }>()
 
 const { toastError } = useErrorCapture({
   summary: 'לא הצלחנו להביא את הנתונים',
@@ -15,8 +16,9 @@ const { toastError } = useErrorCapture({
 const rows = ref<Row[]>([])
 
 
-if (import.meta.env.MODE === 'development') {
-    rows.value = await import('@/assets/data.json') as Row[]
+if (!!import.meta.env.DEV) {
+    const json = await import('../assets/data.json')
+    rows.value = json.default as Row[]
 } else if (import.meta.env.MODE === 'production'){
   rows.value = await fetch('./netlify/functions/fetchmada')
   .then(result => result.json())
@@ -35,7 +37,7 @@ if (import.meta.env.MODE === 'development') {
 </script>
 
 <template>
-  <data-table :rows="rows">
+  <data-table :rows="rows" >
     <template #expansion="slotProps">
       <place-details :row="slotProps.data" />
       <suspense>

@@ -81,7 +81,7 @@ function deleteHeated(key: string) {
     </template>
     <template #default>
       <main class="padding-large">
-        <search-result />
+        <search-result search-text="searchText" />
       </main>
     </template>
   </suspense>

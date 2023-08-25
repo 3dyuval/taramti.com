@@ -10,20 +10,20 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (event: 'update:modelValue', value: string): void
+  (event: 'update:model-value', value: string): void
   (event: 'click'): void
   (event: 'click:heart'): void
 }>()
 
 function handleInputChange(e: any) {
-  emit('update:modelValue', e.target.value)
+  emit('update:model-value', e.target.value)
 }
 
 const searchDisabled = computed<boolean>(() => !props.modelValue.trim().length)
 
 const items = [
   { label: 'שתף תוצאות', command: () => console.log('clean') },
-  { label: 'מחק תוצאות', command: () => emit('update:modelValue', '') },
+  { label: 'מחק תוצאות', command: () => emit('update:model-value', '') },
 ]
 
 // TODO type event
