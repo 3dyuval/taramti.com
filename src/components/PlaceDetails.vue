@@ -17,6 +17,7 @@ const placeName = props.row.Street
   : props.row.AccountType
   ? props.row?.NumHouse
   : props.row.Name
+
 </script>
 
 <template>

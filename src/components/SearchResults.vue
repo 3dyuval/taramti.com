@@ -6,11 +6,16 @@ import Loading from '@/components/Loading.vue'
 import PlaceDetails from '@/components/PlaceDetails.vue'
 import type { Row } from '@/@types'
 import useErrorCapture from '@/composables/useErrorCapture'
+import Error from '@/components/Error.vue'
+import { computed } from '@vue/reactivity'
 
-defineProps<{ searchText: string }>()
+const props = defineProps<{ searchText: string }>()
+
+const isError = ref(false)
+let errorMsg = 'לא הצלחנו להביא את הנתונים'
 
 const { toastError } = useErrorCapture({
-  summary: 'לא הצלחנו להביא את הנתונים',
+  summary: errorMsg,
 })
 
 const rows = ref<Row[]>([])
@@ -24,32 +29,48 @@ if (!!import.meta.env.DEV) {
   .then(result => result.json())
   .then((data) => data as Row[])
   .catch(err => {
+    isError.value = true
     toastError(err.message)
     return []
   })
-
 }
 
+// write a function for primevue data-table filter
+// https://www.primefaces.org/primevue/showcase/#/datatable/filter
 
 
+const filters = computed(() => ({
+  City: {
+    value: props.searchText,
+    matchMode: 'contains',
+  },
+}))
 
 
 </script>
 
 <template>
-  <data-table :rows="rows" >
+  <div class="result">
+  <data-table :filters="filters"  :value="rows" >
     <template #expansion="slotProps">
-      <place-details :row="slotProps.data" />
-      <suspense>
-        <template #default>
+    <div class="expansion">
+          <place-details :row="slotProps.data" />
           <map-view :row="slotProps.data" />
-        </template>
-        <template #fallback>
-          <loading />
-        </template>
-      </suspense>
+    </div>
     </template>
   </data-table>
+  </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+
+  .expansion {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  }
+
+
+</style>

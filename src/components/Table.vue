@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import DataTable from 'primevue/datatable'
+import DataTable, { DataTableFilterMeta } from 'primevue/datatable'
 import Column from 'primevue/column'
 import { ref, computed } from 'vue'
 import type { Row } from '@/@types'
 
 const props = defineProps<{
-  rows: Row[]
+  value: Row[]
+  filters?: DataTableFilterMeta
 }>()
 
 const expandedRows = ref([])
@@ -38,7 +39,8 @@ const dateComparator = function (dataFromFilter: any, cellValue: any) {
   <data-table
     dir="rtl"
     class="data-table"
-    :value="rows"
+    :value="value"
+    :filters="filters" 
     v-model:expandedRows="expandedRows"
     :scrollable="true"
     scrollHeight="60vh"
