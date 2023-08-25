@@ -11,7 +11,9 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: [/\.css$/u],
+      external: [
+        'primevue',
+      ],
     }
   },
   optimizeDeps: {
