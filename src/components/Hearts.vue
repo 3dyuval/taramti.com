@@ -26,7 +26,7 @@ function isCurrent(searchText: string, heart: string): boolean {
   return heart === searchText;
 }
 
-function onRemove(key: index) {
+function onRemove(key: number) {
   if (isCurrent(props.search, hearts.value[key])) {
       emit("update:search", "");  
   }

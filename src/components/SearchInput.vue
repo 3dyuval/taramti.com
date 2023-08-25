@@ -20,12 +20,9 @@ function handleInputChange(e: any) {
 
 const heart = useHeart();
 const { hearts } = storeToRefs(heart);
-
 const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
 
 const searchDisabled = computed<boolean>(() => !props.search.trim().length);
-
-const items = [{ label: "מחק תוצאות", command: () => emit("update:search", "") }];
 
 
 </script>
