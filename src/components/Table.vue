@@ -1,58 +1,56 @@
 <script setup lang="ts">
-import DataTable, { DataTableFilterMeta } from 'primevue/datatable'
-import Column from 'primevue/column'
-import { ref, computed } from 'vue'
-import type { Row } from '@/@types'
-import Hearts from './Hearts.vue'
-
+import DataTable, { DataTableFilterMeta } from "primevue/datatable";
+import Column from "primevue/column";
+import { ref, computed } from "vue";
+import type { Row } from "@/@types";
+import Hearts from "./Hearts.vue";
 
 const props = defineProps<{
-  value: Row[]
-  filters?: DataTableFilterMeta
-}>()
-
-const expandedRows = ref([])
+  value: Row[];
+  filters?: DataTableFilterMeta;
+}>();
 
 const emit = defineEmits<{
-  (event: 'select', index: number): void
-  (event: 'deselect', index: number): void
-}>()
+  (event: "select", index: number): void;
+  (event: "deselect", index: number): void;
+}>();
 
-const dateComparator = function (dataFromFilter: any, cellValue: any) {
-  // dates are stored as yyyy-mm-ddThh:mm:ss
-  // We create a Date object for comparison against the filter date
-  const dateParts = cellValue.split('-')
-  const year = Number(dateParts[0])
-  const month = Number(dateParts[1]) - 1
-  const day = Number(dateParts[2].split('T')[0])
-  const cellDate = new Date(year, month, day)
-  // Now that both parameters are Date objects, we can compare
-  if (cellDate < dataFromFilter) {
-    return -1
-  } else if (cellDate > dataFromFilter) {
-    return 1
-  } else {
-    return 0
+const expandedRows = ref<[Row] | []>([]);
+
+function onRowExpand({ data }: { data: Row }): void {
+  if (expandedRows.value.length === 0) {
+    expandedRows.value = [data];
+  } else if (data.id !== expandedRows.value[0].id) {
+    expandedRows.value = [data];
   }
 }
+
+function onRowCollapse ({ data: { id } }: { data: Row }): void {
+  expandedRows.value  =[];
+}
+
 </script>
 
 <template>
   <data-table
     dir="rtl"
+    data-key="id"
     class="data-table"
     :value="value"
-    :filters="filters" 
-    :expandedRows="expandedRows"
-    @row-expand="expandedRows = [$event.data]"
+    :filters="filters"
+    selection-mode="single"
     :scrollable="true"
+    :expanded-rows="expandedRows"
     scrollHeight="60vh"
+    @row-expand="onRowExpand"
+    @row-collapse="onRowCollapse"
   >
+    <template #empty><h3 class="empty">
+          לא נמצאו תוצאות 
+      </h3> 
+    </template>
     <template #header>
-      <div class="table-header">
-      <hearts  />
-       תוצאות חיפוש
-      </div>
+      <slot name="header" />
     </template>
     <column field="City" header="עיר" :sortable="true"> </column>
     <column field="Name" header="שם" :sortable="true"> </column>
@@ -69,5 +67,12 @@ const dateComparator = function (dataFromFilter: any, cellValue: any) {
 .data-table {
   border-radius: 12px;
   overflow: hidden;
+  outline: 1px solid rgba(0,0,0,0.2);
+}
+
+h3.empty {
+  text-align: center;
+  padding: 2em 0;
+  color: var(--heart000)
 }
 </style>

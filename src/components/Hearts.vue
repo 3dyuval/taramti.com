@@ -1,71 +1,42 @@
 <script setup lang="ts">
 import { computed, ref } from "@vue/reactivity";
 import Chip from "primevue/chip";
-import { watch } from "vue";
-
+import { useHeart } from "@/stores/useHeart";
+import { storeToRefs } from "pinia";
 const props = defineProps<{
   search: string;
 }>();
 
 const emit = defineEmits<{
   "update:search": [payload: string];
-  "update:is-heart": [payload: boolean];
 }>();
 
-let key = 0;
+const heart = useHeart();
+const { hearts } = storeToRefs(heart);
 
-const hearts = ref(getHeartedItems());
+function onClick(key: number): void {
+  const value = hearts.value[key];
 
-const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
-
-watch(isHeart, (value) => {
-  emit("update:is-heart", value);
-}, {
-  immediate: true
-});
-
-function getHeartedItems() {
-  const savedItems = localStorage.getItem("heart");
-  return savedItems ? JSON.parse(savedItems) : [];
-}
-
-function addHeart(): void {
-  const items = [props.search, ...getHeartedItems()];
-  localStorage.setItem("heart", JSON.stringify(items));
-  hearts.value = items;
-}
-
-function deleteHeart(key: string) {
-  const filteredItems = getHeartedItems().filter((i: any) => i === key);
-  localStorage.setItem("heart", JSON.stringify(filteredItems));
-  hearts.value = filteredItems;
-  emit('update:search', '')
-}
-
-function onSelectHeart(event) {
-  const {value} = event.target
-  if (value !== props.search) {
+  if (value && value !== props.search) {
     emit("update:search", value);
   }
 }
 
-function isCurrent(searchText: string, heart: string) {
+function isCurrent(searchText: string, heart: string): boolean {
   return heart === searchText;
 }
-
-
 </script>
 
 <template>
   <div class="chips">
     <Chip
-      v-for="heart in hearts"
-      @click="onSelectHeart($event)"
-      :class="{ selected: isCurrent(search, heart) }"
-      :icon="isCurrent(search, heart) ? 'pi pi-heart-fill' : 'pi pi-heart'"
-      :removable="isCurrent(search, heart)"
-      @remove="deleteHeart"
-      :label="heart"
+      v-for="(item, index) of hearts"
+      @click="onClick(index)"
+      :class="{ selected: isCurrent(search, item)   }"
+      :icon="isCurrent(search, item) ? 'pi pi-heart-fill' : 'pi pi-heart'"
+      :removable="isCurrent(search, item)"
+      @remove="heart.remove(index)"
+      :label="item"
     >
     </Chip>
   </div>
@@ -89,9 +60,11 @@ function isCurrent(searchText: string, heart: string) {
       cursor: pointer;
     }
 
+    .p-chip-text {
+      margin: .3em;
+    }
     .p-chip-icon::before {
       color: var(--heart200);
-
       &.selected {
         color: var(--heart000);
       }

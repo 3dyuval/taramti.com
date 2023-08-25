@@ -3,10 +3,11 @@ import SplitButton from "primevue/splitbutton";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import { computed } from "vue";
+import { useHeart } from "@/stores/useHeart";
+import { storeToRefs } from "pinia";
 
 const props = defineProps<{
   search: string;
-  isHeart: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -16,6 +17,11 @@ const emit = defineEmits<{
 function handleInputChange(e: any) {
   emit("update:search", e.target.value);
 }
+
+const heart = useHeart();
+const { hearts } = storeToRefs(heart);
+
+const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
 
 const searchDisabled = computed<boolean>(() => !props.search.trim().length);
 
@@ -37,16 +43,21 @@ const items = [{ label: "מחק תוצאות", command: () => emit("update:searc
       <input-text
         dir="rtl"
         :value="search"
-        @input="handleInputChange"
+        @input.trim="handleInputChange"
         style="font-size: 1.5rem"
         placeholder="חפשו מקום לתרום דם לפי עיר או שם"
       />
-      <span class="p-inputgroup-addon">
+
+      <Button 
+          :disabled="searchDisabled"
+          v-tooltip.bottom="'הוסף למועדפים'"
+      text  
+      class="p-inputgroup-addon" @click="heart.add(search)">
         <i
           class="pi search-heart"
-          :class="[searchDisabled ? 'pi-heart' : isHeart ? 'pi-heart-fill' : 'pi-heart']"
+          :class="[isHeart ? 'pi-heart-fill' : 'pi-heart']"
         ></i>
-      </span>
+      </Button>
     </div>
   </div>
 </template>

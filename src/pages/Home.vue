@@ -9,17 +9,21 @@ import Card from "primevue/card";
 import { computed } from "@vue/reactivity";
 import Hearts from "@/components/Hearts.vue";
 import useErrorCapture from "@/composables/useErrorCapture";
+import { useHeart } from '@/stores/useHeart';
 
 const { toastError } = useErrorCapture({ summary: "אירעה שגיאה" });
 const error = ref<string | null>(null);
 
 onErrorCaptured((err: string) => {
+  console.error(err)
   error.value = err
   toastError(err);
 });
 
+
+
 const search = ref("");
-const isHeart = ref(false);
+
 
 </script>
 
@@ -28,7 +32,7 @@ const isHeart = ref(false);
   <main>
     <card class="header-card">
       <template #content>
-        <search-input v-model:search="search" :is-heart="isHeart" />
+        <search-input v-model:search="search"  />
       </template>
     </card>
     <section class="content">
@@ -38,7 +42,7 @@ const isHeart = ref(false);
           <error v-else :error-message="error"></error>
         </template>
         <template #default>
-          <search-result @update:is-heart="isHeart = $event" :search="search" />
+          <search-result v-model:search="search" />
         </template>
       </suspense>
     </section>

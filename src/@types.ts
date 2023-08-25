@@ -1,4 +1,5 @@
 export type Row = {
+  id: number;
   DateDonation: string
   FromHour: string
   ToHour: string

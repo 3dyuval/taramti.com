@@ -18,7 +18,7 @@ type Coords = {
 
 const center = ref<Coords>();
 
-let errorSummary = 'אין כתובת להצגה במפה'
+let errorSummary = "אין כתובת להצגה במפה";
 const { toastError } = useErrorCapture({ summary: errorSummary });
 const googleGeocoding = new Request(`https://maps.googleapis.com/maps/api/geocode/json?&key=${
   import.meta.env.VITE_GOOGLE_MAP_API_KEY
@@ -26,12 +26,15 @@ const googleGeocoding = new Request(`https://maps.googleapis.com/maps/api/geocod
   ${props.row.City}%${props.row.Street}%${props.row.NumHouse}`);
 
 try {
+  if (!props.row.City || !props.row.Street) {
+    throw "לא הצלחנו למצוא כתובת מלאה";
+  }
   const response = await fetch(googleGeocoding);
   const data = await response.json();
   center.value = data.results[0].geometry.location;
 } catch (err) {
   toastError(`${err}`);
-  error.value = errorSummary;
+  error.value = 'אין כתובת להצגה במפה';
 }
 </script>
 
@@ -50,8 +53,8 @@ try {
 </template>
 
 <style lang="scss">
-  .vue-map-container {
-    width: 100%;
-    flex: 1;
-  }
+.vue-map-container {
+  width: 100%;
+  flex: 1;
+}
 </style>

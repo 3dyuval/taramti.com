@@ -9,8 +9,11 @@ import useErrorCapture from '@/composables/useErrorCapture'
 import Error from '@/components/Error.vue'
 import { computed } from '@vue/reactivity'
 import { DataTableFilterMeta } from 'primevue/datatable'
+import Hearts from '@/components/Hearts.vue'
 
-const props = defineProps<{ search: string }>()
+const props = defineProps<{ 
+  search: string
+ }>()
 
 const emit = defineEmits<{
   'update:search': [payload: string]
@@ -26,14 +29,19 @@ const { toastError } = useErrorCapture({
 
 const rows = ref<Row[]>([])
 
-
+function addId (row: Row, id: number): Row {
+  return {
+    ...row,
+    id
+  }
+}
 if (!!import.meta.env.DEV) {
     const json = await import('../assets/data.json')
-    rows.value = json.default as Row[]
+    rows.value = (json.default as Row[]).map(addId)
 } else if (import.meta.env.PROD){
   rows.value = await fetch('./.netlify/functions/fetchmada')
   .then(result => result.json())
-  .then((data) => data as Row[])
+  .then((data) => (data as Row[]).map(addId))
   .catch(err => {
     toastError(errorMsg)
     return Promise.reject(errorMsg)
@@ -46,10 +54,10 @@ const filters = computed<DataTableFilterMeta>(() => ({
     value: props.search,
     matchMode: 'contains',
   },
-  Name: {
-    value: props.search,
-    matchMode: 'contains',
-  }
+  // Name: {
+  //   value: props.search,
+  //   matchMode: 'contains',
+  // }
 }))
 </script>
 
