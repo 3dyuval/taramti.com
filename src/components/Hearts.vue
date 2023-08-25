@@ -25,6 +25,13 @@ function onClick(key: number): void {
 function isCurrent(searchText: string, heart: string): boolean {
   return heart === searchText;
 }
+
+function onRemove(key: index) {
+  if (isCurrent(props.search, hearts.value[key])) {
+      emit("update:search", "");  
+  }
+  heart.remove(key)
+}
 </script>
 
 <template>
@@ -35,7 +42,7 @@ function isCurrent(searchText: string, heart: string): boolean {
       :class="{ selected: isCurrent(search, item)   }"
       :icon="isCurrent(search, item) ? 'pi pi-heart-fill' : 'pi pi-heart'"
       :removable="isCurrent(search, item)"
-      @remove="heart.remove(index)"
+      @remove="onRemove(index)"
       :label="item"
     >
     </Chip>
