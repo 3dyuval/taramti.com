@@ -9,7 +9,7 @@ import useErrorCapture from '@/composables/useErrorCapture'
 import Error from '@/components/Error.vue'
 import { computed } from '@vue/reactivity'
 import { DataTableFilterMeta } from 'primevue/datatable'
-import Hearts from '@/components/Hearts.vue'
+// import Hearts from '@/components/Hearts.vue'
 
 const props = defineProps<{ 
   search: string
@@ -65,11 +65,11 @@ const filters = computed<DataTableFilterMeta>(() => ({
   <div class="result">
     <data-table :filters="filters" :value="rows">
       <template #header>
-        <hearts
+        <!-- <hearts
           @update:is-heart="emit('update:is-heart', $event)"
           @update:search="emit('update:search', $event)"
           :search="search"
-        />
+        /> -->
       </template>
       <template #expansion="slotProps">
         <div class="expansion">

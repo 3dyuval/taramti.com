@@ -18,9 +18,9 @@ function handleInputChange(e: any) {
   emit("update:search", e.target.value);
 }
 
-const heart = useHeart();
-const { hearts } = storeToRefs(heart);
-const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
+// const heart = useHeart();
+// const { hearts } = storeToRefs(heart);
+// const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
 
 const searchDisabled = computed<boolean>(() => !props.search.trim().length);
 
@@ -49,11 +49,12 @@ const searchDisabled = computed<boolean>(() => !props.search.trim().length);
           :disabled="searchDisabled"
           v-tooltip.bottom="'הוסף למועדפים'"
       text  
-      class="p-inputgroup-addon" @click="heart.add(search)">
+      >
+      <!-- class="p-inputgroup-addon" @click="heart.add(search)" -->
         <i
           class="pi search-heart"
-          :class="[isHeart ? 'pi-heart-fill' : 'pi-heart']"
         ></i>
+          <!-- :class="[isHeart ? 'pi-heart-fill' : 'pi-heart']" -->
       </Button>
     </div>
   </div>
