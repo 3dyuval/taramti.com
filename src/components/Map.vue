@@ -41,7 +41,7 @@ try {
 <template>
   <Error v-if="error" :error-message="error" small />
   <loading v-else-if="!center" />
-  <GMapMap
+  <!-- <GMapMap
     v-else
     :center="center"
     :zoom="15"
@@ -49,7 +49,7 @@ try {
     :disable-default-ui="true"
   >
     <GMapMarker :position="center" :clickable="true" :draggable="false" />
-  </GMapMap>
+  </GMapMap> -->
 </template>
 
 <style lang="scss">
