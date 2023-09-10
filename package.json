@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node --loader ts-node/esm ./server/index.ts",
+    "dev": "npm run start",
     "build": "vue-tsc && vite build",
+    "start": "node --loader ts-node/esm ./server/index.ts",
     "preview": "vite preview"
   },
   "dependencies": {

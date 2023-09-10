@@ -6,17 +6,16 @@ import ssr from 'vite-plugin-ssr/plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), ssr()],
+  plugins: [vue(), ssr({
+    includeAssetsImportedByServer: true
+  })],
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
-  },
-  build: {
-    sourcemap: true,
   },
   optimizeDeps: {
     // include: ['@fawmi/vue-google-maps', 'fast-deep-equal'],
     // esbuildOptions: {
-      // tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+    // tsconfig: path.resolve(__dirname, 'tsconfig.json'),
     // },
   },
 }) satisfies UserConfigExport
