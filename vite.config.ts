@@ -12,6 +12,9 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
+  build: {
+    emptyOutDir: true
+  },
   optimizeDeps: {
     // include: ['@fawmi/vue-google-maps', 'fast-deep-equal'],
     // esbuildOptions: {
