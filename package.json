@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node --loader ts-node/esm ./server/index.ts",
     "build": "vue-tsc && vite build",
+    "start": "node --loader ts-node/esm ./server/index.ts",
     "start:server": "npm ci && node --loader ts-node/esm ./server/index.ts",
     "preview": "vite preview"
   },
@@ -35,5 +36,8 @@
     "vite-plugin-ssr": "^0.4.140",
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.10"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
