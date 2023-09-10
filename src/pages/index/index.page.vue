@@ -9,23 +9,21 @@ import Card from "primevue/card";
 import { computed } from "@vue/reactivity";
 import Hearts from "@/components/Hearts.vue";
 import useErrorCapture from "@/composables/useErrorCapture";
-import { useHeart } from '@/stores/useHeart';
-import type { Row } from '@/@types';
-
+import { useHeart } from "@/stores/useHeart";
+import type { Row } from "@/types";
 
 const props = defineProps<{
-  rows: Row[]
-}>()
+  rows: Row[];
+}>();
 
 const { toastError } = useErrorCapture({ summary: "אירעה שגיאה" });
 const error = ref<string | null>(null);
 
 onErrorCaptured((err: string) => {
-  console.error(err)
-  error.value = err
+  console.error(err);
+  error.value = err;
   toastError(err);
 });
-
 
 const search = ref("");
 
@@ -47,8 +45,6 @@ const search = ref("");
 //     id
 //   }
 // }
-
-
 </script>
 
 <template>
@@ -56,7 +52,7 @@ const search = ref("");
   <main>
     <card class="header-card">
       <template #content>
-        <search-input v-model:search="search"  />
+        <search-input v-model:search="search" />
       </template>
     </card>
     <section class="content">
@@ -66,7 +62,7 @@ const search = ref("");
           <error v-else :error-message="error"></error>
         </template>
         <template #default>
-          <search-result v-model:search="search"  :rows="rows" />
+          <search-result v-model:search="search" :rows="rows" />
         </template>
       </suspense>
     </section>
@@ -91,3 +87,4 @@ main {
   }
 }
 </style>
+@/types

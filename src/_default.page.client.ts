@@ -1,7 +1,7 @@
 export { render }
 
 import { createPageApp } from './app'
-import type { PageContextClient } from './types'
+import type { PageContextClient } from '@/types'
 
 // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
 async function render(pageContext: PageContextClient) {

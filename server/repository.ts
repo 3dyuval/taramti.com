@@ -10,7 +10,7 @@ export interface IStorage  {
 export class Repository implements IStorage {
     repository: any;
 
-    constructor (repository) {
+    constructor (repository: IStorage) {
         this.repository = repository;
     }
 

@@ -2,7 +2,7 @@
 import DataTable, { DataTableFilterMeta } from "primevue/datatable";
 import Column from "primevue/column";
 import { ref, computed } from "vue";
-import type { Row } from "@/@types";
+import type { Row } from "@/types";
 import Hearts from "./Hearts.vue";
 
 const props = defineProps<{
@@ -76,3 +76,4 @@ h3.empty {
   color: var(--heart000)
 }
 </style>
+@/types

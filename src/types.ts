@@ -1,3 +1,16 @@
+export type Row = {
+  id: number;
+  DateDonation: string
+  FromHour: string
+  ToHour: string
+  Name: string
+  City: string
+  Street: string
+  NumHouse: string
+  AccountType: string
+}
+
+
 export type { PageContextServer }
 export type { PageContextClient }
 export type { PageContext }
@@ -15,7 +28,6 @@ import type {
   //*/
 } from 'vite-plugin-ssr/types'
 import type { ComponentPublicInstance } from 'vue'
-import { Row } from './@types'
 
 type Component = ComponentPublicInstance // https://stackoverflow.com/questions/63985658/how-to-type-vue-instance-out-of-definecomponent-in-vue-3/63986086#63986086
 type Page = Component

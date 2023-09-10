@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Row } from "@/@types";
+import type { Row } from "@/types";
 import Button from "primevue/button";
 import Calendar from "primevue/calendar";
 import Card from "primevue/card";
@@ -70,3 +70,4 @@ const placeName = props.row.Street
   }
 }
 </style>
+@/types

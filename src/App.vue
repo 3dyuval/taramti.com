@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Toast from 'primevue/toast'
-import { Row } from './@types';
+import { Row } from '@/types';
 
 defineProps<{ rows: Row[] }>()
 </script>

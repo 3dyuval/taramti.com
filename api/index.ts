@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 import * as path from 'path'
-import type { Row } from '@/@types'
+import type { Row } from '@/types'
 import mada from './mada'
 
 export async function getData(): Promise<any> {

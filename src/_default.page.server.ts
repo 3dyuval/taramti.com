@@ -1,5 +1,5 @@
 export { render }
-// See https://vite-plugin-ssr.com/data-fetching
+export const doNotPrerender = true;
 export const passToClient = ['pageProps', 'urlPathname']
 
 import { getData } from '../api/index'
@@ -8,8 +8,9 @@ import type { App } from 'vue'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
 import { createPageApp } from './app'
 import logoUrl from './logo.svg'
-import type { PageContextServer } from './types'
-export const doNotPrerender = true;
+import type { PageContextServer } from '@/types'
+
+
 
 async function render(pageContext: PageContextServer) {
   // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA

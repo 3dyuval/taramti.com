@@ -6,7 +6,7 @@ import VueGoogleMaps from '@fawmi/vue-google-maps'
 import ToastService from 'primevue/toastservice'
 import { createPinia } from 'pinia'
 import Tooltip from 'primevue/tooltip';
-import type { Component, PageContext, PageProps } from './types'
+import type { Component, PageContext, PageProps } from '@/types'
 import { setPageContext } from '@/composables/usePageContext'
 
 
@@ -23,8 +23,8 @@ const {Page: PageComponent, pageProps} = pageContext
 
 const AppComponent = {
   render() {
-    const renderLayoutSlot = () => h(PageComponent, pageProps || {})
-    return h(App, pageProps || {}, { default: renderLayoutSlot })
+    const renderLayoutSlot = () => h(PageComponent as any, pageProps || {})
+    return h(App as any, pageProps || {}, { default: renderLayoutSlot })
   }
 }
 

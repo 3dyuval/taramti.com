@@ -4,7 +4,7 @@ import MapView from '@/components/Map.vue'
 import DataTable from '@/components/Table.vue'
 import Loading from '@/components/Loading.vue'
 import PlaceDetails from '@/components/PlaceDetails.vue'
-import type { Row } from '@/@types'
+import type { Row } from '@/types'
 import useErrorCapture from '@/composables/useErrorCapture'
 import Error from '@/components/Error.vue'
 import { computed } from '@vue/reactivity'
@@ -70,3 +70,4 @@ const filters = computed<DataTableFilterMeta>(() => ({
   width: 100%;
 }
 </style>
+@/types
