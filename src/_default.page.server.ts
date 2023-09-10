@@ -2,6 +2,7 @@ export { render }
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['pageProps', 'urlPathname']
 
+import { getData } from '../api/index'
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
@@ -14,8 +15,11 @@ async function render(pageContext: PageContextServer) {
   // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
   // if (!Page) throw new Error('My render() hook expects pageContext.Page to be defined')
   const page = createPageApp(pageContext, false)
-  const pageHTML = pageContext.Page ? await renderToString(page) : ''
+  let pageHTML =  ''
   
+  if (pageContext.Page) {
+    pageHTML =  await renderToString(page)
+  }
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext.exports
@@ -44,9 +48,6 @@ async function render(pageContext: PageContextServer) {
 
   return {
     documentHtml,
-    pageContext: {
-      // We can add some `pageContext` here, which is useful if we want to do page redirection https://vite-plugin-ssr.com/page-redirection
-    }
   }
 }
 

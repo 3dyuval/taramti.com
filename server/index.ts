@@ -15,8 +15,9 @@ import express from 'express'
 import compression from 'compression'
 import { renderPage } from 'vite-plugin-ssr/server'
 import { root } from './root.js'
-const isProduction = process.env.NODE_ENV === 'production'
+import { dataMiddleware } from '../api/index.js'
 
+const isProduction = process.env.NODE_ENV === 'production'
 startServer()
 
 async function startServer() {
@@ -42,11 +43,9 @@ async function startServer() {
       })
     ).middlewares
     app.use(viteDevMiddleware)
+    
   }
 
-  // ...
-  // Other middlewares (e.g. some RPC middleware such as Telefunc)
-  // ...
 
   // Vite-plugin-ssr middleware. It should always be our last middleware (because it's a
   // catch-all middleware superseding any middleware placed after it).
@@ -67,6 +66,8 @@ async function startServer() {
       res.send(body)
     }
   })
+
+
 
   const port = process.env.PORT || 3000
   app.listen(port)

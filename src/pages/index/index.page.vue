@@ -10,6 +10,12 @@ import { computed } from "@vue/reactivity";
 import Hearts from "@/components/Hearts.vue";
 import useErrorCapture from "@/composables/useErrorCapture";
 import { useHeart } from '@/stores/useHeart';
+import type { Row } from '@/@types';
+
+
+const props = defineProps<{
+  rows: Row[]
+}>()
 
 const { toastError } = useErrorCapture({ summary: "אירעה שגיאה" });
 const error = ref<string | null>(null);
@@ -21,8 +27,26 @@ onErrorCaptured((err: string) => {
 });
 
 
-
 const search = ref("");
+
+// if (!!import.meta.env.DEV) {
+//     const json = await import('@/assets/data.json')
+//     rows.value = (json.default as Row[]).map(addId)
+// } else if (import.meta.env.PROD){
+//   rows.value = await fetch('./.netlify/functions/fetchmada')
+//   .then(result => result.json())
+//   .then((data) => (data as Row[]).map(addId))
+//   .catch(err => {
+//     toastError('Cannot get data...')
+//   })
+// }
+
+// function addId (row: Row, id: number): Row {
+//   return {
+//     ...row,
+//     id
+//   }
+// }
 
 
 </script>
@@ -42,7 +66,7 @@ const search = ref("");
           <error v-else :error-message="error"></error>
         </template>
         <template #default>
-          <search-result v-model:search="search" />
+          <search-result v-model:search="search"  :rows="rows" />
         </template>
       </suspense>
     </section>

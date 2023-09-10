@@ -12,13 +12,13 @@ import { DataTableFilterMeta } from 'primevue/datatable'
 // import Hearts from '@/components/Hearts.vue'
 
 const props = defineProps<{ 
-  search: string
+  search: string,
+  rows: Row[]
  }>()
 
 const emit = defineEmits<{
   'update:search': [payload: string]
   'update:is-heart': [payload: boolean]
-
 }>()
 
 let errorMsg = 'לא הצלחנו להביא את הנתונים'
@@ -27,26 +27,7 @@ const { toastError } = useErrorCapture({
   summary: errorMsg,
 })
 
-const rows = ref<Row[]>([])
 
-function addId (row: Row, id: number): Row {
-  return {
-    ...row,
-    id
-  }
-}
-if (!!import.meta.env.DEV) {
-    const json = await import('../assets/data.json')
-    rows.value = (json.default as Row[]).map(addId)
-} else if (import.meta.env.PROD){
-  rows.value = await fetch('./.netlify/functions/fetchmada')
-  .then(result => result.json())
-  .then((data) => (data as Row[]).map(addId))
-  .catch(err => {
-    toastError(errorMsg)
-    return Promise.reject(errorMsg)
-  })
-}
 
 // https://www.primefaces.org/primevue/showcase/#/datatable/filter
 const filters = computed<DataTableFilterMeta>(() => ({
