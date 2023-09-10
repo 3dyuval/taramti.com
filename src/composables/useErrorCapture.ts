@@ -8,7 +8,6 @@ export default function useErrorCapture({
   const toast = useToast()
 
   const toastError = (error = detail, fatal?: true) => {
-
     toast.add({
       severity: fatal ? 'error' : 'warn',
       summary: summary,
@@ -17,10 +16,10 @@ export default function useErrorCapture({
     })
 
     if (fatal) {
-    setTimeout(() => {
-      location.href = import.meta.env.BASE_URL
-    }, (2000))
+      setTimeout(() => {
+        location.href = import.meta.env.BASE_URL
+      }, 2000)
+    }
   }
-}
   return { toastError }
 }
