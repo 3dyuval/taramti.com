@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
-import MapView from '@/components/Map.vue'
 import DataTable from '@/components/Table.vue'
 import Loading from '@/components/Loading.vue'
 import PlaceDetails from '@/components/PlaceDetails.vue'
@@ -10,11 +9,12 @@ import Error from '@/components/Error.vue'
 import { computed } from '@vue/reactivity'
 import { DataTableFilterMeta } from 'primevue/datatable'
 // import Hearts from '@/components/Hearts.vue'
+import MapView from '@/components/MapView.vue'
 
-const props = defineProps<{ 
-  search: string,
+const props = defineProps<{
+  search: string
   rows: Row[]
- }>()
+}>()
 
 const emit = defineEmits<{
   'update:search': [payload: string]
@@ -26,8 +26,6 @@ let errorMsg = 'לא הצלחנו להביא את הנתונים'
 const { toastError } = useErrorCapture({
   summary: errorMsg,
 })
-
-
 
 // https://www.primefaces.org/primevue/showcase/#/datatable/filter
 const filters = computed<DataTableFilterMeta>(() => ({
@@ -55,7 +53,8 @@ const filters = computed<DataTableFilterMeta>(() => ({
       <template #expansion="slotProps">
         <div class="expansion">
           <place-details :row="slotProps.data" />
-          <map-view :row="slotProps.data" />
+            <!-- <map-view :row="slotProps.data" /> -->
+            <!-- TODO, get coords in custom server function -->
         </div>
       </template>
     </data-table>

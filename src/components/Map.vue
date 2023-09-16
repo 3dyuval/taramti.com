@@ -1,60 +1,55 @@
 <script setup lang="ts">
-import mapStylesSilver from "@/assets/map-styles-silver.json";
-import { ref } from "vue";
-import useErrorCapture from "@/composables/useErrorCapture";
-import type { Row } from "@/types";
-import Error from "@/components/Error.vue";
+import mapStylesSilver from '@/assets/map-styles-silver.json'
+import { ref } from 'vue'
+import useErrorCapture from '@/composables/useErrorCapture'
 
 const props = defineProps<{
-  row: Row;
-}>();
+  coords: Coords
+}>()
 
-const error = ref<string | null>('No implemented');
+const error = ref<string | null>('No implemented')
 
 type Coords = {
-  lat: number;
-  lng: number;
-};
+  lat: number
+  lng: number
+}
 
-const center = ref<Coords>();
+const center = ref<Coords>(props.coords)
 
-// let errorSummary = "אין כתובת להצגה במפה";
-// const { toastError } = useErrorCapture({ summary: errorSummary });
-// const googleGeocoding = new Request(`https://maps.googleapis.com/maps/api/geocode/json?&key=${
-//   import.meta.env.VITE_GOOGLE_MAP_API_KEY
-// }&address=
-//   ${props.row.City}%${props.row.Street}%${props.row.NumHouse}`);
+if (!props.coords) {
+  throw 'אין כתובת להצגה במפה'
+}
 
-// try {
-//   if (!props.row.City || !props.row.Street) {
-//     throw "לא הצלחנו למצוא כתובת מלאה";
-//   }
-//   const response = await fetch(googleGeocoding);
-//   const data = await response.json();
-//   center.value = data.results[0].geometry.location;
-// } catch (err) {
-//   toastError(`${err}`);
-//   error.value = 'אין כתובת להצגה במפה';
-// }
+function onHover() {
+  console.log('hover')
+}
 </script>
 
 <template>
-  <Error v-if="error" :error-message="error" small />
-  <!-- <loading v-else-if="!center" /> -->
-  <!-- <GMapMap
-    v-else
-    :center="center"
-    :zoom="15"
-    :options="mapStylesSilver"
-    :disable-default-ui="true"
-  >
-    <GMapMarker :position="center" :clickable="true" :draggable="false" />
-  </GMapMap> -->
+  <!-- TODO :options="mapStylesSilver" -->
+  <GMapMap :center="coords" :zoom="15" :clickable="true" :draggable="false">
+    <GMapMarker
+      :position="coords"
+      @mouseover="onHover"
+      :options="{
+        styles: mapStylesSilver
+      }"
+      :icon="{
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Blood_drop.svg/734px-Blood_drop.svg.png',
+        scaledSize: { width: 35, height: 60 },
+      }"
+    >
+      <GMapInfoWindow :opened="true">
+        <p>hello</p>
+      </GMapInfoWindow>
+    </GMapMarker>
+  </GMapMap>
 </template>
 
 <style lang="scss">
 .vue-map-container {
   width: 100%;
+  height: 100vh;
   flex: 1;
 }
 </style>

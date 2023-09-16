@@ -26,25 +26,6 @@ onErrorCaptured((err: string) => {
 });
 
 const search = ref("");
-
-// if (!!import.meta.env.DEV) {
-//     const json = await import('@/assets/data.json')
-//     rows.value = (json.default as Row[]).map(addId)
-// } else if (import.meta.env.PROD){
-//   rows.value = await fetch('./.netlify/functions/fetchmada')
-//   .then(result => result.json())
-//   .then((data) => (data as Row[]).map(addId))
-//   .catch(err => {
-//     toastError('Cannot get data...')
-//   })
-// }
-
-// function addId (row: Row, id: number): Row {
-//   return {
-//     ...row,
-//     id
-//   }
-// }
 </script>
 
 <template>
