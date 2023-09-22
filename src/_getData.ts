@@ -1,6 +1,6 @@
 export { onBeforeRender }
 import { PageContext } from '@/types'
-import { getData } from '../../../api'
+import { getData } from '../api'
 
 
 async function onBeforeRender(pageContext: PageContext) {

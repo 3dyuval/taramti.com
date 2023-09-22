@@ -7,6 +7,12 @@ import Tooltip from "primevue/tooltip";
 import CardBody from "primevue/card";
 import Chip from "primevue/chip";
 import { computed } from "vue";
+
+
+const emit = defineEmits<{
+  'show-map': []
+}>()
+
 const props = defineProps<{
   row: Row;
 }>();
@@ -16,7 +22,15 @@ const placeName = props.row.Street
   ? props.row.Street
   : props.row.AccountType
   ? props.row?.NumHouse
-  : props.row.Name;
+    : props.row.Name;
+
+
+function handleButtonLink(event: Event) {
+  const button = event.target as HTMLButtonElement;
+  const href = button.dataset.href;
+  window.open(href, "_self")
+}
+  
 </script>
 
 <template>
@@ -29,9 +43,10 @@ const placeName = props.row.Street
     </template>
     <template #footer>
       <div class="card-content-actions">
+        <Button @click="handleButtonLink" role="link" :data-href="`/donation-location/${row.id}`" class="pi" plain text label="כל הפרטים"></Button>
         <Button class="pi pi-share-alt" plain text label="שתף"></Button>
         <Button class="pi pi-heart" plain-text color="var(--heart100)" label="אהבתי"></Button>
-        <Button class="pi pi-directions-alt" plain text label="פתח בגוגל מפות"></Button>
+        <Button @click="emit('show-map')" class="pi pi-directions-alt" plain text label="הצג מפה"></Button>
       </div>
     </template>
   </card>

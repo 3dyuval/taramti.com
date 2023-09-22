@@ -9,12 +9,9 @@ import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
 import { createPageApp } from './app'
 import logoUrl from './logo.svg'
 import type { PageContextServer } from '@/types'
-
-
+export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
-  // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
-  // if (!Page) throw new Error('My render() hook expects pageContext.Page to be defined')
   const page = createPageApp(pageContext, false)
   let pageHTML =  ''
   

@@ -44,6 +44,7 @@ function onRowCollapse ({ data: { id } }: { data: Row }): void {
     scrollHeight="60vh"
     @row-expand="onRowExpand"
     @row-collapse="onRowCollapse"
+    @row-click="onRowExpand"
   >
     <template #empty><h3 class="empty">
           לא נמצאו תוצאות 
