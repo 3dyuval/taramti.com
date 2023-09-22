@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import type { Row } from '@/types'
+import type { Row, Coords } from '@/types'
+import { ref } from 'vue'
+import Map from '@/components/Map.vue'
 
-const props = defineProps<{
-  rows: Row[]
-  id: string
+defineProps<{
+  row?: Row
+  coords?: Coords
+  error?: string
 }>()
+
 </script>
 
 <template>
-  {{ rows.find(row => rows.id === id ) }}
+    <Map :center="coords">
+        <p>
+            name
+        </p>
+    </Map>
 </template>

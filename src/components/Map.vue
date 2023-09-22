@@ -1,46 +1,44 @@
 <script setup lang="ts">
-import mapStylesSilver from '@/assets/map-styles-silver.json'
-import { ref } from 'vue'
-import useErrorCapture from '@/composables/useErrorCapture'
+import mapStylesSilver from "@/assets/map-styles-silver.json";
+import { ref } from "vue";
+import useErrorCapture from "@/composables/useErrorCapture";
 
 const props = defineProps<{
-  coords: Coords
-}>()
+  center: Coords;
+}>();
 
-const error = ref<string | null>('No implemented')
 
 type Coords = {
-  lat: number
-  lng: number
-}
-
-const center = ref<Coords>(props.coords)
-
-if (!props.coords) {
-  throw 'אין כתובת להצגה במפה'
-}
+  lat: number;
+  lng: number;
+};
 
 function onHover() {
-  console.log('hover')
+  console.log("hover");
 }
+
+
 </script>
 
 <template>
   <!-- TODO :options="mapStylesSilver" -->
-  <GMapMap :center="coords" :zoom="15" :clickable="true" :draggable="false">
+  <error v-if="!center" :error-message="'אין כתובת להצגה במפה'" />
+  <GMapMap :center="center" :zoom="15" :clickable="true" :draggable="false">
     <GMapMarker
-      :position="coords"
+      :position="center"
       @mouseover="onHover"
       :options="{
-        styles: mapStylesSilver
+        styles: mapStylesSilver,
       }"
       :icon="{
-        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Blood_drop.svg/734px-Blood_drop.svg.png',
+        url:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Blood_drop.svg/734px-Blood_drop.svg.png',
         scaledSize: { width: 35, height: 60 },
       }"
     >
-      <GMapInfoWindow :opened="true">
-        <p>hello</p>
+      <GMapInfoWindow :opened="true" >
+      <slot name="default" />
+
       </GMapInfoWindow>
     </GMapMarker>
   </GMapMap>

@@ -10,6 +10,10 @@ export type Row = {
   AccountType: string
 }
 
+export type Coords = {
+  lat: string; lng: string 
+}
+
 
 export type { PageContextServer }
 export type { PageContextClient }
@@ -32,7 +36,10 @@ import type { ComponentPublicInstance } from 'vue'
 type Component = ComponentPublicInstance // https://stackoverflow.com/questions/63985658/how-to-type-vue-instance-out-of-definecomponent-in-vue-3/63986086#63986086
 type Page = Component
 type PageProps = {
-  rows: Row[]
+  rows: Row[],
+  row?: Row,
+  coords?: Coords,
+  error?: string
 }
 
 export type PageContextCustom = {
