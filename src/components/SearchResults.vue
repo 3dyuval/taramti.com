@@ -9,7 +9,6 @@ import Error from '@/components/Error.vue'
 import { computed } from '@vue/reactivity'
 import { DataTableFilterMeta } from 'primevue/datatable'
 // import Hearts from '@/components/Hearts.vue'
-import MapView from '@/components/MapView.vue'
 
 const props = defineProps<{
   search: string

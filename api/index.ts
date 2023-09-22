@@ -11,7 +11,7 @@ export async function getData(): Promise<any> {
         .stat(fileLocation)
         .then((stat) => {
             if (stat.isFile()) {
-                console.log(`${fileName}" was found`)
+                console.log(`"${fileName}" was found`)
                 return fs.readFile(fileLocation, 'utf8')
             }
         })

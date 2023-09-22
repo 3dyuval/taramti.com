@@ -3,15 +3,13 @@ import type { UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 import ssr from 'vite-plugin-ssr/plugin'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
-const noExternal =
-  process.env.NODE_ENV !== 'production'
-    ? []
-    : ['primevue', '@fawmi/vue-google-maps']
 
 export default defineConfig({
   plugins: [
     vue(),
+    vuetify(),
     ssr({
       includeAssetsImportedByServer: true,
     }),
@@ -19,7 +17,7 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
-  ssr: { noExternal: ['primevue', '@fawmi/vue-google-maps'] },
+  ssr: { noExternal: ['primevue', '@fawmi/vue-google-maps', 'vuetify'] },
   build: {
     emptyOutDir: true,
   },
