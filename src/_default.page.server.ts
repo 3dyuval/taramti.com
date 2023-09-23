@@ -20,9 +20,32 @@ async function render(pageContext: PageContextServer) {
   }
 
   // See https://vite-plugin-ssr.com/head
-  const { documentProps } = pageContext.exports
-  const title = (documentProps && documentProps.title) || 'Taramti תרמתי'
-  const desc = (documentProps && documentProps.description) || 'Taramti תרמתי - Your source for blood donation information and centers. Learn about the process and benefits of donating blood.'
+  const { documentProps, getDocumentProps} = pageContext.exports
+  let title ='Taramti תרמתי'
+  let description = 'Taramti תרמתי - Your source for blood donation information and centers. Learn about the process and benefits of donating blood.'
+
+  // Static Head Tags
+  if (documentProps?.title) {
+    title = documentProps.title
+  }
+
+  if (documentProps?.description) {
+    description = documentProps.description
+  }
+  
+  // Dynamic Head Tags
+  if (typeof getDocumentProps === 'function') {
+
+    const props = getDocumentProps(pageContext.pageProps)
+    if (props && props.title) {
+      title = props.title
+    }
+
+    if (props && props.description) {
+      description = props.description
+    }
+
+  }
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="he">
@@ -36,7 +59,7 @@ async function render(pageContext: PageContextServer) {
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="${desc}" />
+        <meta name="description" content="${description}" />
         <title>${title}</title>
       </head>
       <body>

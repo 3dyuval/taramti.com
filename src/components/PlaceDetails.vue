@@ -28,7 +28,8 @@ const placeName = props.row.Street
 function handleButtonLink(event: Event) {
   const button = event.target as HTMLButtonElement;
   const href = button.dataset.href;
-  window.open(href, "_self")
+  if (!href) return;
+  window.location.href =  href
 }
   
 </script>

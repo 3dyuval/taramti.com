@@ -47,6 +47,9 @@ export type PageContextCustom = {
   pageProps?: PageProps
   urlPathname: string
   exports: {
+    getDocumentProps?: (pageProps: PageProps) => {
+      title?: string; description: string
+    };
     documentProps?: {
       title?: string
       description?: string

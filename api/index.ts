@@ -48,5 +48,9 @@ export async function getData(): Promise<any> {
 
     return Promise.reject('No data was fetched')
 
+}
 
+
+export default {
+    getData
 }

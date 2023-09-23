@@ -45,10 +45,7 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
       },
     })
 
+  setPageContext(page, pageContext)
   return page
 
-  // Make pageContext available from any Vue component
-  // setPageContext(app, pageContext)
-  //
-  // return app
 }
