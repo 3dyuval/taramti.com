@@ -1,5 +1,5 @@
 import { Coords, PageContext, PageProps, Row } from '@/types'
-import * as api from '/api'
+import * as api from '@/../api'
 import { redirect } from 'vike/abort'
 import { render } from 'vike/abort'
 

@@ -31,7 +31,7 @@ function handleButtonLink(event: Event) {
   if (!href) return;
   window.location.href =  href
 }
-  
+
 </script>
 
 <template>

@@ -5,7 +5,7 @@ import type { Row } from "@/types";
 import { reactive } from "vue";
 const pageContext = usePageContext();
 
-const { rows, row } = pageContext.pageProps;
+const { rows, row } = pageContext.pageProps || {};
 
 function mapRowsToItems(rows: Row[] = []) {
   return rows.map((row) => {
@@ -19,7 +19,7 @@ function mapRowsToItems(rows: Row[] = []) {
 
 const search = reactive<{ modal: boolean; item: number | undefined }>({
   modal: false,
-  item: row.id,
+  item: row ? row.id : undefined,
 });
 
 function onSearch(input: number | undefined) {
@@ -66,7 +66,7 @@ function onSearch(input: number | undefined) {
                   variant="tonal"
                   block
                   @click="onSearch(search.item)"
-                  :disabled="search.item === row.id"
+                  :disabled="row && search.item === row.id"
                 />
               </v-card-actions>
             </v-card>

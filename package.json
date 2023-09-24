@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node --loader ts-node/esm ./server/index.ts",
     "nodemon": "nodemon ./server/index.ts",
-    "build": "vue-tsc && vite build --ssr",
+    "build": "vue-tsc && vite build",
     "start": "node --loader ts-node/esm ./server/index.ts",
     "preview": "vite preview"
   },

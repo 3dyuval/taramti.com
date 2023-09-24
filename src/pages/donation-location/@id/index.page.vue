@@ -15,7 +15,7 @@ const props = defineProps<{
 
 const center = ref<Coords>(props.coords);
 
-const address = [props.row.City, props.row.Street, props.row.StreeNumber]
+const address = [props.row.City, props.row.Street, props.row.NumHouse]
   .filter((i) => typeof i === "string" && i.length)
   .join(" ");
 

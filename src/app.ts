@@ -20,8 +20,8 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
 
   const AppComponent = {
     render() {
-      const renderLayoutSlot = () => h(PageComponent as any, pageProps || {})
-      return h(Layout as any, pageProps || {}, { default: renderLayoutSlot })
+      const hDefaultSlot = () => h(PageComponent as any, pageProps || {})
+      return h(Layout as any, pageProps || {}, { default: hDefaultSlot })
     },
   }
 
