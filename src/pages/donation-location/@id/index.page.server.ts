@@ -1,7 +1,7 @@
 import { Coords, PageContext, PageProps, Row} from '@/types'
-import * as api from 'api'
-import { redirect } from 'vite-plugin-ssr/abort'
-import { render } from 'vite-plugin-ssr/abort'
+import * as api from '/api'
+import { redirect } from 'vike/abort'
+import { render } from 'vike/abort'
 
 export const passToClient = ['pageProps', 'routeParams']
 

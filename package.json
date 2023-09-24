@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "set NODE_ENV=development && node --loader ts-node/esm ./server/index.ts",
-    "build": "vue-tsc && vite build",
+    "dev": "node --loader ts-node/esm ./server/index.ts",
+    "build": "vue-tsc && vite build --ssr",
     "start": "node --loader ts-node/esm ./server/index.ts",
     "preview": "vite preview"
   },

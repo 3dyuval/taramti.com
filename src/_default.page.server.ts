@@ -3,7 +3,7 @@ export const doNotPrerender = true;
 export const passToClient = ['pageProps', 'urlPathname']
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
+import { escapeInject, dangerouslySkipEscape } from 'vike/server'
 import { createPageApp } from './app'
 import type { PageContextServer, PageProps } from '@/types'
 export { onBeforeRender } from '@/_getData'
