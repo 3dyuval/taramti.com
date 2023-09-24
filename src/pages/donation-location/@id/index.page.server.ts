@@ -85,6 +85,7 @@ export async function onBeforeRender(ctx: PageContext) {
       pageContext: {
         pageProps: {
           row,
+          rows,
           coords,
         },
       },

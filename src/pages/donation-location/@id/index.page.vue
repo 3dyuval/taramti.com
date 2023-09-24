@@ -29,35 +29,40 @@ function handleOpenOnGoogleMaps() {
 const details = ref(false);
 const drawer = ref(false);
 
-const { share, isSupported } = useShare()
-
 const pageContext = usePageContext()
 
-const url = pageContext.urlPathname
+const { share, isSupported } = useShare({
+                    title: 'Taramti',
+                    text: 'תרומת דם ב-' + props.row.Name,
+                    url: pageContext.urlPathname
+                  })
+
 </script>
 
 <template>
-  <v-layout>
-    <v-app>
-      <v-app-bar title="תרמתי">מיקום תרומת דם</v-app-bar>
+
       <Map :center="center" :error="error">
         <div class="d-flex flex-column align-center location-window" :class="{ details }">
-          <v-card elevation="0" direction="rtl">
+          <v-card elevation="0">
             <template #title>
-              <h1>{{ row.Name }}</h1>
+              <h3>{{ row.Name }}</h3>
             </template>
             <template #subtitle>
-              <address>{{ address }}</address>
+              
+              <span class="d-flex py-2">
+                <v-icon icon="mdi-map-marker" class="mx-2" />
+              <address>{{ address }}</address> 
+              </span>
             </template>
             <template #default>
-            <v-divider />
               <div class="d-flex justify-center">
                 <opening-hours-chip
-                  class="mt-5 mb-3"
+                  class="my-5"
                   :from-hour="row.FromHour"
                   :to-hour="row.ToHour"
                 />
               </div>
+            <v-divider />
             </template>
             <template #actions>
               <v-card-actions>
@@ -70,11 +75,7 @@ const url = pageContext.urlPathname
                 />
                 <v-btn variant="plain" class="my-2"
                 v-if="isSupported"
-                @click="share({
-                    title: 'Taramti',
-                    text: 'תרומת דם ב-' + props.row.Name,
-                    url
-                  })">
+                @click="share">
                   שתף
                   <v-icon>mdi-share</v-icon>
                 </v-btn>
@@ -84,9 +85,9 @@ const url = pageContext.urlPathname
           <div class="details-card-expand">
             <v-card
               @click="drawer = !drawer"
-              :title="row.Name"
+              :subtitle="row.Name"
               class="details-card px-12"
-              subtitle="שעות פעילות"
+              title="שעות פעילות"
             >
               <opening-hours-timeline :row="row" />
               <template #actions>
@@ -104,34 +105,58 @@ const url = pageContext.urlPathname
           </div>
         </div>
       </Map>
-      <v-navigation-drawer v-model="drawer" location="bottom">
+      <v-navigation-drawer
+      density="compfortable"
+       v-model="drawer" location="bottom">
         <v-list-item
           variant="text"
           color="primary"
           @click="handleOpenOnGoogleMaps"
-          v-bind="props"
         >
+          <template #append>
+          <v-icon icon="mdi-map" />
+            </template>
+          <v-list-item-title>
+              נווט למקום
+          </v-list-item-title>
           <v-tooltip
             activator="parent"
             text="פתח מיקום משוער בגוגל מפות"
             location="top center"
           />
-          <v-icon icon="mdi-map" />
-          נווט
+        </v-list-item>
+          <v-list-item
+          variant="text"
+          color="primary"
+          @click="share()"
+          :disabled="!isSupported"
+        >
+          <template #append>
+          <v-icon icon="mdi-share" />
+            </template>
+          <v-list-item-title>
+          שתף
+        </v-list-item-title>
+          <v-tooltip
+            activator="parent"
+            text="שתף עם חבר"
+            location="top center"
+          />
         </v-list-item>
       </v-navigation-drawer>
-    </v-app>
-  </v-layout>
 </template>
 
 <style lang="scss">
 .location-window {
-  h1 {
-    font-size: 20px;
-    text-wrap: balance;
+  h3 {
+    font-size: 1.5rem;
+    // text-wrap: balance;
   }
 
+  direction: rtl;
+
   .details-card-expand {
+    width: 100%;
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.3s cubic-bezier(0.3, 0, 0.8, 0.15);
@@ -139,6 +164,7 @@ const url = pageContext.urlPathname
     .v-timeline {
       display: grid;
       height: auto;
+      direction: rtl;
     }
     .details-card {
       overflow: hidden;

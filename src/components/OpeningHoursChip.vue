@@ -21,7 +21,7 @@ const {
 
 const caption = computed(() => {
   if (willOpen) {
-    return "יפתח בעוד " + intlFormatDistance(new Date(), openingDate);
+    return "יפתח " + intlFormatDistance(openingDate, new Date(), { locale: 'he'});
   }
   if (isOpen) {
     return `פתוח עד ${openingTime}`;
@@ -30,9 +30,12 @@ const caption = computed(() => {
     return `סגור מ ${closingTime}`;
   }
 });
+
 </script>
 <template>
-  <v-chip :color="isOpen ? 'primary' : 'default'" :text="caption" />
+  <v-chip 
+  size="large"
+  :color="isOpen ? 'primary' : 'default'" :text="caption" />
 </template>
 
 <style lang="scss"></style>

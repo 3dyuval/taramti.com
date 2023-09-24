@@ -12,7 +12,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
-
+import Layout from '@/components/Layout.vue'
 import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primeicons/primeicons.css'
 
@@ -22,7 +22,7 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const AppComponent = {
     render() {
       const renderLayoutSlot = () => h(PageComponent as any, pageProps || {})
-      return h(App as any, pageProps || {}, { default: renderLayoutSlot })
+      return h(Layout as any, pageProps || {}, { default: renderLayoutSlot })
     },
   }
 
