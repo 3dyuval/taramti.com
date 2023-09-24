@@ -4,11 +4,23 @@ import { ref } from 'vue'
 import useErrorCapture from '@/composables/useErrorCapture'
 import { Coords } from '@/types'
 
-const props = defineProps<{
+type Props = {
   center: Coords
+  markers: Coords | Coords[]
   error?: string
   closeButton?: boolean
+}
+
+type MarkerProps = {
+  markerCenter: Coords
+}
+
+defineSlots<{
+  marker: MarkerProps
+  window: MarkerProps
 }>()
+
+const props = defineProps<Props>()
 
 function onHover() {
   console.log('hover')
@@ -21,8 +33,9 @@ const open = true
   <error v-if="!center" :error-message="'אין כתובת להצגה במפה'" />
   <GMapMap :center="center" :zoom="15" :clickable="true" :draggable="false">
     <GMapMarker
+      v-for="markerCenter in Array.isArray(markers) ? markers : [markers]"
+      :position="markerCenter"
       class="map-marker"
-      :position="center"
       @mouseover="onHover"
       :options="{
         styles: mapStylesSilver,
@@ -32,14 +45,16 @@ const open = true
         scaledSize: { width: 35, height: 60 },
       }"
     >
-      <GMapInfoWindow
-        :opened="open"
-        :closeclick="false"
-        @closeclick="null"
-        :data-show-close="closeButton"
-      >
-        <slot name="default" />
-      </GMapInfoWindow>
+      <slot name="marker" :marker-center="markerCenter">
+        <GMapInfoWindow
+          :opened="open"
+          :closeclick="false"
+          @closeclick="null"
+          :data-show-close="closeButton"
+        >
+          <slot name="window" :marker-center="markerCenter" />
+        </GMapInfoWindow>
+      </slot>
     </GMapMarker>
   </GMapMap>
 </template>
@@ -55,7 +70,7 @@ button[title='Close'] {
   visibility: hidden;
 }
 
-[role='dialog'].gm-style-iw:has([data-show-close="true"]) {
+[role='dialog'].gm-style-iw:has([data-show-close='true']) {
   button[title='Close'] {
     visibility: visible;
   }

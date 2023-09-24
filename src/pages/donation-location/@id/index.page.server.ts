@@ -1,5 +1,6 @@
 import { Coords, PageContext, PageProps, Row } from '@/types'
 import api from '/api'
+import { getMada } from '/api/mada'
 import { redirect } from 'vite-plugin-ssr/abort'
 import { render } from 'vite-plugin-ssr/abort'
 
@@ -17,7 +18,7 @@ export function getDocumentProps(pageProps: PageProps) {
   return { title, description: address }
 }
 
-export async function onBeforeRender(ctx: PageContext): Promise<PageContext> {
+export async function onBeforeRender(ctx: PageContext) {
   async function getLocationFromId(rows?: Row[], id: number): Promise<Row> {
     const row = (rows || []).find((row) => row.id === id)
 
@@ -71,9 +72,8 @@ export async function onBeforeRender(ctx: PageContext): Promise<PageContext> {
       throw render(404)
     }
 
-    const rows = await api.getData()
-    const row = await getLocationFromId(rows, id)
-    const coords = await getCoordsFromGoogleMaps(row)
+    const row = await api.getData(getMada, id)
+    const coords = getCoordsFromGoogleMaps(row)
 
     return {
       pageContext: {

@@ -1,56 +1,55 @@
 import fs from 'fs/promises'
 import * as path from 'path'
 import type { Row } from '@/types'
-import mada from './mada'
+import { findById } from './findById'
+import * as O from 'fp-ts/Option'
 
-export async function getData(): Promise<any> {
-    const now = new Date()
-    const fileName = now.getDate() + '.' + (now.getUTCMonth() + 1) + '.' + now.getFullYear() + '.' + 'json'
-    const fileLocation = path.resolve(process.cwd(), 'api', 'data', fileName)
-    let data = await fs
-        .stat(fileLocation)
-        .then((stat) => {
-            if (stat.isFile()) {
-                console.log(`"${fileName}" was found`)
-                return fs.readFile(fileLocation, 'utf8')
-            }
-        })
-        .catch((e) => {
-            console.log(`File "${fileName}" not found. Fetching new file`)
-            return ''
-        })
-
-    if (data === '') {
-        data = await fetch(mada())
-            .then(async (response) => {
-                const { Success, Result } = await response.json()
-                if (Success) {
-                    console.log(`Received JSON data. Saving new file "${fileName}"`)
-                    fs.writeFile(fileLocation, Result, 'utf8')
-                    return Result
-                }
-            })
-            .catch((e) => {
-                console.error('No data')
-            })
-    }
-
-    function addId(row: Row, id: number): Row {
-        return {
-            ...row,
-            id,
-        }
-    }
-
-    if (data) {
-        return JSON.parse(data).map(addId)
-    }
-
-    return Promise.reject('No data was fetched')
-
+export type Getter<T> = {
+  fetchFunction: () => O.Option<T>,
+  fileName: (args: any) => string,
 }
 
+export async function getData(args: Getter, id?: number): Promise<any> {
+  const { fileName } = args
+
+  const fileLocation = path.resolve(process.cwd(), 'api', 'data', fileName)
+  let data = await fs
+    .stat(fileLocation)
+    .then((stat) => {
+      if (stat.isFile()) {
+        console.log(`"${fileName}" was found`)
+        return JSON.stringify(fs.readFile(fileLocation, 'utf8'))
+      }
+    })
+    .catch((e) => {
+      console.log(`File "${fileName}" not found. Fetching new file`)
+      return ''
+    })
+
+  if (data === '') {
+    data = await args
+      .fetchFunction()
+        .then((result: any) => {
+            if (typeof result === 'string') {
+                result = result ? JSON.parse(result) : []
+            }
+        const dataWithUniqueIds = Array.from(result).map((i, index) => ({ ...i, id: index }))
+        console.log(`Received JSON data. Saving new file "${fileName}"`)
+        fs.writeFile(fileLocation, JSON.stringify(dataWithUniqueIds), 'utf8')
+        return dataWithUniqueIds
+      })
+      .catch((e) => {
+        console.error('No data')
+      })
+  }
+
+  if (id) {
+    return findById(data, id)
+  }
+
+  return data || Promise.reject('No data was fetched')
+}
 
 export default {
-    getData
+  getData,
 }
