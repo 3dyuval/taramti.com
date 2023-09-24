@@ -2,6 +2,7 @@ import { Coords, PageContext, PageProps, Row } from '@/types'
 import * as api from '@/../api'
 import { redirect } from 'vike/abort'
 import { render } from 'vike/abort'
+import { getAddress } from '@/helpers/getAddress'
 
 export const passToClient = ['pageProps', 'routeParams']
 
@@ -11,8 +12,9 @@ enum Errors {
   RESPONSE_NOT_VALID = 'Response is not valid JSON',
 }
 
+
 export function getDocumentProps(pageProps: PageProps) {
-  const address = `${pageProps.row?.City}, ${pageProps.row?.Street} ${pageProps.row?.NumHouse}`
+  const address = getAddress(pageProps.row)
   const title = `תרומת דם ב "${pageProps.row?.Name || address}"`
   return { title, description: address }
 }

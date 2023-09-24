@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { Row, Coords } from "@/types";
-import Map from "@/components/Map.vue";
 import { ref } from "vue";
+import Map from "@/components/Map.vue";
 import OpeningHoursTimeline from "@/components/OpeningHoursTimeline.vue";
 import OpeningHoursChip from "@/components/OpeningHoursChip.vue";
-import { useShare } from "@vueuse/core";
 import { usePageContext } from '@/composables/usePageContext';
+import { getAddress } from '@/helpers/getAddress';
+import { useShare } from "@vueuse/core";
+
 const props = defineProps<{
   rows: Row[];
   row: Row;
@@ -15,9 +17,7 @@ const props = defineProps<{
 
 const center = ref<Coords>(props.coords);
 
-const address = [props.row.City, props.row.Street, props.row.NumHouse]
-  .filter((i) => typeof i === "string" && i.length)
-  .join(" ");
+const address = getAddress(props.row);
 
 function handleOpenOnGoogleMaps() {
   window.open(
