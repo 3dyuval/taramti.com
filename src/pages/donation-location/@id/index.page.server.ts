@@ -42,7 +42,7 @@ export async function onBeforeRender(ctx: PageContext) {
     const googleGeocoding = new Request(
       `https://maps.googleapis.com/maps/api/geocode/json?&key=${
         import.meta.env.VITE_GOOGLE_MAP_API_KEY
-      }&address=${row.City}%${row.Street}%${row.NumHouse}%${row.Name}`
+      }&address=${getAddress(row)}`
     )
 
     return fetch(googleGeocoding)
