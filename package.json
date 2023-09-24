@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --loader ts-node/esm ./server/index.ts",
+    "nodemon": "nodemon ./server/index.ts",
     "build": "vue-tsc && vite build --ssr",
     "start": "node --loader ts-node/esm ./server/index.ts",
     "preview": "vite preview"
@@ -20,11 +21,13 @@
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/compiler-sfc": "^3.3.4",
     "@vue/server-renderer": "^3.3.4",
+    "@vueuse/core": "^10.4.1",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "date-fns": "^2.30.0",
     "express": "^4.18.2",
     "fast-deep-equal": "^3.1.3",
+    "fp-ts": "^2.16.1",
     "lottie-web-vue": "^2.0.7",
     "pinia": "^2.1.6",
     "primeicons": "^6.0.1",

@@ -15,7 +15,7 @@ function onHover() {
   console.log('hover')
 }
 
-const open = true
+const open = ref(true)
 </script>
 
 <template>
@@ -25,6 +25,7 @@ const open = true
       class="map-marker"
       :position="center"
       @mouseover="onHover"
+      @click="open = true"
       :options="{
         styles: mapStylesSilver,
       }"

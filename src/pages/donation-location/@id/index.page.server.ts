@@ -1,4 +1,4 @@
-import { Coords, PageContext, PageProps, Row} from '@/types'
+import { Coords, PageContext, PageProps, Row } from '@/types'
 import * as api from '/api'
 import { redirect } from 'vike/abort'
 import { render } from 'vike/abort'
@@ -31,6 +31,12 @@ export async function onBeforeRender(ctx: PageContext) {
   async function getCoordsFromGoogleMaps(
     row: Row
   ): Promise<Coords | undefined> {
+    const key = import.meta.env.VITE_GOOGLE_MAP_API_KEY
+
+    if (!key) {
+      return Promise.reject('No Google Maps API key found')
+    }
+
     const googleGeocoding = new Request(
       `https://maps.googleapis.com/maps/api/geocode/json?&key=${
         import.meta.env.VITE_GOOGLE_MAP_API_KEY
