@@ -13,7 +13,7 @@ enum Errors {
 
 export function getDocumentProps(pageProps: PageProps) {
   const address = `${pageProps.row?.City}, ${pageProps.row?.Street} ${pageProps.row?.NumHouse}`
-  const title = `תרומת דם  ב"${pageProps.row?.Name || address}"`
+  const title = `תרומת דם ב "${pageProps.row?.Name || address}"`
   return { title, description: address }
 }
 

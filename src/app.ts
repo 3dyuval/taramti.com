@@ -1,6 +1,5 @@
 import { createSSRApp, createApp, h } from 'vue'
 import './style.css'
-import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 import ToastService from 'primevue/toastservice'
