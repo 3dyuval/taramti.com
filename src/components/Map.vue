@@ -3,6 +3,7 @@ import mapStylesSilver from '@/assets/map-styles-silver.json'
 import { ref } from 'vue'
 import useErrorCapture from '@/composables/useErrorCapture'
 import { Coords } from '@/types'
+import Error from '@/components/Error.vue'
 
 const props = defineProps<{
   center: Coords
@@ -18,7 +19,7 @@ const open = true
 </script>
 
 <template>
-  <error v-if="!center" :error-message="'אין כתובת להצגה במפה'" />
+  <error v-if="error" :error-message="'אין כתובת להצגה במפה'" />
   <GMapMap :center="center" :zoom="15" :clickable="true" :draggable="false">
     <GMapMarker
       class="map-marker"

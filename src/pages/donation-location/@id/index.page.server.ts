@@ -1,5 +1,5 @@
-import { Coords, PageContext, PageProps, Row } from '@/types'
-import api from '/api'
+import { Coords, PageContext, PageProps, Row} from '@/types'
+import * as api from 'api'
 import { redirect } from 'vite-plugin-ssr/abort'
 import { render } from 'vite-plugin-ssr/abort'
 
@@ -17,8 +17,8 @@ export function getDocumentProps(pageProps: PageProps) {
   return { title, description: address }
 }
 
-export async function onBeforeRender(ctx: PageContext): Promise<PageContext> {
-  async function getLocationFromId(rows?: Row[], id: number): Promise<Row> {
+export async function onBeforeRender(ctx: PageContext) {
+  async function getLocationFromId(rows?: Row[], id?: number): Promise<Row> {
     const row = (rows || []).find((row) => row.id === id)
 
     if (!id || !row) {

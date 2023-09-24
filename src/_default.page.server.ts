@@ -1,14 +1,11 @@
 export { render }
 export const doNotPrerender = true;
 export const passToClient = ['pageProps', 'urlPathname']
-
-import { getData } from '../api/index'
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
 import { createPageApp } from './app'
-import logoUrl from './logo.svg'
-import type { PageContextServer } from '@/types'
+import type { PageContextServer, PageProps } from '@/types'
 export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
@@ -34,7 +31,7 @@ async function render(pageContext: PageContextServer) {
   }
   
   // Dynamic Head Tags
-  if (typeof getDocumentProps === 'function') {
+  if (typeof getDocumentProps === 'function' && pageContext.pageProps) {
 
     const props = getDocumentProps(pageContext.pageProps)
     if (props && props.title) {
