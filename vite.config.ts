@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import type { UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
-import ssr from 'vite-plugin-ssr/plugin'
+import ssr from 'vike/plugin'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 
