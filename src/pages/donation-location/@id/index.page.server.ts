@@ -20,8 +20,8 @@ export function getDocumentProps(pageProps: PageProps) {
 }
 
 export async function onBeforeRender(ctx: PageContext) {
-  async function getLocationFromId(rows?: Row[], id?: number): Promise<Row> {
-    const row = (rows || []).find((row) => row.id === id)
+  async function getLocationFromId(rows: Row[], id?: number): Promise<Row> {
+    const row = rows.find((row) => row.id === id)
 
     if (!id || !row) {
       return Promise.reject(Errors.MISSING_ROW_DATA)
@@ -46,10 +46,6 @@ export async function onBeforeRender(ctx: PageContext) {
     )
 
     return fetch(googleGeocoding)
-      .catch((error) => {
-        console.error(error)
-        throw new Error(Errors.MISSING_RESPONSE)
-      })
       .then(async (response) => {
         const results = (await response.json()).results
         if (results.length) {

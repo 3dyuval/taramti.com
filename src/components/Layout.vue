@@ -38,8 +38,8 @@ function onSearch(input: number | undefined) {
         <template #prepend>
           <v-btn icon="mdi-magnify" @click="search.modal = true" />
           <h2>מצאו מקומות לתרום דם</h2>
-          <v-dialog v-model="search.modal">
-            <v-card>
+          <v-dialog v-model="search.modal" max-width="800" >
+            <v-card >
               <v-autocomplete
                 placeholder="חפש מקום לפי שם"
                 :items="mapRowsToItems(rows)"

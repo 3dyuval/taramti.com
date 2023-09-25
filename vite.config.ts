@@ -20,4 +20,7 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
   },
+  optimizeDeps: {
+    include: ['@fawmi/vue-google-maps', 'fast-deep-equal'],
+  },
 }) satisfies UserConfigExport

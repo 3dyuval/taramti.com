@@ -37,18 +37,20 @@ const { share, isSupported } = useShare({
                     url: pageContext.urlPathname
                   })
 
+
 </script>
 
 <template>
-
       <Map :center="center" :error="error">
-        <div class="d-flex flex-column align-center location-window" :class="{ details }">
+        <div class="d-flex flex-column align-center location-window" 
+        :class="{ details }"
+
+         >
           <v-card elevation="0">
             <template #title>
               <h3>{{ row.Name }}</h3>
             </template>
             <template #subtitle>
-              
               <span class="d-flex py-2">
                 <v-icon icon="mdi-map-marker" class="mx-2" />
               <address>{{ address }}</address> 
@@ -87,6 +89,8 @@ const { share, isSupported } = useShare({
               @click="drawer = !drawer"
               :subtitle="row.Name"
               class="details-card px-12"
+              elevation="0"
+              color="teal-lighten-4"
               title="שעות פעילות"
             >
               <opening-hours-timeline :row="row" />
