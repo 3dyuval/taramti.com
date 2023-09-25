@@ -10,6 +10,7 @@ export type Row = {
   Street: string
   NumHouse: string
   AccountType: string
+  SchedulingURL: string
 }
 
 export type Coords = {

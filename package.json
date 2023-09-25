@@ -14,10 +14,7 @@
     "@fawmi/vue-google-maps": "^0.9.79",
     "@mdi/font": "^7.2.96",
     "@netlify/functions": "^2.0.2",
-    "@types/compression": "^1.7.3",
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.6.0",
-    "@types/promise-fs": "^2.1.2",
+    "@phosphor-icons/vue": "^2.1.6",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/compiler-sfc": "^3.3.4",
     "@vue/server-renderer": "^3.3.4",
@@ -43,6 +40,12 @@
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.10",
     "vuetify": "^3.3.17"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.3",
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.6.0",
+    "@types/promise-fs": "^2.1.2"
   },
   "engines": {
     "node": ">=18"

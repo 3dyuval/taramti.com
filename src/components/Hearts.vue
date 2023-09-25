@@ -38,6 +38,7 @@ function onRemove(key: number) {
   <div class="chips">
     <Chip
       v-for="(item, index) of hearts"
+      :key="index"
       @click="onClick(index)"
       :class="{ selected: isCurrent(search, item)   }"
       :icon="isCurrent(search, item) ? 'pi pi-heart-fill' : 'pi pi-heart'"

@@ -36,13 +36,14 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   page.use(createVuetify({
     ssr: !clientOnly,
   }))
+  
   page.use(VueGoogleMaps, {
     load: {
       key: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
       installComponents: true,
     },
   })
-  page.provide('pageContext', pageContext)
+  setPageContext(page, pageContext)
   
   return page
 

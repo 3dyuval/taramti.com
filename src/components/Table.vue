@@ -25,10 +25,9 @@ function onRowExpand({ data }: { data: Row }): void {
   }
 }
 
-function onRowCollapse ({ data: { id } }: { data: Row }): void {
-  expandedRows.value  =[];
+function onRowCollapse({ data: { id } }: { data: Row }): void {
+  expandedRows.value = [];
 }
-
 </script>
 
 <template>
@@ -46,10 +45,7 @@ function onRowCollapse ({ data: { id } }: { data: Row }): void {
     @row-collapse="onRowCollapse"
     @row-click="onRowExpand"
   >
-    <template #empty><h3 class="empty">
-          לא נמצאו תוצאות 
-      </h3> 
-    </template>
+    <template #empty><h3 class="empty">לא נמצאו תוצאות</h3> </template>
     <template #header>
       <slot name="header" />
     </template>
@@ -68,13 +64,13 @@ function onRowCollapse ({ data: { id } }: { data: Row }): void {
 .data-table {
   border-radius: 12px;
   overflow: hidden;
-  outline: 1px solid rgba(0,0,0,0.2);
+  outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 h3.empty {
   text-align: center;
   padding: 2em 0;
-  color: var(--heart000)
+  color: var(--heart000);
 }
 </style>
 @/types

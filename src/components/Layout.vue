@@ -3,6 +3,7 @@ import Toast from "primevue/toast";
 import { usePageContext } from "@/composables/usePageContext";
 import type { Row } from "@/types";
 import { reactive } from "vue";
+import { PhMagnifyingGlass } from "@phosphor-icons/vue";
 const pageContext = usePageContext();
 
 const { rows, row } = pageContext.pageProps || {};
@@ -36,10 +37,12 @@ function onSearch(input: number | undefined) {
           <h1>תרמתי</h1>
         </template>
         <template #prepend>
-          <v-btn icon="mdi-magnify" @click="search.modal = true" />
+          <v-btn @click="search.modal = true" rounded variant="outlined" class="mx-3">
+            <ph-magnifying-glass size="20" />
+          </v-btn>
           <h2>מצאו מקומות לתרום דם</h2>
-          <v-dialog v-model="search.modal" max-width="800" >
-            <v-card >
+          <v-dialog v-model="search.modal" max-width="800">
+            <v-card>
               <v-autocomplete
                 placeholder="חפש מקום לפי שם"
                 :items="mapRowsToItems(rows)"
@@ -47,7 +50,7 @@ function onSearch(input: number | undefined) {
               >
                 <template #item="{ item, props }">
                   <v-list-item
-                    v-bind=" props "
+                    v-bind="props"
                     :title="item.title"
                     :subtitle="item.raw.city"
                   />
