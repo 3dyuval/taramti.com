@@ -16,16 +16,18 @@ import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primeicons/primeicons.css'
 
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
-  const { Page: PageComponent, pageProps } = pageContext
 
-  const AppComponent = {
+  const { Page, pageProps } = pageContext
+  if (!Page || !pageProps) throw new Error('Client-side render() hook expects pageContext.Page to be defined')
+
+  const Component = {
     render() {
-      const hDefaultSlot = () => h(PageComponent as any, pageProps || {})
+      const hDefaultSlot = () => h(Page as any, pageProps || {})
       return h(Layout as any, pageProps || {}, { default: hDefaultSlot })
-    },
+    }
   }
 
-  const page = clientOnly ? createApp(AppComponent) : createSSRApp(AppComponent)
+  const page = clientOnly ? createApp(Component) : createSSRApp(Component)
 
   page.use(createPinia())
   page.use(PrimeVue, { ripple: true })
@@ -34,17 +36,14 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   page.use(createVuetify({
     ssr: !clientOnly,
   }))
+  page.use(VueGoogleMaps, {
+    load: {
+      key: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
+      installComponents: true,
+    },
+  })
   page.provide('pageContext', pageContext)
-
   
-    page.use(VueGoogleMaps, {
-      load: {
-        key: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
-        installComponents: true,
-      },
-    })
-
-  setPageContext(page, pageContext)
   return page
 
 }
