@@ -3,6 +3,8 @@ import * as path from 'path'
 import type { Row } from '@/types'
 import mada from './mada'
 
+
+
 export async function getData(): Promise<any> {
     const now = new Date()
     const fileName = now.getDate() + '.' + (now.getUTCMonth() + 1) + '.' + now.getFullYear() + '.' + 'json'

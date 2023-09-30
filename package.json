@@ -7,7 +7,7 @@
     "dev": "node --loader ts-node/esm ./server/index.ts",
     "nodemon": "nodemon ./server/index.ts",
     "build": "vue-tsc && vite build",
-    "start": "node --loader ts-node/esm ./server/index.ts",
+    "start": "node /dist/server/index.ts",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "primevue": "^3.34.1",
     "sass": "^1.66.1",
     "sirv": "^2.0.3",
+    "surrealdb.js": "^0.9.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "vike": "^0.4.142",
@@ -45,7 +46,8 @@
     "@types/compression": "^1.7.3",
     "@types/express": "^4.17.17",
     "@types/node": "^20.6.0",
-    "@types/promise-fs": "^2.1.2"
+    "@types/promise-fs": "^2.1.2",
+    "vitest": "^0.34.6"
   },
   "engines": {
     "node": ">=18"
