@@ -3,13 +3,11 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import { CookieStorage } from '@/helpers/cookieStore'
 
-const localStorageKey = 'heart'
-
 export const useHeart = defineStore('heartStore', () => {
 
-  const repo: IStorage = new CookieStorage(import.meta.env.SSR ? [] : document.cookie)
+  const repo: IStorage = new CookieStorage()
 
-  const hearts = ref(repo.items)
+  const hearts = ref([])
 
   function add(value: string): void {
     if (!value || hearts.value.includes(value)) return
@@ -34,7 +32,7 @@ export const useHeart = defineStore('heartStore', () => {
   }
 
   function isHeart(value: string): boolean {
-    return hearts.value.has(value)
+    return hearts.value.includes(value)
   }
 
   watch(hearts, (value) => {

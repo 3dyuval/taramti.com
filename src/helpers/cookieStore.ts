@@ -2,12 +2,9 @@ import type { IStorage } from '../../server/repository'
 
 export class CookieStorage implements IStorage {
 
-  private repository: Set<number[]>
+  private repository: Set<number[]> = new Set()
 
-  constructor(cookie) {
-    if (cookie) {
-      this.repostiry = this.parseCookies(cookie)
-    }
+  constructor() {
   }
 
   parseCookies(cookie: string): Set<number[]> {
@@ -20,8 +17,8 @@ export class CookieStorage implements IStorage {
     return items
   }
 
-  save(): void {
-    document.cookie = encodeURI(`heart=${this.repository.join(';')}`);
+  save(value): void {
+    document.cookie = encodeURI(`heart=${value.join(';')}`)
   }
 
   addItem(key: number): void {
@@ -38,7 +35,7 @@ export class CookieStorage implements IStorage {
     return this.repository.values()
   }
 
-  set items (value: number[]) {
+  set items(value: number[]) {
     this.repository = new Set(value)
     this.save()
   }

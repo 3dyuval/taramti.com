@@ -5,9 +5,12 @@ import type { PageContextClient } from '@/types'
 
 async function render(pageContext: PageContextClient) {
 
-  const page = createPageApp(pageContext,
-    document.getElementById("#app")?.innerHTML === ''
+  const instance = createPageApp(pageContext,
+    document.getElementById('#app')?.innerHTML === ''
   )
-  
-  page.mount('#app')
+
+  instance.store.state.value = [123]   // todo; get items from request cookie
+
+
+  instance.page.mount('#app')
 }

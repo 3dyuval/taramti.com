@@ -1,24 +1,26 @@
 export { render }
-export const doNotPrerender = true;
-export const passToClient = ['pageProps', 'urlPathname']
+export const doNotPrerender = true
+export const passToClient = ['pageProps', 'urlPathname', 'initialStoreState']
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
-import { escapeInject, dangerouslySkipEscape } from 'vike/server'
+import { dangerouslySkipEscape, escapeInject } from 'vike/server'
 import { createPageApp } from './page'
-import type { PageContextServer, PageProps } from '@/types'
+import type { PageContextServer } from '@/types'
+
 export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
-  const page = createPageApp(pageContext, false)
-  let pageHTML =  ''
-  
+
+  const { page, store } = createPageApp(pageContext, false)
+  let pageHTML = ''
+
   if (pageContext.Page) {
-    pageHTML =  await renderToString(page)
+    pageHTML = await renderToString(page)
   }
 
   // See https://vite-plugin-ssr.com/head
-  const { documentProps, getDocumentProps} = pageContext.exports
-  let title ='Taramti תרמתי'
+  const { documentProps, getDocumentProps } = pageContext.exports
+  let title = 'Taramti תרמתי'
   let description = 'Taramti תרמתי - Your source for blood donation information and centers. Learn about the process and benefits of donating blood.'
 
   // Static Head Tags
@@ -29,7 +31,7 @@ async function render(pageContext: PageContextServer) {
   if (documentProps?.description) {
     description = documentProps.description
   }
-  
+
   // Dynamic Head Tags
   if (typeof getDocumentProps === 'function' && pageContext.pageProps) {
 
@@ -45,27 +47,30 @@ async function render(pageContext: PageContextServer) {
   }
 
   const documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang="he">
+    <html lang='he'>
       <head>
-      <meta charset="UTF-8" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-      <meta name="msapplication-TileColor" content="#da532c" />
-      <meta name="theme-color" content="#ffffff" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="${description}" />
+      <meta charset='UTF-8' />
+      <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+      <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+      <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+      <link rel='manifest' href='/site.webmanifest' />
+      <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
+      <meta name='msapplication-TileColor' content='#da532c' />
+      <meta name='theme-color' content='#ffffff' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='description' content='${description}' />
         <title>${title}</title>
       </head>
       <body>
-        <div id="app">${dangerouslySkipEscape(pageHTML)}</div>
+        <div id='app'>${dangerouslySkipEscape(pageHTML)}</div>
       </body>
     </html>`
 
   return {
     documentHtml,
+    pageContext: {
+      initialStoreState: store.state.value
+    }
   }
 }
 
