@@ -1,32 +1,31 @@
-import fs from 'fs';
-
-export interface IStorage  {
-    getItem: (key: string) => string;
-    setItem: (key: string, value: string) => void;
-    removeItem: (key: string) => void;
-    clear: () => void;
+export interface IStorage {
+  getItem: (key: string) => string;
+  setItem: (key: string, value: string) => void;
+  removeItem: (key: string) => void;
+  addItem: (key: string) => void;
+  clear: () => void;
 }
 
 export class Repository implements IStorage {
-    repository: any;
+  repository: any
 
-    constructor (repository: IStorage) {
-        this.repository = repository;
-    }
+  constructor(repository: IStorage) {
+    this.repository = repository
+  }
 
-    getItem (key: string): string {
-        return this.repository.getItem(key);
-    }
+  getItem(key: string): string {
+    return this.repository.getItem(key)
+  }
 
-    setItem (key: string, value: string): void {
-        this.repository.setItem(key, value)
-    }
+  setItem(key: string, value: string): void {
+    this.repository.setItem(key, value)
+  }
 
-    removeItem (key: string): void {
-        this.repository.removeItem(key)
-    }
+  removeItem(key: string): void {
+    this.repository.removeItem(key)
+  }
 
-    clear (): void {
-        this.repository.clear()
-    };
+  clear(): void {
+    this.repository.clear()
+  }
 }

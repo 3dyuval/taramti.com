@@ -27,9 +27,13 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
     }
   }
 
-  const page = clientOnly ? createApp(Component) : createSSRApp(Component)
 
-  page.use(createPinia())
+
+  const page = clientOnly ? createApp(Component) : createSSRApp(Component)
+  const store = createPinia()
+  pageContext.initialStoreState = store;
+
+  page.use(store)
   page.use(PrimeVue, { ripple: true })
   page.directive('tooltip', Tooltip)
   page.use(ToastService)

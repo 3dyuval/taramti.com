@@ -1,44 +1,45 @@
-import { IStorage, Repository } from './../../server/repository';
+import { IStorage } from './../../server/repository'
 import { defineStore } from 'pinia'
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue'
+import { CookieStorage } from '@/helpers/cookieStore'
 
-const localStorageKey = 'heart';
+const localStorageKey = 'heart'
 
 export const useHeart = defineStore('heartStore', () => {
 
-  let repo: IStorage
+  const repo: IStorage = new CookieStorage(import.meta.env.SSR ? [] : document.cookie)
 
-  if (typeof window === 'object' || typeof window !== 'undefined') {
-    repo = new Repository(localStorage as any);
-  }
-
-
-  const hearts = ref(getHeartedItems());
-
-  function getHeartedItems(): string[] {
-    const savedItems = repo.getItem("heart");
-    return savedItems ? JSON.parse(savedItems) : [];
-  }
+  const hearts = ref(repo.items)
 
   function add(value: string): void {
-    if (!value || hearts.value.includes(value)) return;
-    hearts.value = [...hearts.value, value];
-    repo.setItem("heart", JSON.stringify(hearts.value));
+    if (!value || hearts.value.includes(value)) return
+    hearts.value = [...hearts.value, value]
   }
 
-  function remove(key: number): void {
-    hearts.value.splice(key, 1);
-    repo.setItem("heart", JSON.stringify(hearts.value));
+  function toggle(value): void {
+    if (!value) return
+    if (isHeart(value)) {
+      remove(value)
+    } else {
+      add(value)
+    }
+  }
+
+  function remove(value: number): void {
+    hearts.delete(value)
   }
 
   function removeAll(): void {
-    hearts.value = [];
-    repo.setItem("heart", JSON.stringify(hearts.value));
+    hearts.value.clear()
   }
 
   function isHeart(value: string): boolean {
-    return hearts.value.includes(value);
+    return hearts.value.has(value)
   }
+
+  watch(hearts, (value) => {
+    repo.save(value)
+  })
 
 
   return {
@@ -46,7 +47,8 @@ export const useHeart = defineStore('heartStore', () => {
     add,
     isHeart,
     remove,
-    removeAll
+    removeAll,
+    toggle
   }
 
 })

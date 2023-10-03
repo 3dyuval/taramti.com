@@ -3,9 +3,10 @@
     "transpileOnly": true,
     "esm": true,
     "compilerOptions": {
-      "module": "Node16",
-      "moduleResolution": "Node16",
-    }
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+      "rootDir": "."
+    },
   },
   "compilerOptions": {
     "types": [

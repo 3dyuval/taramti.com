@@ -1,7 +1,7 @@
 import { Row } from '@/types';
 import { setMinutes, setHours, setSeconds } from 'date-fns/fp'
-import { pipe } from 'fp-ts/function'
-import * as O from 'fp-ts/Option'
+import { pipe } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
 
 export function getDates(row: Row): readonly Date[] {
 

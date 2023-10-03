@@ -8,6 +8,9 @@ import { usePageContext } from "@/composables/usePageContext";
 import { getAddress } from "@/helpers/getAddress";
 import { useShare } from "@vueuse/core";
 import { PhHandPointing, PhMapPinLine, PhMapTrifold, PhShare } from "@phosphor-icons/vue";
+import { useHeart } from '@/stores/useHeart'
+
+
 const props = defineProps<{
   rows: Row[];
   row: Row;
@@ -25,6 +28,12 @@ function handleOpenOnGoogleMaps() {
     "_blank"
   );
 }
+
+
+const pageContext = usePageContext();
+
+const heart = useHeart(pageContext.initialStoreState)
+
 
 const details = ref(false);
 const drawer = ref(false);
@@ -74,6 +83,7 @@ function onClickScheduleURL() {
               @click="details = !details"
               class="my-2 flex-grow-1"
             />
+            <v-btn variant='outlined' icon='mdi-heart' :color="heart.isHeart(row.id) ? 'red' : '#f2f2f2'" @click='heart.toggle(row.id)'></v-btn>
             <v-btn variant="plain" class="my-2" v-if="isSupported" @click="share">
               שתף
               <v-icon>mdi-share</v-icon>
