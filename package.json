@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "node --loader ts-node/esm ./server/index.ts",
     "nodemon": "nodemon ./server/index.ts",
+    "seed": "node --experimental-specifier-resolution=node --loader ts-node/esm -r dotenv/config ./api/seed.ts",
     "build": "vue-tsc && vite build",
     "start": "node /dist/server/index.ts",
-    "start-db": "surreal start --log trace --bind 0.0.0.0:8080 file:api/db",
+    "start-db": "surreal start --log trace -u root -p root --bind 0.0.0.0:8080 file:api/db",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "fast-deep-equal": "^3.1.3",
     "fp-ts": "^2.16.1",

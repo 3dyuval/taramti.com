@@ -1,6 +1,5 @@
 import { Coords, PageContext, PageProps, Row } from '@/types'
 import * as api from '@/../api'
-import { redirect } from 'vike/abort'
 import { render } from 'vike/abort'
 import { getAddress } from '@/helpers/getAddress'
 
@@ -72,7 +71,7 @@ export async function onBeforeRender(ctx: PageContext) {
     const id = Number(ctx.routeParams?.id)
 
     if (!id) {
-      throw render(404)
+      throw `Id "${id}" was not specified`
     }
 
     const rows = await api.getData()
@@ -89,18 +88,10 @@ export async function onBeforeRender(ctx: PageContext) {
       },
     }
   } catch (error) {
-    const id = Number(ctx.routeParams?.id)
 
-    if (error === Errors.MISSING_ROW_DATA) {
+    console.error(`Error at: ${ctx.urlPathname}`, error)
+
       throw render(404)
-    }
 
-    if (error === Errors.MISSING_RESPONSE) {
-      throw redirect(`/?location=${id}?error=${error}`)
-    }
-
-    if (error === Errors.RESPONSE_NOT_VALID) {
-      throw redirect(`/?location=${id}?error=${error}`)
-    }
   }
 }
