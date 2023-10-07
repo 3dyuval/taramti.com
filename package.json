@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "node --loader ts-node/esm ./server/index.ts",
     "nodemon": "nodemon ./server/index.ts",
-    "seed": "node --experimental-specifier-resolution=node --loader ts-node/esm -r dotenv/config ./api/seed.ts",
+    "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node  -r dotenv/config ./api/seed.ts",
     "build": "vue-tsc && vite build",
     "start": "node /dist/server/index.ts",
     "start-db": "surreal start --log trace -u root -p root --bind 0.0.0.0:8080 file:api/db",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "zrok": "~/zrok/zrok share public localhost:3000 --headless",
+    "serve": "concurrently \"npm run dev\" \" npm run zrok\""
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
@@ -22,6 +24,7 @@
     "@vue/server-renderer": "^3.3.4",
     "@vueuse/core": "^10.4.1",
     "compression": "^1.7.4",
+    "concurrently": "^8.2.1",
     "cross-env": "^7.0.3",
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",

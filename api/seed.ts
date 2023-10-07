@@ -4,7 +4,7 @@ import { DB, db } from './db.ts'
 async function seed() {
   new DB()
   await db.seed()
-  console.log('success')
+  console.log('seeded')
 
 }
 

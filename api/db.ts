@@ -1,27 +1,25 @@
 import { default as Surreal } from 'surrealdb.js'
 import mada from './mada'
 import type { Row } from '../src/types'
-import { getAddress } from '../src/helpers/getAddress'
 import { getDates } from '../src/helpers/getDates'
+import { getAddress } from '../src/helpers/getAddress'
 
 export let db: Surreal
 
 export class DB extends Surreal {
-
   constructor() {
     super()
     this.init()
   }
 
   async init() {
-
     if (db) {
       throw new Error('New instance cannot be created!!')
     }
     db = this
 
-    const ns = 'test'
-    const dbname = 'test'
+    const ns = process.env['SURREAL_NAMESPACE']
+    const dbname = process.env['SURREAL_DB']
     const user = process.env['SURREAL_USER']
     const pass = process.env['SURREAL_PASS']
     const url = process.env['DB_URL']
@@ -34,40 +32,81 @@ export class DB extends Surreal {
 
   async seed() {
     try {
+      const donationLocations = new Map<
+        string,
+        Row & { timeOpen: string; timeClose: string }
+      >()
+      const addresses = new Set<Record<string, string>>()
 
-      const places: any = []
-      await fetch(mada())
-        .then(async (response) => {
-          const { Success, Result } = await response.json()
+      const { Result, Success } = await fetch(mada()).then((res) => res.json())
 
-          if (Success) {
-            for (let rec of JSON.parse(Result) as Row[]) {
-              const [openingDate, closingDate] = getDates(rec).map(date => date.toISOString())
-              const place = {
-                createdAt: new Date().toISOString(),
-                name: rec.Name,
-                address: getAddress(rec),
-                openingDate,
-                closingDate
-              }
+      if (Success) {
+        for (let rec of JSON.parse(Result) as Row[]) {
+          const [timeOpen, timeClose] = getDates(rec).map((date) =>
+            date.toISOString(),
+          )
 
-              places.push(place)
-            }
+          const getName = (rec: Row) =>
+            (rec.Name
+              ? rec.Name
+              : rec.AccountType
+              ? rec.AccountType
+              : getAddress(rec)
+            )
+              .replace(/\s+/g, ' ')
+              .trim()
+
+          if (timeOpen && timeClose) {
+            donationLocations.set(getName(rec), {
+              timeOpen,
+              timeClose,
+              ...rec,
+            })
           }
+        }
+      }
+
+      for (const [name, rec] of donationLocations.entries()) {
+        addresses.add({
+          name,
+          city: !rec?.City || rec.City === '' ? null : rec.City,
+          street: !rec?.Street || rec.Street === '' ? null : rec.Street,
+          number: !rec?.NumHouse || rec.NumHouse === '' ? null : rec.NumHouse,
         })
+      }
 
-      console.log(`trying to insert ${places.length} records`)
+      console.log(
+        `trying to populate 'addresses' with '${addresses.length}' records`,
+      )
 
-      const r = await this.insert('place', places)
-      console.log('successully writen to db', r)
+      const addressResult = await this.insert(
+        'addresses',
+        Array.from(addresses),
+      )
+
+      console.log(`successully written '${addressResult.length}' records`)
+      console.log(
+        `trying to populate 'donationLocation' with '${donationLocations.length}' records`,
+      )
+      const donationLocationsResult = await this.insert(
+        'donationLocation',
+        addressResult.map(({ id, name }) => {
+          const rec = donationLocations.get(name)
+          return {
+            name,
+            address: id,
+            timeOpen: rec?.timeOpen,
+            timeClose: rec?.timeClose,
+          }
+        }),
+      )
+      console.log(
+        `successully written '${donationLocationsResult.length}' records`,
+      )
       await this.close()
       console.log('connection closed')
     } catch (e) {
-
       console.error('ERROR', e)
-
     }
   }
-
-
 }
