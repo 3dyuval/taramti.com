@@ -26,14 +26,27 @@ const caption = computed(() => {
   }
   if (isOpen) {
     return `פתוח עד ${closingTime}`
-    // check if closing date is in the next 2 hours
-  } else if (closingDate.getTime() - Date.now() < 2 * 60 * 60 * 1000) {
-    return `סגור בעוד ${intlFormatDistance(closingDate, new Date(), {
-      locale: 'he',
-    })}`
   }
+
   if (wasOpen) {
-    return `סגור מ ${closingTime}`
+    let txt = `נסגר `
+
+    // check if closing date is in the next 2 hours
+
+    if (closingDate.getTime() - Date.now() < 2 * 60 * 60 * 1000) {
+      return (
+        txt +
+        intlFormatDistance(closingDate, new Date(), {
+          locale: 'he',
+        })
+      )
+    }
+
+    if (wasOpen) {
+      return txt + closingTime
+    }
+
+    return `סגור היום`
   }
 })
 </script>
@@ -42,6 +55,7 @@ const caption = computed(() => {
     size="large"
     :color="isOpen ? 'primary' : 'default'"
     :text="caption"
+    prepend-icon="ph-clock"
   />
 </template>
 

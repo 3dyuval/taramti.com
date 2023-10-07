@@ -9,23 +9,22 @@ import type { PageContext } from '@/types'
 import { setPageContext } from '@/composables/usePageContext'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
-import '@mdi/font/css/materialdesignicons.css'
 import Layout from '@/components/Layout.vue'
-import 'primevue/resources/themes/saga-blue/theme.css'
-import 'primeicons/primeicons.css'
+import { aliases, ph } from '@/assets/phosphorIcons'
 
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
-
   const { Page, pageProps } = pageContext
-  if (!Page || !pageProps) throw new Error('Client-side render() hook expects pageContext.Page to be defined')
+  if (!Page || !pageProps)
+    throw new Error(
+      'Client-side render() hook expects pageContext.Page to be defined',
+    )
 
   const Component = {
     render() {
       const hDefaultSlot = () => h(Page as any, pageProps || {})
       return h(Layout as any, pageProps || {}, { default: hDefaultSlot })
-    }
+    },
   }
-
 
   const page = clientOnly ? createApp(Component) : createSSRApp(Component)
   const store = createPinia()
@@ -34,18 +33,26 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   page.use(PrimeVue, { ripple: true })
   page.directive('tooltip', Tooltip)
   page.use(ToastService)
-  page.use(createVuetify({
-    ssr: !clientOnly
-  }))
+  page.use(
+    createVuetify({
+      ssr: !clientOnly,
+      icons: {
+        defaultSet: 'ph',
+        aliases,
+        sets: {
+          ph,
+        },
+      },
+    }),
+  )
 
   page.use(VueGoogleMaps, {
     load: {
       key: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
-      installComponents: true
-    }
+      installComponents: true,
+    },
   })
   setPageContext(page, pageContext)
 
   return { page, store }
-
 }

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import mapStylesSilver from '@/assets/map-styles-silver.json'
 import { ref } from 'vue'
-import useErrorCapture from '@/composables/useErrorCapture'
 import { Coords } from '@/types'
 import Error from '@/components/Error.vue'
 
@@ -16,6 +15,8 @@ function onHover() {
 }
 
 const open = ref(true)
+
+const icon = new URL('@/assets/drop.png', import.meta.url).href
 </script>
 
 <template>
@@ -30,7 +31,7 @@ const open = ref(true)
         styles: mapStylesSilver,
       }"
       :icon="{
-        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Blood_drop.svg/734px-Blood_drop.svg.png',
+        url: icon,
         scaledSize: { width: 35, height: 60 },
       }"
     >
@@ -57,7 +58,7 @@ button[title='Close'] {
   visibility: hidden;
 }
 
-[role='dialog'].gm-style-iw:has([data-show-close="true"]) {
+[role='dialog'].gm-style-iw:has([data-show-close='true']) {
   button[title='Close'] {
     visibility: visible;
   }

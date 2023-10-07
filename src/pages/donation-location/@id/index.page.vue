@@ -108,7 +108,6 @@ function onClickScheduleURL() {
           elevation="0"
           title="שעות פעילות"
         >
-          <opening-hours-timeline :row="row" />
           <template #actions>
             <v-card-actions>
               <v-btn
@@ -120,6 +119,12 @@ function onClickScheduleURL() {
               />
             </v-card-actions>
           </template>
+          <opening-hours-timeline :row="row" />
+          <v-alert icon="ph-heart">
+            <v-alert-title>נא שימו לב : לגבי שעות הפעילות</v-alert-title>
+            כל הפרטים מגיעים דרך האתר של מד"א מידי יום. אין לנו שליטה או דרך
+            לודא את שעות הפתיחה.
+          </v-alert>
         </v-card>
       </div>
     </div>
