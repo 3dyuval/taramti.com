@@ -1,31 +1,27 @@
 <script setup lang="ts">
-import Error from "@/components/Error.vue";
-import Loading from "@/components/Loading.vue";
-import SearchInput from "@/components/SearchInput.vue";
-import SearchResult from "@/components/SearchResults.vue";
-import { onErrorCaptured, ref } from "vue";
-import { useToast } from "primevue/usetoast";
-import Card from "primevue/card";
-import { computed } from "@vue/reactivity";
-import Hearts from "@/components/Hearts.vue";
-import useErrorCapture from "@/composables/useErrorCapture";
-import { useHeart } from "@/stores/useHeart";
-import type { Row } from "@/types";
+import Error from '@/components/Error.vue'
+import Loading from '@/components/Loading.vue'
+import SearchInput from '@/components/SearchInput.vue'
+import SearchResult from '@/components/SearchResults.vue'
+import { onErrorCaptured, ref } from 'vue'
+import Card from 'primevue/card'
+import useErrorCapture from '@/composables/useErrorCapture'
+import type { Row } from '@/types'
 
 const props = defineProps<{
-  rows: Row[];
-}>();
+  rows: Row[]
+}>()
 
-const { toastError } = useErrorCapture({ summary: "אירעה שגיאה" });
-const error = ref<string | null>(null);
+const { toastError } = useErrorCapture({ summary: 'אירעה שגיאה' })
+const error = ref<string | null>(null)
 
 onErrorCaptured((err: string) => {
-  console.error(err);
-  error.value = err;
-  toastError(err);
-});
+  console.error(err)
+  error.value = err
+  toastError(err)
+})
 
-const search = ref("");
+const search = ref('')
 </script>
 
 <template>

@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import SplitButton from "primevue/splitbutton";
-import Button from "primevue/button";
-import InputText from "primevue/inputtext";
-import { computed } from "vue";
-import { useHeart } from "@/stores/useHeart";
-import { storeToRefs } from "pinia";
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
+import { computed } from 'vue'
 
 const props = defineProps<{
-  search: string;
-}>();
+  search: string
+}>()
 
 const emit = defineEmits<{
-  "update:search": [value: string];
-}>();
+  'update:search': [value: string]
+}>()
 
 function handleInputChange(e: any) {
-  emit("update:search", e.target.value);
+  emit('update:search', e.target.value)
 }
 
 // const heart = useHeart();
 // const { hearts } = storeToRefs(heart);
 // const isHeart = computed<boolean>(() => hearts.value.includes(props.search));
 
-const searchDisabled = computed<boolean>(() => !props.search.trim().length);
-
-
+const searchDisabled = computed<boolean>(() => !props.search.trim().length)
 </script>
 <template>
   <div class="p-inputgroup"></div>
@@ -45,16 +40,14 @@ const searchDisabled = computed<boolean>(() => !props.search.trim().length);
         placeholder="חפשו מקום לתרום דם לפי עיר או שם"
       />
 
-      <Button 
-          :disabled="searchDisabled"
-          v-tooltip.bottom="'הוסף למועדפים'"
-      text  
+      <Button
+        :disabled="searchDisabled"
+        v-tooltip.bottom="'הוסף למועדפים'"
+        text
       >
-      <!-- class="p-inputgroup-addon" @click="heart.add(search)" -->
-        <i
-          class="pi search-heart"
-        ></i>
-          <!-- :class="[isHeart ? 'pi-heart-fill' : 'pi-heart']" -->
+        <!-- class="p-inputgroup-addon" @click="heart.add(search)" -->
+        <i class="pi search-heart"></i>
+        <!-- :class="[isHeart ? 'pi-heart-fill' : 'pi-heart']" -->
       </Button>
     </div>
   </div>
@@ -69,6 +62,7 @@ const searchDisabled = computed<boolean>(() => !props.search.trim().length);
   background-color: var(--success000) !important;
   color: var(--success200) !important;
 }
+
 .search-button:not(.search-disabled) {
   background-color: var(--success200) !important;
   color: var(--success000) !important;
@@ -76,6 +70,7 @@ const searchDisabled = computed<boolean>(() => !props.search.trim().length);
 
 .search-heart {
   color: var(--heart000);
+
   &.pi-heart-fill {
     color: var(--heart100);
   }

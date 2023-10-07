@@ -13,7 +13,6 @@ import {
   PhMapTrifold,
   PhShare,
 } from '@phosphor-icons/vue'
-// import { useHeart } from '@/stores/useHeart'
 
 const props = defineProps<{
   rows: Row[]
@@ -94,8 +93,7 @@ function onClickScheduleURL() {
             <v-btn
               variant="outlined"
               icon="mdi-heart"
-              :color="heart.isHeart(row.id) ? 'red' : '#f2f2f2'"
-              @click="heart.toggle(row.id)"
+              :color="'#f2f2f2'"
             ></v-btn>
             <v-btn
               variant="plain"

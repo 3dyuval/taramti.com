@@ -8,11 +8,11 @@
     "nodemon": "nodemon ./server/index.ts",
     "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node  -r dotenv/config ./api/seed.ts",
     "build": "vue-tsc && vite build",
-    "start": "node /dist/server/index.ts",
+    "start": "NODE_ENV=production node --loader ts-node/esm server/index.ts",
     "start-db": "surreal start --log trace -u root -p root --bind 0.0.0.0:8080 file:api/db",
     "preview": "vite preview",
     "zrok": "~/zrok/zrok share public localhost:3000 --headless",
-    "serve": "concurrently \"npm run dev\" \" npm run zrok\""
+    "serve": "concurrently \"npm run start\" \" npm run zrok\""
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
