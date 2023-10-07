@@ -11,7 +11,6 @@ enum Errors {
   RESPONSE_NOT_VALID = 'Response is not valid JSON',
 }
 
-
 export function getDocumentProps(pageProps: PageProps) {
   const address = getAddress(pageProps.row)
   const title = `תרומת דם ב "${pageProps.row?.Name || address}"`
@@ -30,7 +29,7 @@ export async function onBeforeRender(ctx: PageContext) {
   }
 
   async function getCoordsFromGoogleMaps(
-    row: Row
+    row: Row,
   ): Promise<Coords | undefined> {
     const key = import.meta.env.VITE_GOOGLE_MAP_API_KEY
 
@@ -41,7 +40,7 @@ export async function onBeforeRender(ctx: PageContext) {
     const googleGeocoding = new Request(
       `https://maps.googleapis.com/maps/api/geocode/json?&key=${
         import.meta.env.VITE_GOOGLE_MAP_API_KEY
-      }&address=${getAddress(row)}`
+      }&address=${getAddress(row)}`,
     )
 
     return fetch(googleGeocoding)
@@ -62,7 +61,7 @@ export async function onBeforeRender(ctx: PageContext) {
         }
       })
       .catch((error) => {
-        console.error(error)
+        console.error(error?.error_message)
         throw new Error(Errors.RESPONSE_NOT_VALID)
       })
   }
@@ -88,10 +87,8 @@ export async function onBeforeRender(ctx: PageContext) {
       },
     }
   } catch (error) {
-
     console.error(`Error at: ${ctx.urlPathname}`, error)
 
-      throw render(404)
-
+    throw render(404)
   }
 }

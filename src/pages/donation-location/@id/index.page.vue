@@ -25,13 +25,6 @@ const center = ref<Coords>(props.coords)
 
 const address = getAddress(props.row)
 
-function handleOpenOnGoogleMaps() {
-  window.open(
-    `http://www.google.com/maps/place/${props.coords.lat},${props.coords.lng}`,
-    '_blank',
-  )
-}
-
 const pageContext = usePageContext()
 
 // const heart = useHeart()
@@ -136,7 +129,12 @@ function onClickScheduleURL() {
     v-model="drawer"
     location="bottom"
   >
-    <v-list-item variant="text" color="primary" @click="onClickScheduleURL">
+    <v-list-item
+      variant="text"
+      color="primary"
+      :href="props.row.SchedulingURL"
+      target="_blank"
+    >
       <template #append>
         <ph-hand-pointing :size="24" weight="fill" color="gray" />
       </template>
@@ -147,7 +145,12 @@ function onClickScheduleURL() {
         location="top center"
       />
     </v-list-item>
-    <v-list-item variant="text" color="primary" @click="handleOpenOnGoogleMaps">
+    <v-list-item
+      variant="text"
+      color="primary"
+      :href="`http://www.google.com/maps/place/${props.coords.lat},${props.coords.lng}`"
+      target="_blank"
+    >
       <template #append>
         <ph-map-trifold :size="24" weight="fill" color="gray" />
       </template>
@@ -177,7 +180,8 @@ function onClickScheduleURL() {
 .location-window {
   h3 {
     font-size: 1.5rem;
-    // text-wrap: balance;
+    text-wrap: balance;
+    max-width: 24rem;
   }
 
   direction: rtl;
