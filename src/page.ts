@@ -11,6 +11,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import Layout from '@/components/Layout.vue'
 import { aliases, ph } from '@/assets/phosphorIcons'
+import { VDataTable } from 'vuetify/labs/VDataTable'
 
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const { Page, pageProps } = pageContext
@@ -36,6 +37,9 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   page.use(
     createVuetify({
       ssr: !clientOnly,
+      components: {
+        VDataTable,
+      },
       icons: {
         defaultSet: 'ph',
         aliases,
