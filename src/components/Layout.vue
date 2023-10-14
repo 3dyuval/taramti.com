@@ -34,7 +34,7 @@ function onSearch(input: number | undefined) {
   <v-layout>
     <v-app-bar color="surface-variant">
       <template #append>
-        <h1>תרמתי</h1>
+        <h1>{{ $t('meta.title') }}</h1>
       </template>
       <template #prepend>
         <v-btn

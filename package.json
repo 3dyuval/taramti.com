@@ -49,10 +49,12 @@
     "vite-plugin-compression2": "^0.10.5",
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.3.4",
+    "vue-i18n": "^9.5.0",
     "vue-tsc": "^1.8.10",
     "vuetify": "^3.3.17"
   },
   "devDependencies": {
+    "@intlify/vue-i18n-extensions": "^4.0.0",
     "@types/compression": "^1.7.3",
     "@types/express": "^4.17.17",
     "@types/node": "^20.6.0",
