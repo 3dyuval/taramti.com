@@ -1,4 +1,15 @@
 {
+  "cta": {
+    "showAll": "All Details"
+  },
+  "location": {
+    "time": {
+      "closed": "Closed today",
+      "openUntill": "Open untill {time}",
+      "willClose": "Will close {time}",
+      "willOpen": "Will open {time}"
+    }
+  },
   "meta": {
     "description": "Easily search and find place to donate blood in Israel",
     "tag": "Find Blood Donation Locations",

@@ -1,4 +1,15 @@
 {
+  "cta": {
+    "showAll": "כל הפרטים"
+  },
+  "location": {
+    "time": {
+      "closed": "סגור היום",
+      "openUntill": "פתוח עד {time}",
+      "willClose": "נסגר {time}",
+      "willOpen": "יפתח {time}"
+    }
+  },
   "meta": {
     "description": "מצאו מקומות לתרום בהם דם בקלות ובמהירות",
     "tag": "מצאו מקומות לתרום דם",

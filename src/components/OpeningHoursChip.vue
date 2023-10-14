@@ -2,12 +2,17 @@
 import { computed } from 'vue'
 import { intlFormatDistance } from 'date-fns'
 import { useOpeningTime } from '@/composables/useOpeningTime'
+import { usePageContext } from '@/composables/usePageContext'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   fromHour: string
   toHour: string
 }>()
 
+const { locale } = usePageContext()
+
+const { t } = useI18n()
 const {
   willOpen,
   isOpen,
@@ -20,33 +25,23 @@ const {
 
 const caption = computed(() => {
   if (willOpen) {
-    return (
-      'יפתח ' + intlFormatDistance(openingDate, new Date(), { locale: 'he' })
-    )
+    return t('location.time.willOpen', {
+      time: intlFormatDistance(openingDate, new Date(), { locale }),
+    })
   }
   if (isOpen) {
-    return `פתוח עד ${closingTime}`
+    return t('location.time.willOpen', { time: closingTime })
+  }
+
+  if (closingDate.getTime() - Date.now() < 2 * 60 * 60 * 1000) {
+    // check if closing date is in the next 2 hours
+    return t('location.time.willClose', {
+      time: intlFormatDistance(closingDate, new Date(), { locale }),
+    })
   }
 
   if (wasOpen) {
-    let txt = `נסגר `
-
-    // check if closing date is in the next 2 hours
-
-    if (closingDate.getTime() - Date.now() < 2 * 60 * 60 * 1000) {
-      return (
-        txt +
-        intlFormatDistance(closingDate, new Date(), {
-          locale: 'he',
-        })
-      )
-    }
-
-    if (wasOpen) {
-      return txt + closingTime
-    }
-
-    return `סגור היום`
+    return t('location.time.closed')
   }
 })
 </script>
