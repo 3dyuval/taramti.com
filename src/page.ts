@@ -12,7 +12,7 @@ import { createVuetify } from 'vuetify'
 import Layout from '@/components/Layout.vue'
 import { aliases, ph } from '@/assets/phosphorIcons'
 import { VDataTable } from 'vuetify/labs/VDataTable'
-import { useI18N } from '@/i18n'
+import { i18n } from '@/i18n'
 
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const { Page, pageProps } = pageContext
@@ -31,8 +31,12 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const page = clientOnly ? createApp(Component) : createSSRApp(Component)
   const store = createPinia()
 
+  const locale = pageContext.locale
+  if (locale) {
+    i18n.global.locale.value = locale
+  }
+  page.use(i18n)
   page.use(store)
-  page.use(useI18N)
   page.use(PrimeVue, { ripple: true })
   page.directive('tooltip', Tooltip)
   page.use(ToastService)

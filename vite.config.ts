@@ -6,6 +6,7 @@ import ssr, { UserConfig } from 'vike/plugin'
 import vuetify from 'vite-plugin-vuetify'
 import { vavite } from 'vavite'
 import { compression } from 'vite-plugin-compression2'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
   buildSteps: [
@@ -23,6 +24,10 @@ export default defineConfig({
   plugins: [
     vue(),
     vuetify(),
+    VueI18nPlugin({
+      ssr: true,
+      include: [path.resolve(__dirname, './src/i18n/*.json')],
+    }),
     ssr({ disableAutoFullBuild: true } satisfies UserConfig),
     vavite({
       serverEntry: '/server/index.ts',

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vavite serve",
+    "dev": "vite",
     "build": "vavite build",
     "serve": "NODE_ENV=production node dist/server/index.mjs",
     "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node  -r dotenv/config ./api/seed.ts",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
+    "@intlify/unplugin-vue-i18n": "^1.4.0",
     "@mdi/font": "^7.2.96",
     "@netlify/functions": "^2.0.2",
     "@phosphor-icons/vue": "^2.1.6",

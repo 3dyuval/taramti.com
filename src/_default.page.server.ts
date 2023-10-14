@@ -11,7 +11,6 @@ import type { App } from 'vue'
 import { dangerouslySkipEscape, escapeInject } from 'vike/server'
 import { createPageApp } from './page'
 import type { PageContextServer } from '@/types'
-import { i18n } from '@/i18n'
 
 export { onBeforeRender } from '@/_getData'
 
@@ -26,9 +25,9 @@ async function render(pageContext: PageContextServer) {
   // See https://vite-plugin-ssr.com/head
   const { documentProps, getDocumentProps } = pageContext.exports
 
-  let title = i18n.t('meta.title')
-  let description = i18n.t('meta.description')
-
+  // let title = i18n.t('meta.title')
+  // let description = i18n.t('meta.description')
+  let title, description
   // Static Head Tags
   if (documentProps?.title) {
     title = documentProps.title

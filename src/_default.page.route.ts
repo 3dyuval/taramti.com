@@ -1,6 +1,6 @@
 export { onBeforeRoute }
 
-import { i18n, initI18n, OPTIONS } from '@/i18n'
+import { OPTIONS } from '@/i18n'
 
 function onBeforeRoute(pageContext) {
   const { urlWithoutLocale, locale } = extractLocale(pageContext.urlOriginal)
@@ -28,18 +28,16 @@ function onBeforeRoute(pageContext) {
 function extractLocale(url: string) {
   const parts = url.split('/')
 
-  initI18n()
-
   const localeFromUrl = OPTIONS.availableLocales.find(
     (l: string) => l === parts[1],
   )
 
-  if (localeFromUrl) {
-    i18n.locale.value = localeFromUrl
-  }
+  // if (localeFromUrl) {
+  //   i18n.locale.value = localeFromUrl
+  // }
 
   return {
     locale: localeFromUrl || OPTIONS.locale,
-    urlWithoutLocale: localeFromUrl ? '/' + parts.slice(3) : url,
+    urlWithoutLocale: localeFromUrl ? '/' + parts.slice(2).join('/') : url,
   }
 }

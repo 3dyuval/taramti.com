@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { onErrorCaptured, ref } from 'vue'
+import { ref } from 'vue'
 import useErrorCapture from '@/composables/useErrorCapture'
 import type { Row } from '@/types'
+import { useI18n } from 'vue-i18n'
+import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 
 const props = defineProps<{
   rows: Row[]
@@ -10,12 +12,7 @@ const props = defineProps<{
 const { toastError } = useErrorCapture({ summary: 'אירעה שגיאה' })
 const error = ref<string | null>(null)
 
-onErrorCaptured((err: string) => {
-  console.error(err)
-  error.value = err
-  toastError(err)
-})
-
+const { t } = useI18n()
 const search = ref('')
 
 const headers = [
@@ -49,6 +46,22 @@ const groupBy = ref([{ key: 'City', order: 'asc', title: 'עיר' }])
     show-expand
     prev-icon="ph-caret-next"
   >
+    <template #expanded-row="{ item }">
+      <v-card>
+        <opening-hours-chip
+          class="my-5"
+          :from-hour="item.FromHour"
+          :to-hour="item.ToHour"
+        />
+        <v-card-actions>
+          <v-btn
+            color="primary"
+            :text="t('cta.showAll')"
+            :href="`/donation-location/${item.id}`"
+          />
+        </v-card-actions>
+      </v-card>
+    </template>
     <template #data-table-group="{ item, count, props }">
       <td
         dir="rtl"

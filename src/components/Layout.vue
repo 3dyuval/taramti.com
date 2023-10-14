@@ -4,7 +4,7 @@ import { usePageContext } from '@/composables/usePageContext'
 import type { Row } from '@/types'
 import { reactive } from 'vue'
 import { PhMagnifyingGlass } from '@phosphor-icons/vue'
-import { OPTIONS } from '@/i18n'
+import SelectLocale from '@/components/SelectLocale.vue'
 
 const pageContext = usePageContext()
 
@@ -27,36 +27,15 @@ const search = reactive<{
   modal: false,
   item: row ? row.id : undefined,
 })
-
-function onChangeLocale(locale: string) {
-  const parts = window.location.pathname.split('/')
-  window.open(`/${locale}/${parts.slice(3)}`, '_self')
-}
 </script>
 <template>
   <toast />
   <v-layout>
     <v-app-bar color="surface-variant">
-      <template #extension>
-        <v-select
-          variant="plain"
-          width="200px"
-          :items="OPTIONS.availableLocales"
-          :value="pageContext.locale"
-          @update:model-value="onChangeLocale"
-        >
-          <template #selection="{ item }">
-            <v-chip
-              color="primary"
-              text-color="white"
-              class="ma-2"
-              v-t="`settings.locale.${item.value}`"
-            />
-          </template>
-        </v-select>
-      </template>
       <template #append>
-        <h1 v-t="'meta.title'" />
+        <div class="d-flex">
+          <h1 v-t="'meta.title'"></h1>
+        </div>
       </template>
       <template #prepend>
         <v-btn
@@ -68,6 +47,7 @@ function onChangeLocale(locale: string) {
           <ph-magnifying-glass size="20" />
         </v-btn>
         <h2 v-t="'meta.tag'" />
+        <select-locale />
         <v-dialog v-model="search.modal" max-width="800">
           <v-card>
             <v-autocomplete

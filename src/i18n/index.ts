@@ -1,4 +1,4 @@
-import { createI18n, I18n, VueI18nOptions } from 'vue-i18n'
+import { createI18n, VueI18nOptions } from 'vue-i18n'
 import en from './en.json'
 import he from './he.json'
 
@@ -15,19 +15,17 @@ const OPTIONS: VueI18nOptions = {
   },
 }
 
-export let i18n: I18n<typeof OPTIONS>['global']
-let useI18N: I18n<typeof OPTIONS>
-
-const init = () => {
-  const instance = createI18n(OPTIONS)
-  i18n = instance.global
-  useI18N = instance
+export const localesTranslated = {
+  he: 'עברית',
+  en: 'English',
 }
+
+const i18n = createI18n(OPTIONS)
 
 type Language = {
   locale: keyof typeof locales
   message: any
 }
 
-export { useI18N, init as initI18n, OPTIONS }
+export { i18n, OPTIONS }
 export type { Language }
