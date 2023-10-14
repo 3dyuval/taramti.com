@@ -4,6 +4,7 @@ import { usePageContext } from '@/composables/usePageContext'
 import type { Row } from '@/types'
 import { reactive } from 'vue'
 import { PhMagnifyingGlass } from '@phosphor-icons/vue'
+import { OPTIONS } from '@/i18n'
 
 const pageContext = usePageContext()
 
@@ -19,22 +20,43 @@ function mapRowsToItems(rows: Row[] = []) {
   })
 }
 
-const search = reactive<{ modal: boolean; item: number | undefined }>({
+const search = reactive<{
+  modal: boolean
+  item: number | undefined
+}>({
   modal: false,
   item: row ? row.id : undefined,
 })
 
-function onSearch(input: number | undefined) {
-  if (!input) return
-  window.open('/donation-location/' + input, '_self')
+function onChangeLocale(locale: string) {
+  const parts = window.location.pathname.split('/')
+  window.open(`/${locale}/${parts.slice(3)}`, '_self')
 }
 </script>
 <template>
   <toast />
   <v-layout>
     <v-app-bar color="surface-variant">
+      <template #extension>
+        <v-select
+          variant="plain"
+          width="200px"
+          :items="OPTIONS.availableLocales"
+          :value="pageContext.locale"
+          @update:model-value="onChangeLocale"
+        >
+          <template #selection="{ item }">
+            <v-chip
+              color="primary"
+              text-color="white"
+              class="ma-2"
+              v-t="`settings.locale.${item.value}`"
+            />
+          </template>
+        </v-select>
+      </template>
       <template #append>
-        <h1>{{ $t('meta.title') }}</h1>
+        <h1 v-t="'meta.title'" />
       </template>
       <template #prepend>
         <v-btn
@@ -45,7 +67,7 @@ function onSearch(input: number | undefined) {
         >
           <ph-magnifying-glass size="20" />
         </v-btn>
-        <h2>מצאו מקומות לתרום דם</h2>
+        <h2 v-t="'meta.tag'" />
         <v-dialog v-model="search.modal" max-width="800">
           <v-card>
             <v-autocomplete
@@ -73,8 +95,8 @@ function onSearch(input: number | undefined) {
                 color="primary"
                 variant="tonal"
                 block
-                @click="onSearch(search.item)"
-                :disabled="row && search.item === row.id"
+                :href="`/donation-location/${input}`"
+                :disabled="!input || (row && search.item === row.id)"
               />
             </v-card-actions>
           </v-card>

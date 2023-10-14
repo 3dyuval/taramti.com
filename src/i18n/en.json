@@ -1,6 +1,13 @@
 {
   "meta": {
     "description": "Easily search and find place to donate blood in Israel",
+    "tag": "Find Blood Donation Locations",
     "title": "Taramti"
+  },
+  "settings": {
+    "locale": {
+      "en": "English",
+      "he": "Hebrew"
+    }
   }
 }

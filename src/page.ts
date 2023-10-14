@@ -12,7 +12,8 @@ import { createVuetify } from 'vuetify'
 import Layout from '@/components/Layout.vue'
 import { aliases, ph } from '@/assets/phosphorIcons'
 import { VDataTable } from 'vuetify/labs/VDataTable'
-import i18n from '@/i18n'
+import { useI18N } from '@/i18n'
+
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const { Page, pageProps } = pageContext
   if (!Page || !pageProps)
@@ -31,7 +32,7 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const store = createPinia()
 
   page.use(store)
-  page.use(i18n)
+  page.use(useI18N)
   page.use(PrimeVue, { ripple: true })
   page.directive('tooltip', Tooltip)
   page.use(ToastService)

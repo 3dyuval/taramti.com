@@ -1,16 +1,21 @@
 export { render }
 export const doNotPrerender = true
-export const passToClient = ['pageProps', 'urlPathname', 'initialStoreState']
+export const passToClient = [
+  'pageProps',
+  'urlPathname',
+  'initialStoreState',
+  'locale',
+]
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
 import { dangerouslySkipEscape, escapeInject } from 'vike/server'
 import { createPageApp } from './page'
 import type { PageContextServer } from '@/types'
+import { i18n } from '@/i18n'
 
 export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
-
   const { page, store } = createPageApp(pageContext, false)
   let pageHTML = ''
 
@@ -20,8 +25,9 @@ async function render(pageContext: PageContextServer) {
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps, getDocumentProps } = pageContext.exports
-  let title = 'Taramti תרמתי'
-  let description = 'Taramti תרמתי - Your source for blood donation information and centers. Learn about the process and benefits of donating blood.'
+
+  let title = i18n.t('meta.title')
+  let description = i18n.t('meta.description')
 
   // Static Head Tags
   if (documentProps?.title) {
@@ -34,7 +40,6 @@ async function render(pageContext: PageContextServer) {
 
   // Dynamic Head Tags
   if (typeof getDocumentProps === 'function' && pageContext.pageProps) {
-
     const props = getDocumentProps(pageContext.pageProps)
     if (props && props.title) {
       title = props.title
@@ -43,7 +48,6 @@ async function render(pageContext: PageContextServer) {
     if (props && props.description) {
       description = props.description
     }
-
   }
 
   const documentHtml = escapeInject`<!DOCTYPE html>
@@ -69,8 +73,9 @@ async function render(pageContext: PageContextServer) {
   return {
     documentHtml,
     pageContext: {
-      initialStoreState: store.state.value
-    }
+      initialStoreState: store.state.value,
+      locale: pageContext.locale,
+    },
   }
 }
 
