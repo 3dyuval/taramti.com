@@ -1,85 +1,45 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import Toast from 'primevue/toast'
-import { usePageContext } from '@/composables/usePageContext'
-import type { Row } from '@/types'
-import { reactive } from 'vue'
 import { PhMagnifyingGlass } from '@phosphor-icons/vue'
 import SelectLocale from '@/components/SelectLocale.vue'
+import SearchCard from '@/components/SearchCard.vue'
+import { Row } from '@/types'
+import { ref } from 'vue'
+import { usePageContext } from '@/composables/usePageContext'
 
-const pageContext = usePageContext()
+const { urlPathname } = usePageContext()
+const props = defineProps<Props>()
 
-const { rows, row } = pageContext.pageProps || {}
-
-function mapRowsToItems(rows: Row[] = []) {
-  return rows.map((row) => {
-    return {
-      title: row.Name,
-      value: row.id,
-      city: row.City,
-    }
-  })
+type Props = {
+  rows: Row[]
+  row: Row
 }
 
-const search = reactive<{
-  modal: boolean
-  item: number | undefined
-}>({
-  modal: false,
-  item: row ? row.id : undefined,
-})
+const modal = ref(false)
+
 </script>
 <template>
   <toast />
-  <v-layout>
-    <v-app-bar color="surface-variant">
+  <v-layout class='taramti-layout-bar'>
+    <v-app-bar color='surface-variant'>
       <template #append>
-        <div class="d-flex">
-          <h1 v-t="'meta.title'"></h1>
-        </div>
+        <a :href='urlPathname' class='tamati-toolbar-title'>
+          <h1  v-t="'meta.title'"></h1>
+        </a>
       </template>
       <template #prepend>
         <v-btn
-          @click="search.modal = true"
+          @click='modal = true'
           rounded
-          variant="outlined"
-          class="mx-3"
+          variant='outlined'
+          class='mx-3'
         >
-          <ph-magnifying-glass size="20" />
+          <ph-magnifying-glass size='20' />
         </v-btn>
         <h2 v-t="'meta.tag'" />
         <select-locale />
-        <v-dialog v-model="search.modal" max-width="800">
-          <v-card>
-            <v-autocomplete
-              placeholder="חפש מקום לפי שם"
-              :items="mapRowsToItems(rows)"
-              v-model="search.item"
-            >
-              <template #item="{ item, props }">
-                <v-list-item
-                  v-bind="props"
-                  :title="item.title"
-                  :subtitle="item.raw.city"
-                />
-              </template>
-            </v-autocomplete>
-            <v-card-actions>
-              <v-btn
-                text="סגור"
-                color="secondary"
-                variant="outlined"
-                @click="search.modal = !search.modal"
-              />
-              <v-btn
-                text="חפש"
-                color="primary"
-                variant="tonal"
-                block
-                :href="`/donation-location/${input}`"
-                :disabled="!input || (row && search.item === row.id)"
-              />
-            </v-card-actions>
-          </v-card>
+        <v-dialog v-model='modal' max-width='800'>
+          <search-card v-bind='props' />
         </v-dialog>
       </template>
     </v-app-bar>
@@ -89,9 +49,20 @@ const search = reactive<{
   </v-layout>
 </template>
 
-<style lang="scss">
+<style lang='scss'>
+
+.taramti-layout-bar {
+  height: 100lvmin;
+
+  .tamati-toolbar-title {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 main {
   width: 100%;
-  margin-top: 64px;
+  top: 64px;
+  height: 100%;
 }
 </style>

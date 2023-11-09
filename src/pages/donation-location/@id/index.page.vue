@@ -83,11 +83,11 @@ function onClickScheduleURL() {
               @click="details = !details"
               class="my-2 flex-grow-1"
             />
-            <v-btn
-              variant="outlined"
-              icon="mdi-heart"
-              :color="'#f2f2f2'"
-            ></v-btn>
+<!--            <v-btn-->
+<!--              variant="outlined"-->
+<!--              icon="mdi-heart"-->
+<!--              :color="'#f2f2f2'"-->
+<!--            ></v-btn>-->
             <v-btn
               variant="plain"
               class="my-2"
