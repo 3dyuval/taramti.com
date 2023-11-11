@@ -20,6 +20,8 @@ async function startServer() {
     const pageContextInit = {
       urlOriginal: req.originalUrl,
     }
+
+
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
     if (!httpResponse) return next()
