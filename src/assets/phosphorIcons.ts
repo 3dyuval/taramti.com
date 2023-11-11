@@ -43,7 +43,10 @@ const aliases: IconAliases = {
 
 const ph: IconSet = {
   component: (props: IconProps) => {
-    return h('i', { ...props, class: `ph ${props.icon}` })
+    return h('i', { ...props, class: `ph 
+    ${props.icon?.startsWith('ph-') ? props.icon : 'ph-' + props.icon}
+    ${props.weight ? 'ph-' + props.weight : ''}
+    ` })
   },
 }
 

@@ -7,12 +7,6 @@ import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { usePageContext } from '@/composables/usePageContext'
 import { getAddress } from '@/helpers/getAddress'
 import { useShare } from '@vueuse/core'
-import {
-  PhHandPointing,
-  PhMapPinLine,
-  PhMapTrifold,
-  PhShare,
-} from '@phosphor-icons/vue'
 
 const props = defineProps<{
   rows: Row[]
@@ -55,7 +49,7 @@ function onClickScheduleURL() {
         </template>
         <template #subtitle>
           <span class="d-flex py-2">
-            <ph-map-pin-line
+            <v-icon icon='map-pin-line'
               :size="20"
               weight="fill"
               color="gray"
@@ -141,7 +135,7 @@ function onClickScheduleURL() {
       target="_blank"
     >
       <template #append>
-        <ph-hand-pointing :size="24" weight="fill" color="gray" />
+        <v-icon icon='ph-hand-pointing' :size="24" weight="fill" color="gray" />
       </template>
       <v-list-item-title>זימון תור</v-list-item-title>
       <v-tooltip
@@ -157,7 +151,7 @@ function onClickScheduleURL() {
       target="_blank"
     >
       <template #append>
-        <ph-map-trifold :size="24" weight="fill" color="gray" />
+        <v-icon icon='ph-map-trifold' :size="24" weight="fill" color="gray" />
       </template>
       <v-list-item-title> נווט למקום</v-list-item-title>
       <v-tooltip
@@ -173,7 +167,7 @@ function onClickScheduleURL() {
       :disabled="!isSupported"
     >
       <template #append>
-        <ph-share :size="20" weight="fill" />
+        <v-icon icon='ph-share' :size="20" weight="fill" />
       </template>
       <v-list-item-title> שתף</v-list-item-title>
       <v-tooltip activator="parent" text="שתף עם חבר" location="top center" />
