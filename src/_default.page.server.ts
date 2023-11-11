@@ -61,8 +61,8 @@ async function render(pageContext: PageContextServer) {
       <meta name='msapplication-TileColor' content='#da532c' />
       <meta name='theme-color' content='#ffffff' />
       <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <meta name='description' content='${description}' />
-        <title>${title}</title>
+        <meta name='description' content='${description || 'Blood donation locations in Israel'}' />
+        <title>${title || 'Taramti'}</title>
       </head>
       <body>
         <div id='app'>${dangerouslySkipEscape(pageHTML)}</div>
