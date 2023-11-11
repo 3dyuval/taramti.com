@@ -34,7 +34,7 @@ const modal = ref(false)
           variant='outlined'
           class='mx-3'
         >
-          <ph-magnifying-glass size='20' />
+          <v-icon icon='magnifying-glass' size='20' />
         </v-btn>
         <h2 v-t="'meta.tag'" />
         <select-locale />
