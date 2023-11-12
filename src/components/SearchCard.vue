@@ -35,6 +35,7 @@ const search = reactive<{
 <template>
   <v-card>
     <v-autocomplete
+      eager
       placeholder="חפש מקום לפי שם"
       :items="mapRowsToItems(rows)"
       v-model="search.item"
