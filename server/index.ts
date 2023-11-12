@@ -14,7 +14,7 @@ async function startServer() {
   app.use(compression())
 
   if (!httpDevServer) {
-    app.use(express.static(root() + '/client'))
+    app.use(express.static(`${root}/client`))
   }
 
   app.get('*', async (req, res, next) => {
