@@ -4,6 +4,7 @@ import express from 'express'
 import { renderPage } from 'vike/server'
 import httpDevServer from 'vavite/http-dev-server'
 import compression from 'compression'
+import { root } from './root'
 
 startServer()
 
@@ -13,7 +14,7 @@ async function startServer() {
   app.use(compression())
 
   if (!httpDevServer) {
-    app.use(express.static('dist/client'))
+    app.use(express.static(root() + '/client'))
   }
 
   app.get('*', async (req, res, next) => {
