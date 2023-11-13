@@ -61,6 +61,7 @@
     "@types/node": "^20.6.0",
     "@types/promise-fs": "^2.1.2",
     "prettier": "3.0.3",
+    "vite-plugin-sitemap": "^0.5.1",
     "vitest": "^0.34.6"
   },
   "engines": {
