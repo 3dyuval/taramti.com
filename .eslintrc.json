@@ -1,0 +1,117 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+  },
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript"
+  ],
+  "rules": {
+    "curly": "error",
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case",
+      {
+        "registeredComponentsOnly": false,
+        "ignores": []
+      }
+    ],
+    "vue/prop-name-casing": [
+      "error",
+      "camelCase"
+    ],
+    "vue/attribute-hyphenation": [
+      "error",
+      "always"
+    ],
+    "vue/v-on-event-hyphenation": [
+      "error",
+      "always", {
+        "autofix": true
+      }
+    ],
+    "vue/no-use-v-if-with-v-for": [
+      "error",
+      {
+        "allowUsingIterationVar": false
+      }
+    ],
+    "vue/component-options-name-casing": [
+      "error",
+      "kebab-case"
+    ],
+    "vue/html-quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "vue/multi-word-component-names": "off",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "vue/define-macros-order": [
+      "error",
+      {
+        "order": [
+          "defineOptions",
+          "defineProps",
+          "defineEmits",
+          "defineSlots"
+        ]
+      }
+    ],
+    "vue/define-props-declaration": [
+      "error",
+      "type-based"
+    ],
+    "vue/block-lang": [
+      "error",
+      {
+        "script": {
+          "lang": "ts"
+        }
+      }
+    ],
+    "vue/block-order": [
+      "error",
+      {
+        "order": [
+          [
+            "script",
+            "template"
+          ],
+          "style"
+        ]
+      }
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "no-extra-boolean-cast:": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "no-prototype-builtins": "off"
+  }
+}
