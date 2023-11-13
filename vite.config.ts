@@ -47,6 +47,7 @@ export default defineConfig(async ({ mode }) => {
       vue(),
       sitemap(
         {
+          outDir: 'dist/client',
           hostname: process.env.VITE_HOST_URL || 'http://localhost/',
           readable: true,
           generateRobotsTxt: true,
