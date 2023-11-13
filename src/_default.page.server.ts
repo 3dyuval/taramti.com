@@ -80,6 +80,8 @@ async function render(pageContext: PageContextServer) {
       ${import.meta.env.PROD && gtagId ? dangerouslySkipEscape(analyticsScripts) : ''}
         <meta name='description' content='${description || 'Blood donation locations in Israel'}' />
         <title>${title || 'Taramti'}</title>
+        ${ import.meta.env.PROD && '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BSPHVY9CFG"></script>'}
+        ${ import.meta.env.PROD && '<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-BSPHVY9CFG');</script>)' }
       </head>
       <body>
         <div id='app'>${dangerouslySkipEscape(pageHTML)}</div>
