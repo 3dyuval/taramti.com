@@ -1,5 +1,5 @@
 import type { UserConfigExport } from 'vite'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 import ssr, { UserConfig } from 'vike/plugin'
@@ -12,6 +12,10 @@ import { onBeforeRender } from './src/_getData'
 import { localesTranslated } from './src/i18n'
 
 export default defineConfig(async ({ mode }) => {
+
+  Object.assign(process.env, loadEnv(mode, process.cwd())
+)
+
   let dynamicRoutes = []
   if (mode === 'production') {
     const response = await onBeforeRender().catch(console.error)
@@ -43,7 +47,7 @@ export default defineConfig(async ({ mode }) => {
       vue(),
       sitemap(
         {
-          hostname: process.env.HOST_URL || 'http://localhost/',
+          hostname: process.env.VITE_HOST_URL || 'http://localhost/',
           readable: true,
           generateRobotsTxt: true,
           robots: [{
