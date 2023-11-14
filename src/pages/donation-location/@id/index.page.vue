@@ -76,7 +76,7 @@ function onClickScheduleURL() {
             <v-btn
               variant="tonal"
               color="secondary"
-              v-t="'donationLocation.openingHours'"
+              :text="t('donationLocation.openingHours')"
               @click="details = !details"
               class="my-2 flex-grow-1"
             />
