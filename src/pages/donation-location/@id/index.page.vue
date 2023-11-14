@@ -7,6 +7,7 @@ import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { usePageContext } from '@/composables/usePageContext'
 import { getAddress } from '@/helpers/getAddress'
 import { useShare } from '@vueuse/core'
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   rows: Row[]
@@ -14,6 +15,8 @@ const props = defineProps<{
   coords: Coords
   error?: string
 }>()
+
+const { t }  = useI18n()
 
 const center = ref<Coords>(props.coords)
 
@@ -26,9 +29,9 @@ const pageContext = usePageContext()
 const details = ref(false)
 const drawer = ref(false)
 
-const { share, isSupported } = useShare({
+const { share } = useShare({
   title: 'Taramti',
-  text: 'תרומת דם ב-' + props.row.Name,
+  text: 'Taramti',
   url: pageContext.urlPathname,
 })
 
@@ -73,7 +76,7 @@ function onClickScheduleURL() {
             <v-btn
               variant="tonal"
               color="secondary"
-              text="שעות פתיחה ופעולות נוספות"
+              v-t="'donationLocation.openingHours'"
               @click="details = !details"
               class="my-2 flex-grow-1"
             />
@@ -85,12 +88,10 @@ function onClickScheduleURL() {
             <v-btn
               variant="plain"
               class="my-2"
-              v-if="isSupported"
               @click="share"
-            >
-              שתף
-              <v-icon>mdi-share</v-icon>
-            </v-btn>
+              v-t="'common.share'"
+              icon="share"
+            />
           </v-card-actions>
         </template>
       </v-card>
@@ -100,8 +101,8 @@ function onClickScheduleURL() {
           :subtitle="row.Name"
           class="details-card px-12"
           elevation="0"
-          title="שעות פעילות"
         >
+          <v-card-title v-t="'donationLocation.openingHours'"  />
           <template #actions>
             <v-card-actions>
               <v-btn
@@ -109,7 +110,7 @@ function onClickScheduleURL() {
                 @click.prevent
                 v-ripple="false"
                 variant="outlined"
-                text="פעולות נוספות"
+                :text="t('common.moreActions')"
               />
             </v-card-actions>
           </template>
@@ -164,7 +165,6 @@ function onClickScheduleURL() {
       variant="text"
       color="primary"
       @click="share()"
-      :disabled="!isSupported"
     >
       <template #append>
         <v-icon icon='ph-share' :size="20" weight="fill" />

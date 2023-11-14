@@ -4,6 +4,13 @@
     "tag": "מצאו מקומות לתרום דם",
     "title": "תרמתי"
   },
+  "common": {
+    "share": "שתף",
+    "moreActions": "פעולות נוספות"
+  },
+  "donationLocation": {
+    "openingHours": "שעות פעילות"
+  },
   "settings": {
     "locale": {
       "en": "אנגלית",

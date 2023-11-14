@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import Toast from 'primevue/toast'
-import { PhMagnifyingGlass } from '@phosphor-icons/vue'
 import SelectLocale from '@/components/SelectLocale.vue'
 import SearchCard from '@/components/SearchCard.vue'
 import { Row } from '@/types'
