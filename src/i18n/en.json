@@ -15,6 +15,13 @@
     "tag": "Find Blood Donation Locations",
     "title": "Taramti"
   },
+  "common": {
+    "share": "Share",
+    "moreActions": "More actions"
+  },
+  "donationLocation": {
+    "openingHours": "Opening Hours"
+  },
   "settings": {
     "locale": {
       "en": "English",

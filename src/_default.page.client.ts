@@ -1,4 +1,4 @@
-import { createPageApp } from './page'
+  import { createPageApp } from './page'
 import type { PageContextClient } from '@/types'
 
 export { render }

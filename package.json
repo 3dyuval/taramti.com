@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vavite build",
-    "serve": "NODE_ENV=production node dist/server/index.mjs",
+    "serve": "node -r dotenv/config dist/server/index.mjs",
     "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node  -r dotenv/config ./api/seed.ts",
     "db": "surreal start --log trace -u root -p root --bind 0.0.0.0:8080 file:api/db",
     "preview": "vite preview",
     "zrok": "~/zrok/zrok share public localhost:3000 --headless",
-    "start": "npm run build && concurrently \"npm run serve\" \" npm run zrok\"",
+    "start-zrok": "npm run build && concurrently \"npm run serve\" \" npm run zrok\"",
+    "start": "npm run build && npm run serve",
     "visualize": "npx vite-bundle-visualizer -c vite.configvisualize.ts"
   },
   "dependencies": {
@@ -19,7 +20,6 @@
     "@intlify/unplugin-vue-i18n": "^1.4.0",
     "@mdi/font": "^7.2.96",
     "@netlify/functions": "^2.0.2",
-    "@phosphor-icons/vue": "^2.1.6",
     "@phosphor-icons/web": "^2.0.3",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/compiler-sfc": "^3.3.4",
@@ -61,6 +61,7 @@
     "@types/node": "^20.6.0",
     "@types/promise-fs": "^2.1.2",
     "prettier": "3.0.3",
+    "vite-plugin-sitemap": "^0.5.1",
     "vitest": "^0.34.6"
   },
   "engines": {

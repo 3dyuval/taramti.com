@@ -7,12 +7,7 @@ import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { usePageContext } from '@/composables/usePageContext'
 import { getAddress } from '@/helpers/getAddress'
 import { useShare } from '@vueuse/core'
-import {
-  PhHandPointing,
-  PhMapPinLine,
-  PhMapTrifold,
-  PhShare,
-} from '@phosphor-icons/vue'
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   rows: Row[]
@@ -20,6 +15,8 @@ const props = defineProps<{
   coords: Coords
   error?: string
 }>()
+
+const { t }  = useI18n()
 
 const center = ref<Coords>(props.coords)
 
@@ -32,9 +29,9 @@ const pageContext = usePageContext()
 const details = ref(false)
 const drawer = ref(false)
 
-const { share, isSupported } = useShare({
+const { share } = useShare({
   title: 'Taramti',
-  text: 'תרומת דם ב-' + props.row.Name,
+  text: 'Taramti',
   url: pageContext.urlPathname,
 })
 
@@ -55,7 +52,7 @@ function onClickScheduleURL() {
         </template>
         <template #subtitle>
           <span class="d-flex py-2">
-            <ph-map-pin-line
+            <v-icon icon='map-pin-line'
               :size="20"
               weight="fill"
               color="gray"
@@ -79,24 +76,22 @@ function onClickScheduleURL() {
             <v-btn
               variant="tonal"
               color="secondary"
-              text="שעות פתיחה ופעולות נוספות"
+              :text="t('donationLocation.openingHours')"
               @click="details = !details"
               class="my-2 flex-grow-1"
             />
-            <v-btn
-              variant="outlined"
-              icon="mdi-heart"
-              :color="'#f2f2f2'"
-            ></v-btn>
+<!--            <v-btn-->
+<!--              variant="outlined"-->
+<!--              icon="mdi-heart"-->
+<!--              :color="'#f2f2f2'"-->
+<!--            ></v-btn>-->
             <v-btn
               variant="plain"
               class="my-2"
-              v-if="isSupported"
               @click="share"
-            >
-              שתף
-              <v-icon>mdi-share</v-icon>
-            </v-btn>
+              v-t="'common.share'"
+              icon="share"
+            />
           </v-card-actions>
         </template>
       </v-card>
@@ -106,8 +101,8 @@ function onClickScheduleURL() {
           :subtitle="row.Name"
           class="details-card px-12"
           elevation="0"
-          title="שעות פעילות"
         >
+          <v-card-title v-t="'donationLocation.openingHours'"  />
           <template #actions>
             <v-card-actions>
               <v-btn
@@ -115,7 +110,7 @@ function onClickScheduleURL() {
                 @click.prevent
                 v-ripple="false"
                 variant="outlined"
-                text="פעולות נוספות"
+                :text="t('common.moreActions')"
               />
             </v-card-actions>
           </template>
@@ -141,7 +136,7 @@ function onClickScheduleURL() {
       target="_blank"
     >
       <template #append>
-        <ph-hand-pointing :size="24" weight="fill" color="gray" />
+        <v-icon icon='ph-hand-pointing' :size="24" weight="fill" color="gray" />
       </template>
       <v-list-item-title>זימון תור</v-list-item-title>
       <v-tooltip
@@ -157,7 +152,7 @@ function onClickScheduleURL() {
       target="_blank"
     >
       <template #append>
-        <ph-map-trifold :size="24" weight="fill" color="gray" />
+        <v-icon icon='ph-map-trifold' :size="24" weight="fill" color="gray" />
       </template>
       <v-list-item-title> נווט למקום</v-list-item-title>
       <v-tooltip
@@ -170,10 +165,9 @@ function onClickScheduleURL() {
       variant="text"
       color="primary"
       @click="share()"
-      :disabled="!isSupported"
     >
       <template #append>
-        <ph-share :size="20" weight="fill" />
+        <v-icon icon='ph-share' :size="20" weight="fill" />
       </template>
       <v-list-item-title> שתף</v-list-item-title>
       <v-tooltip activator="parent" text="שתף עם חבר" location="top center" />
