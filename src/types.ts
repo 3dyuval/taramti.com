@@ -1,20 +1,12 @@
-
-
-export type Row = {
-  id: number;
-  DateDonation: string
-  FromHour: string
-  ToHour: string
-  Name: string
-  City: string
-  Street: string
-  NumHouse: string
-  AccountType: string
-  SchedulingURL: string
-}
+import { DonationLocation } from '../api'
+import type {
+  PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
+  PageContextBuiltInServer
+} from 'vike/types'
+import type { ComponentPublicInstance } from 'vue'
 
 export type Coords = {
-  lat: string; lng: string 
+  lat: string; lng: string
 }
 
 
@@ -24,23 +16,11 @@ export type { PageContext }
 export type { PageProps }
 export type { Component }
 
-import type {
-  PageContextBuiltInServer,
-  /*
-  // When using Client Routing https://vite-plugin-ssr.com/clientRouting
-  PageContextBuiltInClientWithClientRouting as PageContextBuiltInClient
-  /*/
-  // When using Server Routing
-  PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient
-  //*/
-} from 'vike/types'
-import type { ComponentPublicInstance } from 'vue'
-
 type Component = ComponentPublicInstance // https://stackoverflow.com/questions/63985658/how-to-type-vue-instance-out-of-definecomponent-in-vue-3/63986086#63986086
 type Page = Component
 type PageProps = {
-  rows: Row[],
-  row?: Row,
+  rows: DonationLocation[],
+  row?: DonationLocation,
   coords?: Coords,
   error?: string
 }

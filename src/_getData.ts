@@ -1,17 +1,16 @@
 import { PageContext } from '@/types'
-import { db } from '../api/db'
+import { getRows } from '../api'
 
 export { onBeforeRender }
 
 
-async function onBeforeRender(pageContext?: PageContext) {
-  const data = await db.query('SELECT *, address.* FROM donationLocation WHERE time::now() < timeClose;')
+async function onBeforeRender(pageContext: PageContext) {
 
 
   return {
     pageContext: {
       pageProps: {
-        rows: data[0].result
+        rows: await getRows()
       }
     }
   }

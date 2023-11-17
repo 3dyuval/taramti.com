@@ -1,10 +1,10 @@
-import { DB } from './db'
-import { getData } from './index'
+import { getRows } from './index'
+import { DB, db } from './db'
 
-async function seed() {
-  const db = new DB()
+export async function seed() {
+  new DB()
   await db.init()
-  await getData()
+  await getRows().then(console.log).catch(console.error)
 }
 
-seed().catch(console.error)
+seed()
