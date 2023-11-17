@@ -1,20 +1,27 @@
-export { render }
-export const doNotPrerender = true
-export const passToClient = [
-  'pageProps',
-  'urlPathname',
-  'initialStoreState',
-  'locale',
-]
+import { DB } from '../api/db'
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
 import { dangerouslySkipEscape, escapeInject } from 'vike/server'
 import { createPageApp } from './page'
 import type { PageContextServer } from '@/types'
 
+export { render }
+export const doNotPrerender = true
+export const passToClient = [
+  'pageProps',
+  'urlPathname',
+  'initialStoreState',
+  'locale'
+]
+
 export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
+
+  const db = new DB()
+  await db.init()
+
+
   const { page, store } = createPageApp(pageContext, false)
   let pageHTML = ''
 
@@ -52,7 +59,7 @@ async function render(pageContext: PageContextServer) {
   const gtagId = import.meta.env.VITE_GA_ID
   const analyticsScripts = `
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=${gtagId}"></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=${gtagId}'></script>
   <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -62,16 +69,16 @@ async function render(pageContext: PageContextServer) {
   `
 
   const documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang="${pageContext.locale || 'he'}">
+    <html lang='${pageContext.locale || 'he'}'>
       <head>
       <meta charset='UTF-8' />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-      <link rel="manifest" href="/site.webmanifest">
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-      <meta name="msapplication-TileColor" content="#da532c">
-      <meta name="theme-color" content="#ffffff">
+      <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>
+      <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>
+      <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>
+      <link rel='manifest' href='/site.webmanifest'>
+      <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5'>
+      <meta name='msapplication-TileColor' content='#da532c'>
+      <meta name='theme-color' content='#ffffff'>
       <link rel='manifest' href='/site.webmanifest' />
       <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
       <meta name='msapplication-TileColor' content='#da532c' />
@@ -90,8 +97,8 @@ async function render(pageContext: PageContextServer) {
     documentHtml,
     pageContext: {
       initialStoreState: store.state.value,
-      locale: pageContext.locale,
-    },
+      locale: pageContext.locale
+    }
   }
 }
 

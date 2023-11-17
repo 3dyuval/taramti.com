@@ -1,9 +1,10 @@
-import { DB, db } from './db'
+import { DB } from './db'
+import { getData } from './index'
 
 async function seed() {
-  new DB()
-  await db.seed()
-  console.log('seeded')
+  const db = new DB()
+  await db.init()
+  await getData()
 }
 
-seed().catch((err) => console.error('Error running seed', err))
+seed().catch(console.error)

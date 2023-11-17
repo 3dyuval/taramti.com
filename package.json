@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vavite build",
     "serve": "node -r dotenv/config dist/server/index.mjs",
-    "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node  -r dotenv/config ./api/seed.ts",
+    "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node -r dotenv/config ./api/seed.ts",
     "db": "surreal start --log trace -u root -p root --bind 0.0.0.0:8080 file:api/db",
     "preview": "vite preview",
     "zrok": "~/zrok/zrok share public localhost:3000 --headless",

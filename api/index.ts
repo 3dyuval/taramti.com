@@ -1,58 +1,61 @@
-import fs from 'fs/promises'
-import * as path from 'path'
-import type { Row } from '@/types'
-import mada from './mada'
+import madaRequest from './madaRequest'
+import { Row } from '@/types'
+import { processMadaResponse } from './processMadaRequest'
+import { db } from './db'
 
-
+export type DonationLocation = Row & { timeOpen: string; timeClose: string }
 
 export async function getData(): Promise<any> {
-    const now = new Date()
-    const fileName = now.getDate() + '.' + (now.getUTCMonth() + 1) + '.' + now.getFullYear() + '.' + 'json'
-    const fileLocation = path.resolve(process.cwd(), 'api', 'data', fileName)
-    let data = await fs
-        .stat(fileLocation)
-        .then((stat) => {
-            if (stat.isFile()) {
-                console.log(`"${fileName}" was found`)
-                return fs.readFile(fileLocation, 'utf8')
-            }
-        })
-        .catch((e) => {
-            console.log(`File "${fileName}" not found. Fetching new file`)
-            return ''
-        })
 
-    if (data === '') {
-        data = await fetch(mada())
-            .then(async (response) => {
-                const { Success, Result } = await response.json()
-                if (Success) {
-                    console.log(`Received JSON data. Saving new file "${fileName}"`)
-                    fs.writeFile(fileLocation, Result, 'utf8')
-                    return Result
-                }
-            })
-            .catch((e) => {
-                console.error('No data')
-            })
-    }
+  const { Result, Success } = await fetch(madaRequest()).then((res) => res.json())
 
-    function addId(row: Row, id: number): Row {
-        return {
-            ...row,
-            id,
-        }
-    }
-
-    if (data) {
-        return JSON.parse(data).map(addId)
-    }
-
+  if (!Success) {
     return Promise.reject('No data was fetched')
+  }
+
+  const parsed = JSON.parse(Result)
+  const data = await processMadaResponse(parsed)
+  const addresses = Array.from(data.addresses)
+
+
+  console.log(
+    `trying to write 'addresses' with '${data.addresses.size}' records`
+  )
+
+
+  const addressResult = await db.insert(
+    'addresses',
+    addresses
+  )
+
+  console.log(`successully written addresses with '${addressResult.length}' records`)
+
+  console.log(
+    `trying to populate 'donationLocation' with '${data.donationLocations.size}' records`
+  )
+
+
+  const donationLocationsResult = await db.insert(
+    'donationLocation',
+    addressResult.map(({ id, name }: any) => {
+      const rec = data.donationLocations.get(name)
+      return {
+        name,
+        address: id,
+        timeOpen: rec?.timeOpen,
+        timeClose: rec?.timeClose
+      }
+    })
+  )
+  console.log(
+    `successully written '${donationLocationsResult.length}' records`
+  )
+
+  return Promise.resolve()
 
 }
 
 
 export default {
-    getData
+  getData
 }
