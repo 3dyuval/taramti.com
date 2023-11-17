@@ -35,10 +35,10 @@ const search = reactive<{
     <v-autocomplete
       eager
       placeholder='חפש מקום לפי שם'
-      :items='rows.map(({name, address}) => ({
-          title: name,
-          value: name,
-          subtitle: address.city
+      :items='rows.map(({donationLocation}) => ({
+          title: donationLocation.name,
+          value: donationLocation.name,
+          subtitle: donationLocation.address.city
         }))'
       v-model='search.item'
     >

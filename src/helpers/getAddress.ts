@@ -1,9 +1,7 @@
-import { Row } from '@/types'
-
-export function getAddress(row: Row | undefined): string {
+export function getAddress({ city = '', street = '', number = '' }): string {
   const address: any = []
 
-  ;[row?.City, row?.Street, row?.NumHouse].forEach((item) => {
+  ;[city, street, number].forEach((item) => {
     if (item) {
       address.push(String(item.trim()))
     }

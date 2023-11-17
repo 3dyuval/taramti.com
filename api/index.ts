@@ -1,32 +1,86 @@
 import madaRequest from './madaRequest'
-import { isToday } from 'date-fns'
 import { db } from './db'
 import { getAddress } from '../src/helpers/getAddress'
 import { getDates } from '../src/helpers/getDates'
 
-export type DonationLocation = {
-  name: string;
-  timeOpen: string
-  timeClose: string;
-  schedulingUrl?: string;
-  address: {
-    city: string | null;
-    street: string | null;
-    number: string | null;
+export type donationLocationDate = {
+  dateOpen: string
+  dateClose: string
+  donationLocation: {
+    name: string;
+    schedulingUrl: string;
+    address: {
+      city: string | null;
+      street: string | null;
+      number: string | null;
+    }
   }
 }
 
-export async function saveData(locations: DonationLocation[]): Promise<DonationLocation[]> {
+
+export async function getData() {
+
+  const { Result, Success } = await fetch(madaRequest()).then((res) => res.json())
+
+  if (!Success) {
+    return Promise.reject('No data was fetched')
+  }
+
+  const donationLocationDates = new Array<donationLocationDate>()
+  for (let row of JSON.parse(Result)) {
+    const [dateOpen, dateClose] = getDates(row)
+      .map((date) => date.toISOString())
+
+    const name = (row.Name
+        ? row.Name
+        : row.AccountType
+          ? row.AccountType
+          : getAddress(row)
+    )
+      .replace(/\s+/g, ' ')
+      .trim()
+
+    if (name && dateOpen && dateClose)
+      donationLocationDates.push({
+        dateOpen,
+        dateClose,
+        donationLocation: {
+          name,
+          schedulingUrl: row.SchedulingURL,
+          address: {
+            city: !row?.City || row.City === '' ? null : row.City,
+            street: !row?.Street || row.Street === '' ? null : row.Street,
+            number: !row?.NumHouse || row.NumHouse === '' ? null : row.NumHouse
+          }
+        }
+      })
+  }
+
+
+  return donationLocationDates
+}
+
+
+export async function saveData(dates: donationLocationDate[]): Promise<donationLocationDate[]> {
 
   console.log(
-    `trying to save data with '${locations.length}' records`
+    `trying to save data with '${dates.length}' records`
   )
 
-  const result = await db.insert('donationLocation', locations)
+  const resultLocations = await db.insert('donationLocation', dates.map(({ donationLocation }) => donationLocation))
 
-  console.log(`successully saved '${result.length}' records`)
+  const dateWithLocation = dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => ({
+    dateOpen,
+    dateClose,
+    donationLocation: resultLocations.find((location) => location.name === name)?.id
+  }))
 
-  return result
+
+  const resultLocationDates = await db.insert('donationLocationDates', dateWithLocation)
+
+  console.log(`successully saved '${resultLocations.length}' resultLocations records, and ${resultLocationDates.length} resultLocationDates records`)
+
+  return dates
 }
 
 export type ResponseRow = {
@@ -41,60 +95,12 @@ export type ResponseRow = {
   SchedulingURL: string
 }
 
-export async function getData() {
-
-  const { Result, Success } = await fetch(madaRequest()).then((res) => res.json())
-
-  if (!Success) {
-    return Promise.reject('No data was fetched')
-  }
-
-  const rowsSet = new Set<ResponseRow>(JSON.parse(Result))
-
-  const donationLocations = new Map<
-    DonationLocation['name'],
-    Omit<DonationLocation, 'name'>
-  >()
-
-  for (let row of rowsSet) {
-    const [timeOpen, timeClose] = getDates(row)
-      .map((date) => date.toISOString())
-
-    const getName = (row: ResponseRow) =>
-      (row.Name
-          ? row.Name
-          : row.AccountType
-            ? row.AccountType
-            : getAddress(row)
-      )
-        .replace(/\s+/g, ' ')
-        .trim()
-
-    if (timeOpen && timeClose && isToday(new Date(row.DateDonation))) {
-      donationLocations.set(
-        getName(row), {
-          timeOpen,
-          timeClose,
-          schedulingUrl: row.SchedulingURL,
-          address: {
-            city: !row?.City || row.City === '' ? null : row.City,
-            street: !row?.Street || row.Street === '' ? null : row.Street,
-            number: !row?.NumHouse || row.NumHouse === '' ? null : row.NumHouse
-          }
-        })
-    }
-  }
-
-
-  return [...donationLocations.entries()]
-    .map(([name, location]) => ({
-      name,
-      ...location
-    }))
-}
-
 export async function getRows() {
-  const data = await db.query('SELECT * FROM donationLocation WHERE updatedAt == time::floor(time::now(), 1d);')
+  const data = await db.query(
+    `SELECT *, donationLocation.* 
+    FROM donationLocationDates
+    WHERE time::floor(dateOpen, 1d) == time::floor(time::now(), 1d);
+    `)
 
   let rows: any[] = []
 
