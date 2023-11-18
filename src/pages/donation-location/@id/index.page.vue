@@ -41,12 +41,18 @@ function onClickScheduleURL() {
 <template>
   <Map :center='center' :error='error'>
     <div
-      class='d-flex flex-column align-center location-window'
+      class='d-flex flex-column location-window px-6 justify-center'
       :class='{ expanded }'
     >
       <v-card elevation='0'>
         <template #title>
-          <h3>{{ row.Name }}</h3>
+          <div class='d-flex flex-row justify-space-between flex-wrap'>
+            <h3 class='mb-4'>{{ row.Name }}</h3>
+            <opening-hours-chip
+              :from-hour='row.FromHour'
+              :to-hour='row.ToHour'
+            />
+          </div>
         </template>
         <template #subtitle>
           <span class='d-flex py-2'>
@@ -54,19 +60,19 @@ function onClickScheduleURL() {
                     :size='20'
                     weight='fill'
                     color='gray'
-                    class='ml-2'
+                    class='mx-2'
             />
             <address>{{ address }}</address>
           </span>
         </template>
         <template #default>
-          <div class='d-flex justify-center'>
-            <opening-hours-chip
-              class='my-5'
-              :from-hour='row.FromHour'
-              :to-hour='row.ToHour'
-            />
-          </div>
+          <!--          <div class='d-flex justify-center'>-->
+          <!--            <opening-hours-chip-->
+          <!--              class='my-5'-->
+          <!--              :from-hour='row.FromHour'-->
+          <!--              :to-hour='row.ToHour'-->
+          <!--            />-->
+          <!--          </div>-->
           <v-divider />
         </template>
         <template #actions>
@@ -74,6 +80,7 @@ function onClickScheduleURL() {
             <v-btn
               variant='tonal'
               color='secondary'
+              size='large'
               :text="t('donationLocation.openingHours')"
               @click='expanded = !expanded'
               class='my-2 flex-grow-1'
@@ -88,6 +95,7 @@ function onClickScheduleURL() {
               class='my-2'
               @click='share()'
               v-t="'common.share'"
+              size='large'
               icon='share'
             />
           </v-card-actions>
@@ -173,13 +181,16 @@ function onClickScheduleURL() {
 
 <style lang='scss'>
 .location-window {
+  max-width: min(750px, 50vw);
+
   h3 {
     font-size: 1.5rem;
     text-wrap: balance;
-    max-width: 40vw;
+    white-space: break-spaces;
+    max-inline-size: 50ch;
+    min-width: 350px;
+    max-width: min-content;
   }
-
-  //direction: rtl;
 
   .details-card-expand {
     width: 100%;
