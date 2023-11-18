@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import InputText from 'primevue/inputtext'
 import { computed } from 'vue'
 
@@ -21,38 +21,38 @@ function handleInputChange(e: any) {
 const searchDisabled = computed<boolean>(() => !props.search.trim().length)
 </script>
 <template>
-  <div class="p-inputgroup"></div>
-  <div class="col-12 md:col-4">
-    <div class="p-inputgroup">
+  <div class='p-inputgroup'></div>
+  <div class='col-12 md:col-4'>
+    <div class='p-inputgroup'>
       <Button
-        :disabled="true"
+        :disabled='true'
         :label="searchDisabled ? '' : 'חיפוש'"
-        class="search-button"
+        class='search-button'
         :class="{ 'search-disabled': searchDisabled }"
-        icon="pi pi-search"
+        icon='pi pi-search'
       />
+      <!--        dir="rtl"-->
       <input-text
-        dir="rtl"
-        :value="search"
-        @input.trim="handleInputChange"
-        style="font-size: 1.5rem"
-        placeholder="חפשו מקום לתרום דם לפי עיר או שם"
+        :value='search'
+        @input.trim='handleInputChange'
+        style='font-size: 1.5rem'
+        placeholder='חפשו מקום לתרום דם לפי עיר או שם'
       />
 
       <Button
-        :disabled="searchDisabled"
+        :disabled='searchDisabled'
         v-tooltip.bottom="'הוסף למועדפים'"
         text
       >
         <!-- class="p-inputgroup-addon" @click="heart.add(search)" -->
-        <i class="pi search-heart"></i>
+        <i class='pi search-heart'></i>
         <!-- :class="[isHeart ? 'pi-heart-fill' : 'pi-heart']" -->
       </Button>
     </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang='scss'>
 .search-button {
   font-size: 1.5rem !important;
 }

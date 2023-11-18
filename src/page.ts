@@ -18,14 +18,14 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const { Page, pageProps } = pageContext
   if (!Page || !pageProps)
     throw new Error(
-      'Client-side render() hook expects pageContext.Page to be defined',
+      'Client-side render() hook expects pageContext.Page to be defined'
     )
 
   const Component = {
     render() {
       const hDefaultSlot = () => h(Page as any, pageProps || {})
       return h(Layout as any, pageProps || {}, { default: hDefaultSlot })
-    },
+    }
   }
 
   const page = clientOnly ? createApp(Component) : createSSRApp(Component)
@@ -42,25 +42,28 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   page.use(ToastService)
   page.use(
     createVuetify({
+      locale: {
+        locale
+      },
       ssr: !clientOnly,
       components: {
-        VDataTable,
+        VDataTable
       },
       icons: {
         defaultSet: 'ph',
         aliases,
         sets: {
-          ph,
-        },
-      },
-    }),
+          ph
+        }
+      }
+    })
   )
 
   page.use(VueGoogleMaps, {
     load: {
       key: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
-      installComponents: true,
-    },
+      installComponents: true
+    }
   })
   setPageContext(page, pageContext)
 

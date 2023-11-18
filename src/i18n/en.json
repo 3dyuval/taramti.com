@@ -1,11 +1,32 @@
 {
+  "common": {
+    "clear": "Clear",
+    "close": "Close",
+    "moreActions": "More actions",
+    "search": "Search",
+    "share": "Share",
+    "shareDescription": "Share this app with friends and family"
+  },
   "cta": {
     "showAll": "All Details"
   },
+  "donationLocation": {
+    "openingHours": "Opening Hours"
+  },
   "location": {
+    "navigate": "Navigate to Location",
+    "navigateDescription": "Navigate to the esimated location using Google Maps",
+    "scheduleBloodDonation": "Schedule Blood Donation",
+    "scheduleBloodDonationDescription": "Schedule a blood donation appointment on an external site",
     "time": {
       "closed": "Closed today",
+      "closingTime": "Closing hour",
+      "disclaimer": {
+        "text": "Disclaimer: The scheduling times for blood donations displayed on this site are sourced from external providers, and while we strive for accuracy, we cannot guarantee 100% verification of the data",
+        "title": "Before you go"
+      },
       "openUntill": "Open untill {time}",
+      "openingTime": "Opening hour",
       "willClose": "Will close {time}",
       "willOpen": "Will open {time}"
     }
@@ -15,17 +36,15 @@
     "tag": "Find Blood Donation Locations",
     "title": "Taramti"
   },
-  "common": {
-    "share": "Share",
-    "moreActions": "More actions"
-  },
-  "donationLocation": {
-    "openingHours": "Opening Hours"
+  "search": {
+    "description": "Find a place"
   },
   "settings": {
+    "dir": "ltr",
     "locale": {
       "en": "English",
-      "he": "Hebrew"
+      "he": "Hebrew",
+      "ru": "Russian"
     }
   }
 }

@@ -1,11 +1,32 @@
 {
+  "common": {
+    "clear": "נקה",
+    "close": "סגור",
+    "moreActions": "פעולות נוספות",
+    "search": "חפש",
+    "share": "שתף",
+    "shareDescription": "שתף את האפליקציה עם חברים ומשפחה"
+  },
   "cta": {
     "showAll": "כל הפרטים"
   },
+  "donationLocation": {
+    "openingHours": "שעות פעילות"
+  },
   "location": {
+    "navigate": "נווט אל המקום",
+    "navigateDescription": "נווט אל המקום המשוער באמצעות גוגל מפות",
+    "scheduleBloodDonation": "קבע תור לתרומת דם",
+    "scheduleBloodDonationDescription": "קבע תור לתרומת דם באתר חיצוני",
     "time": {
       "closed": "סגור היום",
+      "closingTime": "שעת סגירה",
+      "disclaimer": {
+        "text": " כדאי להבהיר: השעות לקביעת תורים לתרומת דם המוצגות באתר זה נלקחות מספקים חיצוניים, ואף שאנו שואפים לדיוק, אין לנו אפשרות להבטיח אימות של 100% של המידע",
+        "title": "לפני שאתם יוצאים לדרך"
+      },
       "openUntill": "פתוח עד {time}",
+      "openingTime": "שעת פתיחה",
       "willClose": "נסגר {time}",
       "willOpen": "יפתח {time}"
     }
@@ -15,17 +36,15 @@
     "tag": "מצאו מקומות לתרום דם",
     "title": "תרמתי"
   },
-  "common": {
-    "share": "שתף",
-    "moreActions": "פעולות נוספות"
-  },
-  "donationLocation": {
-    "openingHours": "שעות פעילות"
+  "search": {
+    "description": "חפש מקום"
   },
   "settings": {
+    "dir": "rtl",
     "locale": {
       "en": "אנגלית",
-      "he": "עברית"
+      "he": "עברית",
+      "ru": "רוסית"
     }
   }
 }

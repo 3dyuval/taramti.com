@@ -2,8 +2,10 @@
 
 import { Row } from '@/types'
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const {rows, row} = defineProps<Props>()
+
+const { rows, row } = defineProps<Props>()
 
 type Props = {
   rows: Row[]
@@ -15,7 +17,7 @@ function mapRowsToItems(rows: Row[] = []) {
     return {
       title: row.Name,
       value: row.id,
-      city: row.City,
+      city: row.City
     }
   })
 }
@@ -25,43 +27,44 @@ const search = reactive<{
   item: number | undefined
 }>({
   modal: false,
-  item: row?.id,
+  item: row?.id
 })
 
 
-
+const { t } = useI18n()
 </script>
 
 <template>
   <v-card>
     <v-autocomplete
       eager
-      placeholder="חפש מקום לפי שם"
-      :items="mapRowsToItems(rows)"
-      v-model="search.item"
+      :placeholder="t('search.description')"
+      :items='mapRowsToItems(rows)'
+      v-model='search.item'
+      dir='rtl'
     >
-      <template #item="{ item, props }">
+      <template #item='{ item, props }'>
         <v-list-item
-          v-bind="props"
-          :title="item.title"
-          :subtitle="item.raw.city"
+          v-bind='props'
+          :title='item.title'
+          :subtitle='item.raw.city'
         />
       </template>
     </v-autocomplete>
     <v-card-actions>
       <v-btn
-        text="סגור"
-        color="secondary"
-        variant="outlined"
-        @click="search.modal = !search.modal"
+        :text="t('common.close')"
+        color='secondary'
+        variant='outlined'
+        @click='search.modal = !search.modal'
       />
       <v-btn
-        text="חפש"
-        color="primary"
-        variant="tonal"
+        :text="t('common.search')"
+        color='primary'
+        variant='tonal'
         block
-        :href="`/donation-location/${search.item}`"
-        :disabled="!search.item || (row && search.item === row.id)"
+        :href='`/donation-location/${search.item}`'
+        :disabled='!search.item || (row && search.item === row.id)'
       />
     </v-card-actions>
   </v-card>
