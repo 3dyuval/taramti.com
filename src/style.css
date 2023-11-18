@@ -1,18 +1,15 @@
-body {
-  overflow: hidden;
-}
 
 :root {
-  --heart000: #e7ab79;
-  --heart100: #b25068;
-  --heart200: #774360;
-  --heart300: #4c3a51;
+    --heart000: #e7ab79;
+    --heart100: #b25068;
+    --heart200: #774360;
+    --heart300: #4c3a51;
 
-  --success000: #eef5db;
-  --success100: #c7efcf;
-  --success200: #06978d;
+    --success000: #eef5db;
+    --success100: #c7efcf;
+    --success200: #06978d;
 
-  --warning100: #ffeaa5;
+    --warning100: #ffeaa5;
 
-  --error100: #fe5f55;
+    --error100: #fe5f55;
 }
