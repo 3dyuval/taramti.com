@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { DonationLocation } from '@/types'
+import { DonationLocationDate } from '@/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -8,8 +8,8 @@ const { rows, row } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 type Props = {
-  rows: DonationLocation[]
-  row?: DonationLocation,
+  rows: DonationLocationDate[] //TODO change to locations
+  row?: DonationLocationDate,
   closeBtn?: boolean
 }
 
@@ -34,14 +34,16 @@ const { t, locale } = useI18n()
       :placeholder="t('search.description')"
       v-model='search.item'
       hide-details
-      :items='rows'
+      :items='rows.map((item) => ({
+          title: item.donationLocation.name,
+          value: item.donationLocation.name,
+          subtitle: item.donationLocation.address.city
+        }))'
     >
       <template #item='{ item, props }'>
         <v-list-item
           v-bind='props'
-          :title='item.raw.donationLocation.name'
-          :value='item.raw.donationLocation.name'
-          :subtitle='item.raw.donationLocation.address.city'
+          :subtitle='item.raw.subtitle'
         />
       </template>
     </v-autocomplete>
