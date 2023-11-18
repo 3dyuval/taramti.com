@@ -1,4 +1,4 @@
-import { DonationLocation } from '../api'
+import type { DonationLocation } from '../api'
 import type {
   PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
   PageContextBuiltInServer
@@ -6,7 +6,21 @@ import type {
 import type { ComponentPublicInstance } from 'vue'
 
 export type Coords = {
-  lat: string; lng: string
+  lat: string;
+  lng: string
+}
+export type DonationLocationDate = {
+  dateOpen: string
+  dateClose: string
+  donationLocation: {
+    name: string;
+    schedulingUrl: string;
+    address: {
+      city: string | null;
+      street: string | null;
+      number: string | null;
+    }
+  }
 }
 
 
@@ -31,7 +45,8 @@ export type PageContextCustom = {
   urlPathname: string
   exports: {
     getDocumentProps?: (pageProps: PageProps) => {
-      title?: string; description: string
+      title?: string;
+      description: string
     };
     documentProps?: {
       title?: string

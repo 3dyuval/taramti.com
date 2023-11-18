@@ -1,7 +1,6 @@
 <script setup lang='ts'>
-
-import { Row } from '@/types'
-import { reactive } from 'vue'
+import { DonationLocation } from '@/types'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 
@@ -9,8 +8,8 @@ const { rows, row } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 type Props = {
-  rows: Row[]
-  row?: Row,
+  rows: DonationLocation[]
+  row?: DonationLocation,
   closeBtn?: boolean
 }
 
@@ -19,12 +18,9 @@ type Emits = {
 }
 
 
-
-const search = reactive<{
-  modal: boolean
+const search = ref<{
   item: number | undefined
 }>({
-  modal: false,
   item: row?.id
 })
 
@@ -36,14 +32,12 @@ const { t, locale } = useI18n()
     <v-autocomplete
       eager
       :placeholder="t('search.description')"
-      :items='mapRowsToItems(rows)'
       v-model='search.item'
       :items='rows.map(({donationLocation}) => ({
           title: donationLocation.name,
           value: donationLocation.name,
           subtitle: donationLocation.address.city
         }))'
-      v-model='search.item'
     >
       <template #item='{ item, props }'>
         <v-list-item

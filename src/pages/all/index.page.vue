@@ -1,25 +1,28 @@
 <script setup lang='ts'>
 
+import { DonationLocation } from '@/types'
+
 const { rows } = defineProps<Props>()
 
 
 type Props = {
-  rows: any;
+  rows: DonationLocation[]
+  row?: DonationLocation,
   locale: string;
 }
 
 const headers = [
   {
     title: 'name',
-    key: 'name'
+    key: 'donationLocation.name'
   },
   {
-    title: 'timeOpen',
-    key: 'timeOpen'
+    title: 'dateOpen',
+    key: 'dateOpen'
   },
   {
-    title: 'timeClose',
-    key: 'timeClose'
+    title: 'dateClose',
+    key: 'dateClose'
   }
 ]
 </script>
@@ -30,16 +33,15 @@ const headers = [
     :items='rows'
     :headers='headers'
     :filter-keys="['name', 'address.city']"
-    :dir="locale === 'he' ? 'rtl' : 'ltr'"
     items-per-page='20'
     class=''
     prev-icon='ph-caret-next'
   />
-
 </template>
 
 <style scoped lang='scss'>
 .v-table {
+  margin-top: 64px;
   display: grid;
 }
 </style>

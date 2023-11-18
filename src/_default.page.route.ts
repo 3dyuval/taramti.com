@@ -1,14 +1,15 @@
-export { onBeforeRoute }
-
+import { PageContext } from '@/types'
 import { OPTIONS } from '@/i18n'
 
-function onBeforeRoute(pageContext) {
+export { onBeforeRoute }
+
+function onBeforeRoute(pageContext: PageContext) {
   const { urlWithoutLocale, locale } = extractLocale(pageContext.urlOriginal)
   return {
     pageContext: {
       locale,
-      urlOriginal: urlWithoutLocale,
-    },
+      urlOriginal: urlWithoutLocale
+    }
   }
 }
 
@@ -25,19 +26,16 @@ function onBeforeRoute(pageContext) {
 //
 //
 
-function extractLocale(url: string) {
-  const parts = url.split('/')
+function extractLocale(url?: string) {
+  const parts = (url || '').split('/')
 
   const localeFromUrl = OPTIONS.availableLocales.find(
-    (l: string) => l === parts[1],
+    (locale: string) => locale === parts[1]
   )
 
-  // if (localeFromUrl) {
-  //   i18n.locale.value = localeFromUrl
-  // }
 
   return {
-    locale: localeFromUrl || OPTIONS.locale,
-    urlWithoutLocale: localeFromUrl ? '/' + parts.slice(2).join('/') : url,
+    locale: localeFromUrl || 'he',
+    urlWithoutLocale: localeFromUrl ? '/' + parts.slice(2).join('/') : url
   }
 }

@@ -2,21 +2,7 @@ import madaRequest from './madaRequest'
 import { db } from './db'
 import { getAddress } from '../src/helpers/getAddress'
 import { getDates } from '../src/helpers/getDates'
-
-export type donationLocationDate = {
-  dateOpen: string
-  dateClose: string
-  donationLocation: {
-    name: string;
-    schedulingUrl: string;
-    address: {
-      city: string | null;
-      street: string | null;
-      number: string | null;
-    }
-  }
-}
-
+import type { DonationLocationDate } from '../src/types'
 
 export async function getData() {
 
@@ -61,7 +47,7 @@ export async function getData() {
 }
 
 
-export async function saveData(dates: donationLocationDate[]): Promise<donationLocationDate[]> {
+export async function saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]> {
 
   console.log(
     `trying to save data with '${dates.length}' records`

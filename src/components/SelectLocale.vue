@@ -1,7 +1,9 @@
 <script setup lang='ts'>
 import { usePageContext } from '@/composables/usePageContext'
 import { useI18n } from 'vue-i18n'
+import { useLocale } from 'vuetify'
 
+const { current } = useLocale()
 const pageContext = usePageContext()
 const { t, availableLocales } = useI18n()
 

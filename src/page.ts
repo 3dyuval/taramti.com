@@ -10,10 +10,10 @@ import Layout from '@/components/Layout.vue'
 import { aliases, ph } from '@/assets/phosphorIcons'
 import { VDataTable } from 'vuetify/labs/VDataTable'
 import { OPTIONS } from '@/i18n'
-import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
 import { md3 } from 'vuetify/blueprints'
 import { createI18n, useI18n } from 'vue-i18n'
-
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+import { he } from 'vuetify/locale'
 
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const { Page, pageProps } = pageContext
@@ -31,18 +31,19 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
 
   const page = clientOnly ? createApp(Component) : createSSRApp(Component)
   const i18n: any = createI18n(
-    Object.assign(OPTIONS, { locale: pageContext.locale || 'he' })
+    Object.assign(OPTIONS, { he, locale: pageContext.locale || 'he' })
   )
   page.use(i18n)
 
   page.use(
     createVuetify({
       blueprint: md3,
-      ssr: !clientOnly,
+      ssr: true,
       components: {
         VDataTable
       },
       locale: {
+        locale: pageContext.locale,
         adapter: createVueI18nAdapter({ i18n, useI18n })
       },
       icons: {

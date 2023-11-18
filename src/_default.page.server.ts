@@ -1,4 +1,3 @@
-import { DB } from '../api/db'
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
 import { dangerouslySkipEscape, escapeInject } from 'vike/server'
@@ -18,10 +17,6 @@ export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
 
-  const db = new DB()
-  await db.init()
-
-
   const { page, store } = createPageApp(pageContext, false)
   let pageHTML = ''
 
@@ -32,8 +27,6 @@ async function render(pageContext: PageContextServer) {
   // See https://vite-plugin-ssr.com/head
   const { documentProps, getDocumentProps } = pageContext.exports
 
-  // let title = i18n.t('meta.title')
-  // let description = i18n.t('meta.description')
   let title, description
   // Static Head Tags
   if (documentProps?.title) {
