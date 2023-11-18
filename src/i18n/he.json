@@ -14,10 +14,10 @@
     "openingHours": "שעות פעילות"
   },
   "location": {
-    "navigate": "נווט אל המקום",
+    "navigate": "נווט",
     "navigateDescription": "נווט אל המקום המשוער באמצעות גוגל מפות",
-    "scheduleBloodDonation": "קבע תור לתרומת דם",
-    "scheduleBloodDonationDescription": "קבע תור לתרומת דם באתר חיצוני",
+    "schedule": "קבע תור",
+    "scheduleDescription": "קבע תור לתרומת דם באתר חיצוני",
     "time": {
       "closed": "סגור היום",
       "closingTime": "שעת סגירה",

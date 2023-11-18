@@ -14,10 +14,10 @@
     "openingHours": "Opening Hours"
   },
   "location": {
-    "navigate": "Navigate to Location",
+    "navigate": "Navigate",
     "navigateDescription": "Navigate to the esimated location using Google Maps",
-    "scheduleBloodDonation": "Schedule Blood Donation",
-    "scheduleBloodDonationDescription": "Schedule a blood donation appointment on an external site",
+    "schedule": "Schedule ",
+    "scheduleDescription": "Schedule a blood donation appointment on an external site",
     "time": {
       "closed": "Closed today",
       "closingTime": "Closing hour",

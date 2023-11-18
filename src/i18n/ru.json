@@ -14,10 +14,10 @@
     "openingHours": "Часы работы"
   },
   "location": {
-    "navigate": "Навигировать к месту",
+    "navigate": "Навигировать",
     "navigateDescription": "Навигация к месту с использованием Google Maps",
-    "scheduleBloodDonation": "Записаться на сдачу крови",
-    "scheduleBloodDonationDescription": "Запланируйте запись на сдачу крови на внешнем сайте",
+    "schedule": "Записаться",
+    "scheduleDescription": "Запланируйте запись на сдачу крови на внешнем сайте",
     "time": {
       "closed": "Закрыто сегодня",
       "closingTime": "Время закрытия",

@@ -24,8 +24,6 @@ const address = getAddress(props.row)
 
 const pageContext = usePageContext()
 
-// const heart = useHeart()
-
 const expanded = ref(false)
 const drawer = ref(false)
 
@@ -88,7 +86,7 @@ function onClickScheduleURL() {
             <v-btn
               variant='plain'
               class='my-2'
-              @click='share'
+              @click='share()'
               v-t="'common.share'"
               icon='share'
             />
@@ -133,16 +131,13 @@ function onClickScheduleURL() {
         color='primary'
         :href='props.row.SchedulingURL'
         target='_blank'
-        :title="t('location.navigateDescription')"
+        :title="t('location.schedule')"
         append-icon='hand-pointing'
       >
-        <!--        <template #append>-->
-        <!--          <v-icon icon='ph-hand-pointing' :size='24' weight='fill' color='gray' />-->
-        <!--        </template>-->
-        <v-list-item-title :text='t("location.scheduleBloodDonation")' />
+        <v-list-item-title :text='t("location.schedule")' />
         <v-tooltip
           activator='parent'
-          :text='t("location.scheduleBloodDonationDescription")'
+          :text='t("location.scheduleDescription")'
           location='top center'
         />
       </v-list-item>
