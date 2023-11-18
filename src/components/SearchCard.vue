@@ -33,17 +33,15 @@ const { t, locale } = useI18n()
       eager
       :placeholder="t('search.description')"
       v-model='search.item'
-      :items='rows.map(({donationLocation}) => ({
-          title: donationLocation.name,
-          value: donationLocation.name,
-          subtitle: donationLocation.address.city
-        }))'
+      hide-details
+      :items='rows'
     >
       <template #item='{ item, props }'>
         <v-list-item
           v-bind='props'
-          :title='item.title'
-          :subtitle='item.raw.city'
+          :title='item.raw.donationLocation.name'
+          :value='item.raw.donationLocation.name'
+          :subtitle='item.raw.donationLocation.address.city'
         />
       </template>
     </v-autocomplete>
@@ -59,6 +57,7 @@ const { t, locale } = useI18n()
         :text="t('common.search')"
         color='primary'
         variant='tonal'
+        class='my-4 flex-1-1'
         :href='`/${locale}/donation-location/${search.item}`'
         :disabled='!search.item || (row && search.item === row.id)'
       />
