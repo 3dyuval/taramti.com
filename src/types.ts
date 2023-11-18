@@ -1,5 +1,3 @@
-
-
 export type Row = {
   id: number;
   DateDonation: string
@@ -14,7 +12,7 @@ export type Row = {
 }
 
 export type Coords = {
-  lat: string; lng: string 
+  lat: string; lng: string
 }
 
 
@@ -25,14 +23,8 @@ export type { PageProps }
 export type { Component }
 
 import type {
-  PageContextBuiltInServer,
-  /*
-  // When using Client Routing https://vite-plugin-ssr.com/clientRouting
-  PageContextBuiltInClientWithClientRouting as PageContextBuiltInClient
-  /*/
-  // When using Server Routing
-  PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient
-  //*/
+  PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
+  PageContextBuiltInServer
 } from 'vike/types'
 import type { ComponentPublicInstance } from 'vue'
 
@@ -49,6 +41,7 @@ export type PageContextCustom = {
   Page: Page
   pageProps?: PageProps
   urlPathname: string
+  locale: string
   exports: {
     getDocumentProps?: (pageProps: PageProps) => {
       title?: string; description: string

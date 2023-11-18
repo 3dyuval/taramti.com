@@ -1,10 +1,7 @@
 import { createApp, createSSRApp, h } from 'vue'
-import './style.css'
-import PrimeVue from 'primevue/config'
+import './style.scss'
 import VueGoogleMaps from '@fawmi/vue-google-maps'
-import ToastService from 'primevue/toastservice'
 import { createPinia } from 'pinia'
-import Tooltip from 'primevue/tooltip'
 import type { PageContext } from '@/types'
 import { setPageContext } from '@/composables/usePageContext'
 import 'vuetify/styles'
@@ -12,7 +9,11 @@ import { createVuetify } from 'vuetify'
 import Layout from '@/components/Layout.vue'
 import { aliases, ph } from '@/assets/phosphorIcons'
 import { VDataTable } from 'vuetify/labs/VDataTable'
-import { i18n } from '@/i18n'
+import { OPTIONS } from '@/i18n'
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+import { md3 } from 'vuetify/blueprints'
+import { createI18n, useI18n } from 'vue-i18n'
+
 
 export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   const { Page, pageProps } = pageContext
@@ -29,25 +30,20 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
   }
 
   const page = clientOnly ? createApp(Component) : createSSRApp(Component)
-  const store = createPinia()
-
-  const locale = pageContext.locale
-  if (locale) {
-    i18n.global.locale.value = locale
-  }
+  const i18n: any = createI18n(
+    Object.assign(OPTIONS, { locale: pageContext.locale || 'he' })
+  )
   page.use(i18n)
-  page.use(store)
-  page.use(PrimeVue, { ripple: true })
-  page.directive('tooltip', Tooltip)
-  page.use(ToastService)
+
   page.use(
     createVuetify({
-      locale: {
-        locale
-      },
+      blueprint: md3,
       ssr: !clientOnly,
       components: {
         VDataTable
+      },
+      locale: {
+        adapter: createVueI18nAdapter({ i18n, useI18n })
       },
       icons: {
         defaultSet: 'ph',
@@ -55,16 +51,49 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
         sets: {
           ph
         }
+      },
+      defaults: {
+        VBtn: {
+          style: 'text-transform: none;',
+          class: 'app-font'
+        },
+        VChip: {
+          class: 'app-font'
+        }
+      },
+      theme: {
+        defaultTheme: 'taramti',
+        themes: {
+          'taramti': {
+            colors: {
+              background: '#FFFFFF',
+              surface: '#FFFFFF',
+              primary: '#b36578',
+              'primary-darken-1': '#4c3a51',
+              secondary: '#00a395',
+              'secondary-darken-1': '#07645d',
+              error: '#fe5f55',
+              info: '#1d96d5',
+              success: '#06978d',
+              warning: '#ffeaa5'
+            }
+          }
+        }
       }
     })
   )
 
+
+  const store = createPinia()
+
+  page.use(store)
   page.use(VueGoogleMaps, {
     load: {
       key: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
       installComponents: true
     }
   })
+
   setPageContext(page, pageContext)
 
   return { page, store }

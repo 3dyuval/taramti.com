@@ -4,7 +4,7 @@ export const passToClient = [
   'pageProps',
   'urlPathname',
   'initialStoreState',
-  'locale',
+  'locale'
 ]
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
@@ -52,7 +52,7 @@ async function render(pageContext: PageContextServer) {
   const gtagId = import.meta.env.VITE_GA_ID
   const analyticsScripts = `
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=${gtagId}"></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=${gtagId}'></script>
   <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -61,17 +61,19 @@ async function render(pageContext: PageContextServer) {
     </script>
   `
 
+  const lang = pageContext.locale || 'he'
+
   const documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang="${pageContext.locale || 'he'}">
+    <html lang='${lang}'>
       <head>
       <meta charset='UTF-8' />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-      <link rel="manifest" href="/site.webmanifest">
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-      <meta name="msapplication-TileColor" content="#da532c">
-      <meta name="theme-color" content="#ffffff">
+      <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>
+      <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>
+      <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>
+      <link rel='manifest' href='/site.webmanifest'>
+      <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5'>
+      <meta name='msapplication-TileColor' content='#da532c'>
+      <meta name='theme-color' content='#ffffff'>
       <link rel='manifest' href='/site.webmanifest' />
       <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
       <meta name='msapplication-TileColor' content='#da532c' />
@@ -90,8 +92,8 @@ async function render(pageContext: PageContextServer) {
     documentHtml,
     pageContext: {
       initialStoreState: store.state.value,
-      locale: pageContext.locale,
-    },
+      locale: pageContext.locale
+    }
   }
 }
 

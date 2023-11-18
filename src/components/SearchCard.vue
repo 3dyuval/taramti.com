@@ -6,10 +6,17 @@ import { useI18n } from 'vue-i18n'
 
 
 const { rows, row } = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
 
 type Props = {
   rows: Row[]
-  row?: Row
+  row?: Row,
+  closeBtn?: boolean
+}
+
+type Emits = {
+  close: []
 }
 
 function mapRowsToItems(rows: Row[] = []) {
@@ -31,7 +38,7 @@ const search = reactive<{
 })
 
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 </script>
 
 <template>
@@ -41,7 +48,6 @@ const { t } = useI18n()
       :placeholder="t('search.description')"
       :items='mapRowsToItems(rows)'
       v-model='search.item'
-      dir='rtl'
     >
       <template #item='{ item, props }'>
         <v-list-item
@@ -53,17 +59,18 @@ const { t } = useI18n()
     </v-autocomplete>
     <v-card-actions>
       <v-btn
+        v-if='closeBtn'
         :text="t('common.close')"
         color='secondary'
         variant='outlined'
-        @click='search.modal = !search.modal'
+        @click="emit('close')"
       />
       <v-btn
         :text="t('common.search')"
         color='primary'
         variant='tonal'
         block
-        :href='`/donation-location/${search.item}`'
+        :href='`/${locale}/donation-location/${search.item}`'
         :disabled='!search.item || (row && search.item === row.id)'
       />
     </v-card-actions>

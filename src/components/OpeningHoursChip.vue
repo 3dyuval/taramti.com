@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import { computed } from 'vue'
 import { intlFormatDistance } from 'date-fns'
 import { useOpeningTime } from '@/composables/useOpeningTime'
@@ -20,13 +20,13 @@ const {
   openingDate,
   closingDate,
   openingTime,
-  closingTime,
+  closingTime
 } = useOpeningTime(props.fromHour, props.toHour)
 
 const caption = computed(() => {
   if (willOpen) {
     return t('location.time.willOpen', {
-      time: intlFormatDistance(openingDate, new Date(), { locale }),
+      time: intlFormatDistance(openingDate, new Date(), { locale })
     })
   }
   if (isOpen) {
@@ -36,7 +36,7 @@ const caption = computed(() => {
   if (closingDate.getTime() - Date.now() < 2 * 60 * 60 * 1000) {
     // check if closing date is in the next 2 hours
     return t('location.time.willClose', {
-      time: intlFormatDistance(closingDate, new Date(), { locale }),
+      time: intlFormatDistance(closingDate, new Date(), { locale })
     })
   }
 
@@ -47,11 +47,14 @@ const caption = computed(() => {
 </script>
 <template>
   <v-chip
-    size="large"
+    size='large'
+    class='opening-hours'
     :color="isOpen ? 'primary' : 'default'"
-    :text="caption"
-    prepend-icon="ph-clock"
+    :text='caption'
+    prepend-icon='ph-clock'
   />
 </template>
 
-<style lang="scss"></style>
+<style lang='scss'>
+
+</style>

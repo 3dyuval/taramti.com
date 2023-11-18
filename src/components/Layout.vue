@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import Toast from 'primevue/toast'
 import SelectLocale from '@/components/SelectLocale.vue'
 import SearchCard from '@/components/SearchCard.vue'
 import { Row } from '@/types'
@@ -26,41 +25,38 @@ onBeforeMount(() => {
   document.body.classList.add(dir)
 })
 
-const url = import.meta.PROD ? 'localhost' + import.meta.env.VITE_PORT :
+const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
   import.meta.env['VITE_HOST_URL']
 
 </script>
 <template>
-  <toast />
-  <v-locale-provider>
-    <v-layout class='taramti-layout-bar'>
-      <v-app-bar color='surface-variant'>
-        <template #prepend>
-          <a :href='url' class='tamati-toolbar-title'>
-            <h1 v-t="'meta.title'"></h1>
-          </a>
-        </template>
-        <template #append>
-          <select-locale />
-          <h2 v-t="'meta.tag'" />
-          <v-btn
-            @click='modal = true'
-            rounded
-            variant='outlined'
-            class='mx-3'
-          >
-            <v-icon icon='magnifying-glass' size='20' />
-          </v-btn>
-          <v-dialog v-model='modal' max-width='800'>
-            <search-card v-bind='props' />
-          </v-dialog>
-        </template>
-      </v-app-bar>
-      <main>
-        <slot />
-      </main>
-    </v-layout>
-  </v-locale-provider>
+  <v-layout class='taramti-layout-bar'>
+    <v-app-bar color='surface-variant'>
+      <template #prepend>
+        <a :href='url' class='tamati-toolbar-title'>
+          <h1 v-t="'meta.title'"></h1>
+        </a>
+      </template>
+      <template #append>
+        <select-locale />
+        <h2 v-t="'meta.tag'" />
+        <v-btn
+          @click='modal = true'
+          rounded
+          variant='outlined'
+          class='mx-3'
+        >
+          <v-icon icon='magnifying-glass' size='20' />
+        </v-btn>
+        <v-dialog v-model='modal' max-width='800'>
+          <search-card close-btn v-bind='props' @close='modal = false' />
+        </v-dialog>
+      </template>
+    </v-app-bar>
+    <main>
+      <slot />
+    </main>
+  </v-layout>
 </template>
 
 <style lang='scss'>
