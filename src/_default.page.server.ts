@@ -68,8 +68,10 @@ async function render(pageContext: PageContextServer) {
     </script>
   `
 
+  const lang = pageContext.locale || 'he'
+
   const documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang='${pageContext.locale || 'he'}'>
+    <html lang='${lang}'>
       <head>
       <meta charset='UTF-8' />
       <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>

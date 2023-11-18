@@ -14,7 +14,7 @@ import { localesTranslated } from './src/i18n'
 export default defineConfig(async ({ mode }) => {
 
   Object.assign(process.env, loadEnv(mode, process.cwd())
-)
+  )
 
   let dynamicRoutes = []
   if (mode === 'production') {
@@ -23,8 +23,8 @@ export default defineConfig(async ({ mode }) => {
       response.pageContext.pageProps.rows.forEach((row) => {
         dynamicRoutes.push(...Object.keys(localesTranslated)
           //TODO - add  <xhtml:link> to sitemap.xml
-            .map(locale => `${locale}/donation-location/${row.id}`)
-        );
+          .map(locale => `${locale}/donation-location/${row.id}`)
+        )
       })
     }
   }
@@ -74,6 +74,10 @@ export default defineConfig(async ({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, 'src')
       }
+    },
+    server: {
+      port: 3000,
+      strictPort: true
     },
     ssr: {
       noExternal: [

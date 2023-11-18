@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import type { Coords, Row } from '@/types'
 import { ref } from 'vue'
 import Map from '@/components/Map.vue'
@@ -7,7 +7,7 @@ import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { usePageContext } from '@/composables/usePageContext'
 import { getAddress } from '@/helpers/getAddress'
 import { useShare } from '@vueuse/core'
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   rows: Row[]
@@ -16,7 +16,7 @@ const props = defineProps<{
   error?: string
 }>()
 
-const { t }  = useI18n()
+const { t } = useI18n()
 
 const center = ref<Coords>(props.coords)
 
@@ -24,15 +24,13 @@ const address = getAddress(props.row)
 
 const pageContext = usePageContext()
 
-// const heart = useHeart()
-
-const details = ref(false)
+const expanded = ref(false)
 const drawer = ref(false)
 
 const { share } = useShare({
   title: 'Taramti',
   text: 'Taramti',
-  url: pageContext.urlPathname,
+  url: pageContext.urlPathname
 })
 
 function onClickScheduleURL() {
@@ -41,149 +39,158 @@ function onClickScheduleURL() {
 </script>
 
 <template>
-  <Map :center="center" :error="error">
+  <Map :center='center' :error='error'>
     <div
-      class="d-flex flex-column align-center location-window"
-      :class="{ details }"
+      class='d-flex flex-column location-window px-6 justify-center'
+      :class='{ expanded }'
     >
-      <v-card elevation="0">
+      <v-card elevation='0'>
         <template #title>
-          <h3>{{ row.Name }}</h3>
+          <div class='d-flex flex-row justify-space-between flex-wrap'>
+            <h3 class='mb-4'>{{ row.Name }}</h3>
+            <opening-hours-chip
+              :from-hour='row.FromHour'
+              :to-hour='row.ToHour'
+            />
+          </div>
         </template>
         <template #subtitle>
-          <span class="d-flex py-2">
+          <span class='d-flex py-2'>
             <v-icon icon='map-pin-line'
-              :size="20"
-              weight="fill"
-              color="gray"
-              class="ml-2"
+                    :size='20'
+                    weight='fill'
+                    color='gray'
+                    class='mx-2'
             />
             <address>{{ address }}</address>
           </span>
         </template>
         <template #default>
-          <div class="d-flex justify-center">
-            <opening-hours-chip
-              class="my-5"
-              :from-hour="row.FromHour"
-              :to-hour="row.ToHour"
-            />
-          </div>
+          <!--          <div class='d-flex justify-center'>-->
+          <!--            <opening-hours-chip-->
+          <!--              class='my-5'-->
+          <!--              :from-hour='row.FromHour'-->
+          <!--              :to-hour='row.ToHour'-->
+          <!--            />-->
+          <!--          </div>-->
           <v-divider />
         </template>
         <template #actions>
           <v-card-actions>
             <v-btn
-              variant="tonal"
-              color="secondary"
+              variant='tonal'
+              color='secondary'
+              size='large'
               :text="t('donationLocation.openingHours')"
-              @click="details = !details"
-              class="my-2 flex-grow-1"
+              @click='expanded = !expanded'
+              class='my-2 flex-grow-1'
             />
-<!--            <v-btn-->
-<!--              variant="outlined"-->
-<!--              icon="mdi-heart"-->
-<!--              :color="'#f2f2f2'"-->
-<!--            ></v-btn>-->
+            <!--            <v-btn-->
+            <!--              variant="outlined"-->
+            <!--              icon="mdi-heart"-->
+            <!--              :color="'#f2f2f2'"-->
+            <!--            ></v-btn>-->
             <v-btn
-              variant="plain"
-              class="my-2"
-              @click="share"
+              variant='plain'
+              class='my-2'
+              @click='share()'
               v-t="'common.share'"
-              icon="share"
+              size='large'
+              icon='share'
             />
           </v-card-actions>
         </template>
       </v-card>
-      <div class="details-card-expand">
+      <div class='details-card-expand'>
         <v-card
-          @click="drawer = !drawer"
-          :subtitle="row.Name"
-          class="details-card px-12"
-          elevation="0"
+          @click='drawer = !drawer'
+          :subtitle='row.Name'
+          class='details-card px-12'
+          elevation='0'
         >
-          <v-card-title v-t="'donationLocation.openingHours'"  />
+          <v-card-title v-t="'donationLocation.openingHours'" />
           <template #actions>
             <v-card-actions>
               <v-btn
-                color="default"
+                color='default'
                 @click.prevent
-                v-ripple="false"
-                variant="outlined"
+                v-ripple='false'
+                variant='outlined'
                 :text="t('common.moreActions')"
               />
             </v-card-actions>
           </template>
-          <opening-hours-timeline :row="row" />
-          <v-alert icon="ph-heart">
-            <v-alert-title>נא שימו לב : לגבי שעות הפעילות</v-alert-title>
-            כל הפרטים מגיעים דרך האתר של מד"א מידי יום. אין לנו שליטה או דרך
-            לודא את שעות הפתיחה.
-          </v-alert>
+          <opening-hours-timeline :row='row' />
+          <v-alert icon='ph-heart'
+                   :title="t('location.time.disclaimer.title')"
+                   :text="t('location.time.disclaimer.text')"
+          />
         </v-card>
       </div>
     </div>
+    <v-navigation-drawer
+      density='compfortable'
+      v-model='drawer'
+      location='bottom'
+      temporary
+    >
+      <v-list-item
+        variant='text'
+        color='primary'
+        :href='props.row.SchedulingURL'
+        target='_blank'
+        :title="t('location.schedule')"
+        append-icon='hand-pointing'
+      >
+        <v-list-item-title :text='t("location.schedule")' />
+        <v-tooltip
+          activator='parent'
+          :text='t("location.scheduleDescription")'
+          location='top center'
+        />
+      </v-list-item>
+      <v-list-item
+        variant='text'
+        color='primary'
+        :href='`http://www.google.com/maps/place/${props.coords.lat},${props.coords.lng}`'
+        target='_blank'
+        :title="t('location.navigate')"
+        append-icon='map-trifold'
+      >
+        <v-tooltip
+          activator='parent'
+          :text="t('location.navigateDescription')"
+          location='top center'
+        />
+      </v-list-item>
+      <v-list-item
+        variant='text'
+        color='primary'
+        @click='share()'
+        :title="t('common.share')"
+        append-icon='share'
+      >
+        <v-tooltip activator='parent'
+                   :text='t("common.shareDescription")'
+                   location='top center' />
+      </v-list-item>
+    </v-navigation-drawer>
   </Map>
-  <v-navigation-drawer
-    density="compfortable"
-    v-model="drawer"
-    location="bottom"
-  >
-    <v-list-item
-      variant="text"
-      color="primary"
-      :href="props.row.SchedulingURL"
-      target="_blank"
-    >
-      <template #append>
-        <v-icon icon='ph-hand-pointing' :size="24" weight="fill" color="gray" />
-      </template>
-      <v-list-item-title>זימון תור</v-list-item-title>
-      <v-tooltip
-        activator="parent"
-        text="פתח קישור בעמוד חדש"
-        location="top center"
-      />
-    </v-list-item>
-    <v-list-item
-      variant="text"
-      color="primary"
-      :href="`http://www.google.com/maps/place/${props.coords.lat},${props.coords.lng}`"
-      target="_blank"
-    >
-      <template #append>
-        <v-icon icon='ph-map-trifold' :size="24" weight="fill" color="gray" />
-      </template>
-      <v-list-item-title> נווט למקום</v-list-item-title>
-      <v-tooltip
-        activator="parent"
-        text="פתח מיקום משוער בגוגל מפות"
-        location="top center"
-      />
-    </v-list-item>
-    <v-list-item
-      variant="text"
-      color="primary"
-      @click="share()"
-    >
-      <template #append>
-        <v-icon icon='ph-share' :size="20" weight="fill" />
-      </template>
-      <v-list-item-title> שתף</v-list-item-title>
-      <v-tooltip activator="parent" text="שתף עם חבר" location="top center" />
-    </v-list-item>
-  </v-navigation-drawer>
+
 </template>
 
-<style lang="scss">
+<style lang='scss'>
 .location-window {
+  max-width: min(750px, 50vw);
+
   h3 {
     font-size: 1.5rem;
     text-wrap: balance;
-    max-width: 24rem;
+    white-space: break-spaces;
+    max-inline-size: 50ch;
+    min-width: 350px;
+    max-width: min-content;
   }
-
-  direction: rtl;
 
   .details-card-expand {
     width: 100%;
@@ -194,7 +201,7 @@ function onClickScheduleURL() {
     .v-timeline {
       display: grid;
       height: auto;
-      direction: rtl;
+      //direction: rtl;
     }
 
     .details-card {
@@ -204,7 +211,7 @@ function onClickScheduleURL() {
     }
   }
 
-  &.details .details-card-expand {
+  &.expanded .details-card-expand {
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.3s cubic-bezier(0.05, 0.7, 0.1, 1);
 
