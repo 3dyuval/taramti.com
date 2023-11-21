@@ -48,6 +48,7 @@ const { t, locale } = useI18n()
       :placeholder="t('search.description')"
       :items='mapRowsToItems(rows)'
       v-model='search.item'
+      class='search-card'
     >
       <template #item='{ item, props }'>
         <v-list-item
@@ -79,4 +80,7 @@ const { t, locale } = useI18n()
 
 <style scoped lang='scss'>
 
+.v-card.search-card {
+  min-width: clamp(300px, 100%, 800px);
+}
 </style>

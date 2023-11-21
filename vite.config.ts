@@ -85,6 +85,7 @@ export default defineConfig(async ({ mode }) => {
         '@fawmi/vue-google-maps',
         'vuetify',
         '@googlemaps/markerclusterer'
+        // 'v-mapbox'
       ]
     },
     optimizeDeps: {
