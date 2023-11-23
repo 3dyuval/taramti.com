@@ -40,6 +40,9 @@
     "description": "חפש מקום"
   },
   "settings": {
+    "changeLocale": {
+      "name": "שנה שפה"
+    },
     "dir": "rtl",
     "locale": {
       "en": "אנגלית",

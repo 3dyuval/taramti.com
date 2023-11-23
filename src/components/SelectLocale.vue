@@ -28,7 +28,11 @@ function onChangeLocale(locale: string) {
 <template>
   <v-menu variant='plain' menu-icon='ph-translate' location='bottom center'>
     <template #activator='{ props }'>
-      <v-btn class='mx-3' icon='ph-translate' v-bind='props' />
+      <v-btn
+        :aria-label='t("settings.changeLocale.name")'
+        class='mx-3' icon='ph-translate' v-bind='props'
+      />
+      <v-tooltip activator='parent' :text='t(`settings.locale.${pageContext.locale}`)' />
     </template>
     <template #default>
       <v-list>
@@ -40,7 +44,7 @@ function onChangeLocale(locale: string) {
           @click='onChangeLocale(key)'
         >
           <v-list-item-subtitle class='d-flex justify-center my-2'>
-            {{ t('settings.locale.' + key, 1, { locale: key }) }}
+            {{ t(`settings.locale.${key}`, 1, { locale: key }) }}
           </v-list-item-subtitle>
           <v-chip
             :text="t('settings.locale.'+ key)"

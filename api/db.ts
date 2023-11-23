@@ -10,20 +10,24 @@ export class DB extends Surreal {
 
   constructor() {
     super()
+    if (db) {
+      throw new Error('DB was already initialized')
+    }
     return db = this
   }
 
   async init() {
-    // if (db) {
-    //   console.warn('New instance cannot be created')
-    //   return
-    // }
+    if (!db) {
+      throw new Error('DB was not initialized')
+    }
 
     const ns = process.env['SURREAL_NAMESPACE']
     const dbname = process.env['SURREAL_DB']
     const user = process.env['SURREAL_USER']
     const pass = process.env['SURREAL_PASS']
     const url = process.env['DB_URL']
+
+    // TODO check variables
 
     await this.connect(url)
     await this.signin({ user, pass })

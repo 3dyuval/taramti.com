@@ -12,7 +12,7 @@ export async function getData() {
     return Promise.reject('No data was fetched')
   }
 
-  const donationLocationDates = new Array<donationLocationDate>()
+  const donationLocationDates = new Array<DonationLocationDate>()
   for (let row of JSON.parse(Result)) {
     const [dateOpen, dateClose] = getDates(row)
       .map((date) => date.toISOString())
@@ -55,11 +55,15 @@ export async function saveData(dates: DonationLocationDate[]): Promise<DonationL
 
   const resultLocations = await db.insert('donationLocation', dates.map(({ donationLocation }) => donationLocation))
 
-  const dateWithLocation = dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => ({
-    dateOpen,
-    dateClose,
-    donationLocation: resultLocations.find((location) => location.name === name)?.id
-  }))
+  const dateWithLocation = dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => {
+    const donationLocationRecordId = String(resultLocations.find((location) => location.name === name)?.id)
+    return {
+      dateOpen,
+      dateClose,
+      donationLocation: donationLocationRecordId,
+      id: [donationLocationRecordId, dateOpen, dateClose]
+    }
+  })
 
 
   const resultLocationDates = await db.insert('donationLocationDates', dateWithLocation)
