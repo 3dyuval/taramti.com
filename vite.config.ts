@@ -10,6 +10,8 @@ import vueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import sitemap from 'vite-plugin-sitemap'
 import { onBeforeRender } from './src/_getData'
 import { localesTranslated } from './src/i18n'
+import { nodeLoaderPlugin } from '@vavite/node-loader/plugin'
+
 
 export default defineConfig(async ({ mode }) => {
 
@@ -44,6 +46,7 @@ export default defineConfig(async ({ mode }) => {
       }
     ],
     plugins: [
+      nodeLoaderPlugin(),
       vue(),
       sitemap(
         {
@@ -63,7 +66,7 @@ export default defineConfig(async ({ mode }) => {
         ssr: true,
         include: [path.resolve(__dirname, './src/i18n/*.json')]
       }),
-      ssr({ disableAutoFullBuild: true } satisfies UserConfig),
+      ssr({ disableAutoFullBuild: true, disableUrlNormalization: true } satisfies UserConfig),
       vavite({
         serverEntry: '/server/index.ts',
         serveClientAssetsInDev: true
