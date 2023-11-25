@@ -5,6 +5,7 @@ import httpDevServer from 'vavite/http-dev-server'
 import compression from 'compression'
 import { root } from './root'
 import { DB } from '../api/db'
+import { OPTIONS } from '../src/i18n'
 
 startServer()
 
@@ -22,10 +23,25 @@ async function startServer() {
   }
 
   app.get('*', async (req, res, next) => {
-    const pageContextInit = {
-      urlOriginal: req.originalUrl
+
+    const localeHeader = req.headers['accept-language']?.split(',')[0].split('-')[0]
+
+    function findLocaleAvailable(locale: string): string | undefined {
+      return OPTIONS.availableLocales.find(option => option === locale)
     }
 
+    const locale = findLocaleAvailable(req.originalUrl.split('/')[1])
+
+    if (!locale) {
+      res.redirect(`/${findLocaleAvailable(localeHeader) || OPTIONS.fallbackLocale}${req.originalUrl}`)
+      return next()
+    }
+
+    const pageContextInit = {
+      urlOriginal: req.originalUrl
+      urlOriginal: req.originalUrl,
+      locale
+    }
 
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext

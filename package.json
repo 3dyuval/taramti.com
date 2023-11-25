@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev-debug": "vavite-loader vite dev",
     "build": "vavite build",
     "serve": "node -r dotenv/config dist/server/index.mjs",
     "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node -r dotenv/config ./api/seed.ts",
@@ -60,6 +61,7 @@
     "@types/express": "^4.17.17",
     "@types/node": "^20.6.0",
     "@types/promise-fs": "^2.1.2",
+    "@vavite/node-loader": "^3.0.0",
     "prettier": "3.0.3",
     "vite-plugin-sitemap": "^0.5.1",
     "vitest": "^0.34.6"

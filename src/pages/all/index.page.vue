@@ -25,6 +25,15 @@ const headers = [
     key: 'dateClose'
   }
 ]
+function filterFunction(value: string, query: string) {
+  debugger
+  console.log({ value, query })
+  if (value.toLowerCase().includes(search.value?.toLowerCase())) {
+    return -1
+  }
+}
+
+const groupBy = ref([{ key: 'City', order: 'asc', title: 'עיר' }])
 </script>
 
 <template>
