@@ -33,9 +33,7 @@ const { share } = useShare({
   url: pageContext.urlPathname
 })
 
-function onClickScheduleURL() {
-  window.open(props.row.SchedulingURL, '_blank')
-}
+
 </script>
 
 <template>
@@ -66,13 +64,6 @@ function onClickScheduleURL() {
           </span>
         </template>
         <template #default>
-          <!--          <div class='d-flex justify-center'>-->
-          <!--            <opening-hours-chip-->
-          <!--              class='my-5'-->
-          <!--              :from-hour='row.FromHour'-->
-          <!--              :to-hour='row.ToHour'-->
-          <!--            />-->
-          <!--          </div>-->
           <v-divider />
         </template>
         <template #actions>
@@ -85,7 +76,7 @@ function onClickScheduleURL() {
               @click='expanded = !expanded'
               class='my-2 flex-grow-1'
             />
-            <!--            <v-btn-->
+            <!--          TODO  <v-btn--> pinia state
             <!--              variant="outlined"-->
             <!--              icon="mdi-heart"-->
             <!--              :color="'#f2f2f2'"-->
