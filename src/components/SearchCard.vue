@@ -35,8 +35,7 @@ const search = ref<{
   time: 'isOpen' | 'willOpen',
   query: string
 }>({
-  time: 'isOpen',
-  query: ''
+  query: row?.donationLocation.name || ''
 })
 
 const { t, locale } = useI18n()
@@ -123,7 +122,7 @@ const clickOutside = {
         color='primary'
         variant='tonal'
         class='my-4 flex-1-1'
-        :href='`/${locale}/donation-location/${search.item}`'
+        :href='`/${locale}/donation-location/${search.item.replaceAll(/ /g, "-")}`'
         :disabled='!search.item || (row && search.item === row.id)'
       />
     </v-card-actions>

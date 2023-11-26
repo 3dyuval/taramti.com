@@ -55,19 +55,17 @@ export async function onBeforeRender(pageContext: PageContext) {
   }
 
   try {
-    const name = decodeURI(pageContext.routeParams?.name)
 
-    console.log(`fetching ${name} from url`)
+    const location = pageContext.routeParams.location.replaceAll(/\-/g, ' ')
+
+    // console.log(`converted ${pageContext.routeParams?.location} to ${location}`)
 
     const [response] = await db.query(`
-            SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $name;
-    `, {
-      name
-    })
+            SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $location;
+    `,{ location })
 
-    console.log(response.result[0].donationLocation)
-
-    if (response.status !== 'OK' || !response.result?.length) {
+    // console.log(response.result[0].donationLocation)
+    if (response?.status !== 'OK' || !response.result.length) {
       throw render(404)
     }
 

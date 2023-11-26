@@ -1,5 +1,5 @@
 import { PageContext } from '@/types'
-import { getRows } from '../api'
+import { db } from '../api'
 
 export { onBeforeRender }
 
@@ -10,7 +10,7 @@ async function onBeforeRender(pageContext: PageContext) {
   return {
     pageContext: {
       pageProps: {
-        rows: await getRows()
+        rows: await db.getRows()
       }
     }
   }
