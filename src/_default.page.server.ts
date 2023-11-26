@@ -61,7 +61,7 @@ async function render(pageContext: PageContextServer) {
     </script>
   `
 
-  const lang = pageContext.locale || 'he'
+  const lang = pageContext.locale
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang='${lang}'>
@@ -92,7 +92,6 @@ async function render(pageContext: PageContextServer) {
     documentHtml,
     pageContext: {
       initialStoreState: store.state.value,
-      locale: pageContext.locale
     }
   }
 }

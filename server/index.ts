@@ -37,11 +37,14 @@ async function startServer() {
       return next()
     }
 
+
     const pageContextInit = {
-      urlOriginal: req.originalUrl
-      urlOriginal: req.originalUrl,
+      // urlOriginal: req.originalUrl,
+      urlOriginal: req.originalUrl.replace(`/${locale}`, '') || '/',
       locale
     }
+
+    console.log({pageContextInit})
 
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
