@@ -80,7 +80,12 @@ const clickOutside = {
       eager
       v-click-outside='clickOutside'
       :placeholder="t('search.description')"
-      v-model='search.item'
+      v-model='search.query'
+      :model-value:menu='menu'
+      :custom-filter='(_value, query, item) =>
+          !!(item?.raw.title?.includes(query)
+          || item?.raw.subtitle?.includes(query)
+    )'
       hide-details
       auto-select-first
       variant='outlined'
