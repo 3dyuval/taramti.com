@@ -12,7 +12,7 @@ type OpeningTime = {
 
 export function useOpeningTime(fromDateString: string, toDateString: string): OpeningTime {
   if (!fromDateString || !toDateString) {
-    throw 'Missing args "from" or "to"'
+    throw new Error(`Missing args ${fromDateString} ${toDateString}`)
   }
 
   const from = new Date(toDateString)

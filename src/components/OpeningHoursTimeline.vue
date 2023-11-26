@@ -1,10 +1,10 @@
 <script setup lang='ts'>
-import type { Row } from '@/types'
+import type { DonationLocationDate, Row } from '@/types'
 import { useOpeningTime } from '@/composables/useOpeningTime'
 
-const props = defineProps<{ row: Row }>()
+const props = defineProps<{ row: DonationLocationDate }>()
 
-const times = useOpeningTime(props.row.FromHour, props.row.ToHour)
+const times = useOpeningTime(props.row.dateOpen, props.row.dateClose)
 
 
 </script>

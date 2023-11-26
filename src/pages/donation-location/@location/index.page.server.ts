@@ -75,7 +75,6 @@ export async function onBeforeRender(pageContext: PageContext) {
       pageContext: {
         pageProps: {
           row: response.result[0],
-          rows: [],
           coords
         }
       }

@@ -45,10 +45,10 @@ const { share } = useShare({
       <v-card elevation='0'>
         <template #title>
           <div class='d-flex flex-row justify-space-between flex-wrap'>
-            <h3 class='mb-4'>{{ row.Name }}</h3>
+            <h3 class='mb-4'>{{ row.donationLocation.name }}</h3>
             <opening-hours-chip
-              :from-hour='row.FromHour'
-              :to-hour='row.ToHour'
+              :from-hour='row.dateOpen'
+              :to-hour='row.dateClose'
             />
           </div>
         </template>
@@ -95,7 +95,7 @@ const { share } = useShare({
       <div class='details-card-expand'>
         <v-card
           @click='drawer = !drawer'
-          :subtitle='row.Name'
+          :subtitle='row.donationLocation.name'
           class='details-card px-12'
           elevation='0'
         >
@@ -128,7 +128,7 @@ const { share } = useShare({
       <v-list-item
         variant='text'
         color='primary'
-        :href='props.row.SchedulingURL'
+        :href='props.row.donationLocation.schedulingUrl'
         target='_blank'
         :title="t('location.schedule')"
         append-icon='hand-pointing'
