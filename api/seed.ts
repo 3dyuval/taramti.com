@@ -1,9 +1,10 @@
+import { getRows } from './index'
 import { DB, db } from './db'
 
-async function seed() {
+export async function seed() {
   new DB()
-  await db.seed()
-  console.log('seeded')
+  await db.init()
+  await getRows().then(console.log).catch(console.error)
 }
 
-seed().catch((err) => console.error('Error running seed', err))
+seed()

@@ -30,7 +30,7 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
 
 </script>
 <template>
-  <v-layout class='taramti-layout-bar'>
+  <v-layout class='taramti-layout-bar' full-height>
     <v-app-bar color='surface-variant'>
       <template #prepend>
         <a :href='url' class='tamati-toolbar-title'>
@@ -62,7 +62,6 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
 <style lang='scss'>
 
 .taramti-layout-bar {
-  height: 100lvmin;
 
   .tamati-toolbar-title {
     text-decoration: none;
@@ -71,9 +70,11 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
 }
 
 main {
+  height: 100dvh;
   width: 100%;
-  top: 64px;
-  height: 100%;
+  //top: 64px;
+  //height: 100%;
+
 }
 
 </style>

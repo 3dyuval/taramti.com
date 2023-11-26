@@ -1,17 +1,15 @@
 <script setup lang='ts'>
-
-import { Row } from '@/types'
-import { reactive } from 'vue'
+import { DonationLocationDate } from '@/types'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 
 const { rows, row } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
-
 type Props = {
-  rows: Row[]
-  row?: Row,
+  rows: DonationLocationDate[] //TODO change to locations
+  row?: DonationLocationDate,
   closeBtn?: boolean
 }
 
@@ -19,24 +17,12 @@ type Emits = {
   close: []
 }
 
-function mapRowsToItems(rows: Row[] = []) {
-  return rows.map((row) => {
-    return {
-      title: row.Name,
-      value: row.id,
-      city: row.City
-    }
-  })
-}
 
-const search = reactive<{
-  modal: boolean
+const search = ref<{
   item: number | undefined
 }>({
-  modal: false,
   item: row?.id
 })
-
 
 const { t, locale } = useI18n()
 </script>
@@ -46,14 +32,18 @@ const { t, locale } = useI18n()
     <v-autocomplete
       eager
       :placeholder="t('search.description')"
-      :items='mapRowsToItems(rows)'
       v-model='search.item'
+      hide-details
+      :items='rows.map((item) => ({
+          title: item.donationLocation.name,
+          value: item.donationLocation.name,
+          subtitle: item.donationLocation.address.city
+        }))'
     >
       <template #item='{ item, props }'>
         <v-list-item
           v-bind='props'
-          :title='item.title'
-          :subtitle='item.raw.city'
+          :subtitle='item.raw.subtitle'
         />
       </template>
     </v-autocomplete>
@@ -61,15 +51,15 @@ const { t, locale } = useI18n()
       <v-btn
         v-if='closeBtn'
         :text="t('common.close')"
+        @click="emit('close')"
         color='secondary'
         variant='outlined'
-        @click="emit('close')"
       />
       <v-btn
         :text="t('common.search')"
         color='primary'
         variant='tonal'
-        block
+        class='my-4 flex-1-1'
         :href='`/${locale}/donation-location/${search.item}`'
         :disabled='!search.item || (row && search.item === row.id)'
       />

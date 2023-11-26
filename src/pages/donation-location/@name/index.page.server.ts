@@ -1,7 +1,7 @@
-import { Coords, PageContext, PageProps, Row } from '@/types'
-import * as api from '@/../api'
+import { Coords, PageContext, PageProps } from '@/types'
 import { render } from 'vike/abort'
 import { getAddress } from '@/helpers/getAddress'
+import { db } from '../../../../api/db'
 
 export const passToClient = ['pageProps', 'routeParams']
 
@@ -17,33 +17,21 @@ export function getDocumentProps(pageProps: PageProps) {
   return { title, description: address }
 }
 
-export async function onBeforeRender(ctx: PageContext) {
-  async function getLocationFromId(rows: Row[], id?: number): Promise<Row> {
-    const row = rows.find((row) => row.id === id)
+export async function onBeforeRender(pageContext: PageContext) {
 
-    if (!id || !row) {
-      return Promise.reject(Errors.MISSING_ROW_DATA)
-    }
-
-    return Promise.resolve(row)
-  }
 
   async function getCoordsFromGoogleMaps(
-    row: Row,
+    address: string
   ): Promise<Coords | undefined> {
+
     const key = import.meta.env.VITE_GOOGLE_MAP_API_KEY
 
     if (!key) {
       return Promise.reject('No Google Maps API key found')
     }
 
-    const googleGeocoding = new Request(
-      `https://maps.googleapis.com/maps/api/geocode/json?&key=${
-        import.meta.env.VITE_GOOGLE_MAP_API_KEY
-      }&address=${getAddress(row)}`,
-    )
 
-    return fetch(googleGeocoding)
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?&key=${key}&address=${address}`)
       .then(async (response) => {
         const results = (await response.json()).results
         if (results.length) {
@@ -67,28 +55,37 @@ export async function onBeforeRender(ctx: PageContext) {
   }
 
   try {
-    const id = Number(ctx.routeParams?.id)
+    const name = decodeURI(pageContext.routeParams?.name)
 
-    if (!id) {
-      throw `Id "${id}" was not specified`
+    console.log(`fetching ${name} from url`)
+
+    const [response] = await db.query(`
+            SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $name;
+    `, {
+      name
+    })
+
+    console.log(response.result[0].donationLocation)
+
+    if (response.status !== 'OK' || !response.result?.length) {
+      throw render(404)
     }
 
-    const rows = await api.getData()
-    const row = await getLocationFromId(rows, id)
-    const coords = await getCoordsFromGoogleMaps(row)
+    const coords = await getCoordsFromGoogleMaps(getAddress(response.result[0].donationLocation.address))
 
     return {
       pageContext: {
         pageProps: {
-          row,
-          rows,
-          coords,
-        },
-      },
+          row: response.result[0],
+          rows: [],
+          coords
+        }
+      }
     }
   } catch (error) {
-    console.error(`Error at: ${ctx.urlPathname}`, error)
+    console.error(`Error at: ${pageContext.urlPathname}`, error)
 
     throw render(404)
+
   }
 }

@@ -1,15 +1,19 @@
 /// <reference types="vite/client" />
-
 import express from 'express'
 import { renderPage } from 'vike/server'
 import httpDevServer from 'vavite/http-dev-server'
 import compression from 'compression'
 import { root } from './root'
+import { DB } from '../api/db'
 import { OPTIONS } from '../src/i18n'
 
 startServer()
 
 async function startServer() {
+
+  const db = new DB()
+  await db.init()
+
   const app = express()
 
   app.use(compression())
@@ -27,13 +31,14 @@ async function startServer() {
     }
 
     const locale = findLocaleAvailable(req.originalUrl.split('/')[1])
-    
+
     if (!locale) {
       res.redirect(`/${findLocaleAvailable(localeHeader) || OPTIONS.fallbackLocale}${req.originalUrl}`)
       return next()
     }
 
     const pageContextInit = {
+      urlOriginal: req.originalUrl
       urlOriginal: req.originalUrl,
       locale
     }

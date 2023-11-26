@@ -40,6 +40,9 @@
     "description": "Find a place"
   },
   "settings": {
+    "changeLocale": {
+      "name": "Change Languague"
+    },
     "dir": "ltr",
     "locale": {
       "en": "English",

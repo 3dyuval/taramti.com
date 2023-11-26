@@ -40,6 +40,9 @@
     "description": "Найти место"
   },
   "settings": {
+    "changeLocale": {
+      "name": "Изменить язык"
+    },
     "dir": "ltr",
     "locale": {
       "en": "Английский",

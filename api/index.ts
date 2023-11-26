@@ -1,58 +1,106 @@
-import fs from 'fs/promises'
-import * as path from 'path'
-import type { Row } from '@/types'
-import mada from './mada'
+import madaRequest from './madaRequest'
+import { db } from './db'
+import { getAddress } from '../src/helpers/getAddress'
+import { getDates } from '../src/helpers/getDates'
+import type { DonationLocationDate } from '../src/types'
 
+export async function getData() {
 
+  const { Result, Success } = await fetch(madaRequest()).then((res) => res.json())
 
-export async function getData(): Promise<any> {
-    const now = new Date()
-    const fileName = now.getDate() + '.' + (now.getUTCMonth() + 1) + '.' + now.getFullYear() + '.' + 'json'
-    const fileLocation = path.resolve(process.cwd(), 'api', 'data', fileName)
-    let data = await fs
-        .stat(fileLocation)
-        .then((stat) => {
-            if (stat.isFile()) {
-                console.log(`"${fileName}" was found`)
-                return fs.readFile(fileLocation, 'utf8')
-            }
-        })
-        .catch((e) => {
-            console.log(`File "${fileName}" not found. Fetching new file`)
-            return ''
-        })
-
-    if (data === '') {
-        data = await fetch(mada())
-            .then(async (response) => {
-                const { Success, Result } = await response.json()
-                if (Success) {
-                    console.log(`Received JSON data. Saving new file "${fileName}"`)
-                    fs.writeFile(fileLocation, Result, 'utf8')
-                    return Result
-                }
-            })
-            .catch((e) => {
-                console.error('No data')
-            })
-    }
-
-    function addId(row: Row, id: number): Row {
-        return {
-            ...row,
-            id,
-        }
-    }
-
-    if (data) {
-        return JSON.parse(data).map(addId)
-    }
-
+  if (!Success) {
     return Promise.reject('No data was fetched')
+  }
 
+  const donationLocationDates = new Array<DonationLocationDate>()
+  for (let row of JSON.parse(Result)) {
+    const [dateOpen, dateClose] = getDates(row)
+      .map((date) => date.toISOString())
+
+    const name = (row.Name
+        ? row.Name
+        : row.AccountType
+          ? row.AccountType
+          : getAddress(row)
+    )
+      .replace(/\s+/g, ' ')
+      .trim()
+
+    if (name && dateOpen && dateClose)
+      donationLocationDates.push({
+        dateOpen,
+        dateClose,
+        donationLocation: {
+          name,
+          schedulingUrl: row.SchedulingURL,
+          address: {
+            city: !row?.City || row.City === '' ? null : row.City,
+            street: !row?.Street || row.Street === '' ? null : row.Street,
+            number: !row?.NumHouse || row.NumHouse === '' ? null : row.NumHouse
+          }
+        }
+      })
+  }
+
+
+  return donationLocationDates
 }
 
 
-export default {
-    getData
+export async function saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]> {
+
+  console.log(
+    `trying to save data with '${dates.length}' records`
+  )
+
+  const resultLocations = await db.insert('donationLocation', dates.map(({ donationLocation }) => donationLocation))
+
+  const dateWithLocation = dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => {
+    const donationLocationRecordId = String(resultLocations.find((location) => location.name === name)?.id)
+    return {
+      dateOpen,
+      dateClose,
+      donationLocation: donationLocationRecordId,
+      id: [donationLocationRecordId, dateOpen, dateClose]
+    }
+  })
+
+
+  const resultLocationDates = await db.insert('donationLocationDates', dateWithLocation)
+
+  console.log(`successully saved '${resultLocations.length}' resultLocations records, and ${resultLocationDates.length} resultLocationDates records`)
+
+  return dates
 }
+
+export type ResponseRow = {
+  DateDonation: string
+  FromHour: string
+  ToHour: string
+  Name: string
+  City: string
+  Street: string
+  NumHouse: string
+  AccountType: string
+  SchedulingURL: string
+}
+
+export async function getRows() {
+  const data = await db.query(
+    `SELECT *, donationLocation.* 
+    FROM donationLocationDates
+    WHERE time::floor(dateOpen, 1d) == time::floor(time::now(), 1d);
+    `)
+
+  let rows: any[] = []
+
+  if (data[0].status === 'OK' && data[0].result?.length) {
+    rows = data[0].result
+  } else {
+    const data = await getData()
+    rows = await saveData(data)
+  }
+
+  return rows
+}
+

@@ -1,3 +1,9 @@
+import { renderToString as renderToString_ } from '@vue/server-renderer'
+import type { App } from 'vue'
+import { dangerouslySkipEscape, escapeInject } from 'vike/server'
+import { createPageApp } from './page'
+import type { PageContextServer } from '@/types'
+
 export { render }
 export const doNotPrerender = true
 export const passToClient = [
@@ -6,15 +12,11 @@ export const passToClient = [
   'initialStoreState',
   'locale'
 ]
-import { renderToString as renderToString_ } from '@vue/server-renderer'
-import type { App } from 'vue'
-import { dangerouslySkipEscape, escapeInject } from 'vike/server'
-import { createPageApp } from './page'
-import type { PageContextServer } from '@/types'
 
 export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
+
   const { page, store } = createPageApp(pageContext, false)
   let pageHTML = ''
 
@@ -25,8 +27,6 @@ async function render(pageContext: PageContextServer) {
   // See https://vite-plugin-ssr.com/head
   const { documentProps, getDocumentProps } = pageContext.exports
 
-  // let title = i18n.t('meta.title')
-  // let description = i18n.t('meta.description')
   let title, description
   // Static Head Tags
   if (documentProps?.title) {
