@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev-debug": "vavite-loader vite dev",
-    "build": "vavite build",
+    "build": "set NODE_ENV=production && vavite build",
     "serve": "node -r dotenv/config dist/server/index.mjs",
     "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node  -r dotenv/config ./api/seed.ts",
     "db": "surreal start --log trace -u root -p root --bind 0.0.0.0:8080 file:api/db",
@@ -41,6 +41,7 @@
     "primevue": "^3.34.1",
     "sass": "^1.66.1",
     "sirv": "^2.0.3",
+    "sitemap": "^7.1.1",
     "surrealdb.js": "^0.9.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",

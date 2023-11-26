@@ -2,10 +2,9 @@
 
 import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue/dist/vue'
-import  type {}  '@/types'
+import { ref } from 'vue'
 const props = defineProps<{
-  rows: Row[]
+  rows: any[]
 }>()
 
 
