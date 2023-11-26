@@ -1,4 +1,4 @@
-import { isPast, isFuture } from 'date-fns'
+import { isFuture, isPast } from 'date-fns'
 
 type OpeningTime = {
   willOpen: boolean
@@ -10,36 +10,24 @@ type OpeningTime = {
   closingDate: Date
 }
 
-export function useOpeningTime(from: string, to: string): OpeningTime {
-  if (!from || !to) {
+export function useOpeningTime(fromDateString: string, toDateString: string): OpeningTime {
+  if (!fromDateString || !toDateString) {
     throw 'Missing args "from" or "to"'
   }
 
-  const fromHourToday = new Date()
-  const toHourToday = new Date()
+  const from = new Date(toDateString)
+  const to = new Date(toDateString)
 
-  const parseHoursAndMinutes = (time: string): [number, number] => {
-    const [hours, minutes] = time.split(':').map(Number)
-    return [hours, minutes]
-  }
+  const willOpen = isFuture(from)
+  const isOpen = isPast(from) && isFuture(to)
+  const wasOpen = isPast(from) && isPast(to)
 
-  const [fromHour, fromMinute] = parseHoursAndMinutes(from)
-  const [toHour, toMinute] = parseHoursAndMinutes(to)
-
-  fromHourToday.setHours(fromHour, fromMinute, 0)
-  toHourToday.setHours(toHour, toMinute, 0)
-
-  const willOpen = isFuture(fromHourToday)
-  const isOpen = isPast(fromHourToday) && isFuture(toHourToday)
-  const wasOpen = isPast(fromHourToday) && isPast(toHourToday)
 
   return {
-    openingTime: from,
-    closingTime: to,
-    openingDate: fromHourToday,
-    closingDate: toHourToday,
+    openingDate: from,
+    closingDate: to,
     willOpen,
     isOpen,
-    wasOpen,
+    wasOpen
   }
 }
