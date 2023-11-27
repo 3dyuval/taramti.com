@@ -7,7 +7,10 @@ type Options = {
   hostname: string
   links: Array<{
     url: string
-    lang?: string
+    links?: Array<{
+      lang: string
+      url: string
+    }>
   }>
 }
 
