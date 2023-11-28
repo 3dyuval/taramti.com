@@ -26,29 +26,19 @@ async function startServer() {
 
     const localeHeader = req.headers['accept-language']?.split(',')[0].split('-')[0]
 
-    function findLocaleAvailable(locale: string): string | undefined {
-      return OPTIONS.availableLocales.find(option => option === locale)
-    }
-
-    const locale = findLocaleAvailable(req.originalUrl.split('/')[1])
-
-    if (!locale) {
-      res.redirect(`/${findLocaleAvailable(localeHeader) || OPTIONS.fallbackLocale}${req.originalUrl}`)
-      return next()
-    }
-
 
     const pageContextInit = {
-      // urlOriginal: req.originalUrl,
-      urlOriginal: req.originalUrl.replace(`/${locale}`, '') || '/',
-      locale
+      urlOriginal: req.originalUrl,
+      localeHeader
     }
-
-    console.log({pageContextInit})
 
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
     if (!httpResponse) return next()
+    if (httpResponse.statusCode > 300 && httpResponse.statusCode < 400) {
+      res.redirect(httpResponse.statusCode, httpResponse.headers.find(([header]) => header === 'Location')[1])
+      return next()
+    }
     const { statusCode, body } = httpResponse
     res.status(statusCode).send(body)
   })

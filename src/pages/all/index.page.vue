@@ -1,13 +1,13 @@
 <script setup lang='ts'>
-
-import { DonationLocation } from '@/types'
-
+import VDataTable from 'vuetify/components'
+import { DonationLocationDate } from '@/types'
+import { ref } from 'vue'
 const { rows } = defineProps<Props>()
 
 
 type Props = {
-  rows: DonationLocation[]
-  row?: DonationLocation,
+  rows: DonationLocationDate[]
+  row?: DonationLocationDate,
   locale: string;
 }
 

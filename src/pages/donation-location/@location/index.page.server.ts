@@ -6,7 +6,6 @@ import { db } from '../../../../api/db'
 export const passToClient = ['pageProps', 'routeParams']
 
 enum Errors {
-  MISSING_ROW_DATA = 'Missing row data to get location',
   MISSING_RESPONSE = 'Missing response from Google Maps API',
   RESPONSE_NOT_VALID = 'Response is not valid JSON',
 }
@@ -56,25 +55,26 @@ export async function onBeforeRender(pageContext: PageContext) {
 
   try {
 
-    const location = pageContext.routeParams.location.replaceAll(/\-/g, ' ')
+    const location = pageContext.routeParams.location?.replaceAll(/\-/g, ' ')
 
     // console.log(`converted ${pageContext.routeParams?.location} to ${location}`)
 
-    const [response] = await db.query(`
+
+    const [result] = await db.query(`
             SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $location;
     `,{ location })
 
     // console.log(response.result[0].donationLocation)
-    if (response?.status !== 'OK' || !response.result.length) {
+    if (!result.length) {
       throw render(404)
     }
 
-    const coords = await getCoordsFromGoogleMaps(getAddress(response.result[0].donationLocation.address))
+    const coords = await getCoordsFromGoogleMaps(getAddress(result[0].donationLocation.address))
 
     return {
       pageContext: {
         pageProps: {
-          row: response.result[0],
+          row: result[0],
           coords
         }
       }
@@ -82,7 +82,11 @@ export async function onBeforeRender(pageContext: PageContext) {
   } catch (error) {
     console.error(`Error at: ${pageContext.urlPathname}`, error)
 
-    throw render(404)
+    if (error === Errors.MISSING_RESPONSE) {
+      throw render(404)
+    } else {
+      throw render(500)
+    }
 
   }
 }

@@ -93,8 +93,8 @@ const clickOutside = {
       :items='items'
       :no-data-text="t('search.noData')"
     >
-      <template #item='{ item, props: { title, props} }'>
-        <v-list-item v-bind='props'>
+      <template #item='{ item, props: { title, ...itemProps} }'>
+        <v-list-item v-bind='itemProps'>
           <v-list-item-title>
             <span v-text='item.raw.title' />
             <v-chip
@@ -122,8 +122,8 @@ const clickOutside = {
         color='primary'
         variant='tonal'
         class='my-4 flex-1-1'
-        :href='`/${locale}/donation-location/${search.item.replaceAll(/ /g, "-")}`'
-        :disabled='!search.item || (row && search.item === row.id)'
+        :href='`/${locale}/donation-location/${search.query?.replaceAll(/ /g, "-")}`'
+        :disabled='!search.query || (row && search.query === row.id)'
       />
     </v-card-actions>
   </v-card>

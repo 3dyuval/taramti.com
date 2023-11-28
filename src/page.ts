@@ -8,7 +8,6 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import Layout from '@/components/Layout.vue'
 import { aliases, ph } from '@/assets/phosphorIcons'
-import { VDataTable } from 'vuetify/labs/VDataTable'
 import { OPTIONS } from '@/i18n'
 import { md3 } from 'vuetify/blueprints'
 import { createI18n, useI18n } from 'vue-i18n'
@@ -39,9 +38,6 @@ export function createPageApp(pageContext: PageContext, clientOnly: boolean) {
     createVuetify({
       blueprint: md3,
       ssr: true,
-      components: {
-        VDataTable
-      },
       locale: {
         locale: pageContext.locale,
         adapter: createVueI18nAdapter({ i18n, useI18n })

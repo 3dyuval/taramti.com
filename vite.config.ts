@@ -71,7 +71,7 @@ export default defineConfig(async ({ mode }) => {
       nodeLoaderPlugin(),
       vue(),
       vuetify(),
-      vike({ disableAutoFullBuild: true, disableUrlNormalization: true }),
+      vike({ disableAutoFullBuild: true }),
       vavite({
         serverEntry: '/server/index.ts',
         serveClientAssetsInDev: true

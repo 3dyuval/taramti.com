@@ -24,8 +24,6 @@ export let db: Surreal
 
 export class DB extends Surreal {
 
-  initialized: boolean = false
-
   constructor() {
     super()
     if (db) {
@@ -39,17 +37,17 @@ export class DB extends Surreal {
       console.warn('DB was not initialized')
     }
 
-    const ns = process.env['SURREAL_NS']
-    const dbname = process.env['SURREAL_DB']
-    const user = process.env['SURREAL_USER']
-    const pass = process.env['SURREAL_PASS']
+    const namespace = process.env['SURREAL_NS']
+    const database = process.env['SURREAL_DB']
+    const username = process.env['SURREAL_USER']
+    const password = process.env['SURREAL_PASS']
     const url = process.env['SURREAL_URL']
 
     // TODO check variables
 
     await this.connect(url)
-    await this.signin({ user, pass })
-    await this.use({ ns, db: dbname })
+    await this.signin({ username, password })
+    await this.use({ namespace, database })
     console.log(`connected to db at ${url}`)
   }
 
