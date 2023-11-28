@@ -20,7 +20,7 @@ function onBeforeRoute(pageContext: PageContextServer) {
 
   return {
     pageContext: {
-      urlLogical: pageContext.urlOriginal.replace(`${locale}/`, ''),
+      urlLogical: pageContext.urlOriginal.replace(`/${locale}`, '/'),
       locale
     }
   }
