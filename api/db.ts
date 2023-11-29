@@ -127,25 +127,16 @@ export class DB extends Surreal {
     return dates
   }
 
-
   async getRows() {
-    const data = await this.query(
-      `SELECT *, donationLocation.* 
-    FROM donationLocationDates
-    WHERE time::floor(dateOpen, 1d) == time::floor(time::now(), 1d);
+    let [result] = await this.query(
+      `SELECT  *, donationLocation.* FROM donationLocationDates WHERE time::floor(dateOpen, 1d) >= time::floor(time::now(), 1d);
     `)
 
-    let rows: any[] = []
-
-    if (data[0].status === 'OK' && data[0].result?.length) {
-      rows = data[0].result
-      console.log('rows succesfully fetched from db')
-    } else {
+    if (!result?.length) {
       const data = await this.getData()
-      rows = await this.saveData(data)
+      result = await this.saveData(data)
     }
-
-    return rows
+    return result
   }
 
 }

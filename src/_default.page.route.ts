@@ -1,7 +1,6 @@
 import { PageContextServer } from '@/types'
-import { render } from 'vike/abort'
+import { redirect, render } from 'vike/abort'
 import { OPTIONS } from '@/i18n'
-import { redirect } from 'vike/abort'
 
 export { onBeforeRoute }
 

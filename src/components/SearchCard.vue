@@ -1,9 +1,7 @@
 <script setup lang='ts'>
 import { DonationLocationDate } from '@/types'
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { computed, reactive } from 'vue'
 import { useOpeningTime } from '@/composables/useOpeningTime'
-
 
 const { rows, row } = defineProps<Props>()
 const emit = defineEmits<Emits>()
@@ -18,6 +16,16 @@ type Emits = {
   close: []
 }
 
+const settings = reactive<{
+  time: 'isOpen' | 'willOpen' | ''
+  query: string | undefined,
+  menu: boolean
+}>({
+  query: row?.donationLocation.name,
+  time: 'isOpen',
+  menu: false
+})
+
 
 const items = computed(() => {
   return rows.map((item) => ({
@@ -25,62 +33,50 @@ const items = computed(() => {
     value: item.donationLocation.name,
     subtitle: item.donationLocation.address.city,
     time: useOpeningTime(item.dateOpen, item.dateClose)
-  })).filter((item) =>
-    search.value.time === 'isOpen' ? item.time.isOpen
-      : search.value.time === 'willOpen' ? item.time.willOpen
-        : true)
+  }))
+    .filter((item) =>
+      settings.time === 'isOpen' ? item.time.isOpen
+        : settings.time === 'willOpen' ? item.time.willOpen
+          : true)
+    .map(item => {
+      if (!settings.time) {
+        return Object.assign(item, { subtitle: `${item.subtitle || ''} - ${item.time.openingTime} - ${item.time.closingTime}` })
+      }
+      return item
+    })
 })
 
-const search = ref<{
-  time: 'isOpen' | 'willOpen',
-  query: string
-}>({
-  query: row?.donationLocation.name || ''
-})
-
-const { t, locale } = useI18n()
-
-const menu = ref(true)
-
-
-const clickOutside = {
-  // include: [document?.querySelector('.select-time')],
-  handler() {
-    menu.value = true
-  }
-}
 
 </script>
 
 <template>
   <v-card elevation='0' class='search-card'>
-    <!--     semantic markup for search caption-->
     <div class='search-header d-flex flex-row'>
       <h2 v-t="'search.title'" />
       <v-radio-group
-        v-model='search.time'
+        v-model='settings.time'
         hide-details
         inline
         class='select-time'
-        :mandatory='true'
+        :mandatory='false'
       >
         <v-radio
-          label='isOpen'
+          :label='$t("search.isOpen")'
           value='isOpen'
         />
         <v-radio
-          label='willOpen'
+          :label='$t("search.willOpen")'
           value='willOpen'
         />
       </v-radio-group>
     </div>
-
     <v-autocomplete
       eager
-      v-click-outside='clickOutside'
-      :placeholder="t('search.description')"
-      v-model='search.query'
-      :model-value:menu='menu'
+      clearable
+      @click:clear='Object.assign(settings, { query: null, time: null })'
+      :placeholder="$t('search.description')"
+      v-model='settings.query'
+      :model-value:menu='settings.menu'
       :custom-filter='(_value, query, item) =>
           !!(item?.raw.title?.includes(query)
           || item?.raw.subtitle?.includes(query)
@@ -91,17 +87,24 @@ const clickOutside = {
       :menu-props="{ 'class': 'rounded-menu' }"
       rounded
       :items='items'
-      :no-data-text="t('search.noData')"
+      :no-data-text="$t('search.noData')"
     >
       <template #item='{ item, props: { title, ...itemProps} }'>
         <v-list-item v-bind='itemProps'>
           <v-list-item-title>
             <span v-text='item.raw.title' />
-            <v-chip
-              color='secondary'
-              v-if='item?.raw?.time.isOpen'
-              text='isOpen'
-            />
+            <template v-if='settings.time'>
+              <v-chip
+                color='primary'
+                v-if='item?.raw?.time.isOpen'
+                :text="$t('location.time.openUntil', { time: item?.raw?.time.closingTime })"
+              />
+              <v-chip
+                color='secondary'
+                v-if='item?.raw?.time.willOpen'
+                :text="$t('location.time.willOpen', { time: item?.raw?.time.openingTime })"
+              />
+            </template>
           </v-list-item-title>
           <v-list-item-subtitle>
             <span v-text='item.raw.subtitle' />
@@ -112,18 +115,18 @@ const clickOutside = {
     <v-card-actions>
       <v-btn
         v-if='closeBtn'
-        :text="t('common.close')"
+        :text="$t('common.close')"
         @click="emit('close')"
         color='secondary'
         variant='outlined'
       />
       <v-btn
-        :text="t('common.search')"
+        :text="$t('common.search')"
         color='primary'
         variant='tonal'
         class='my-4 flex-1-1'
-        :href='`/${locale}/donation-location/${search.query?.replaceAll(/ /g, "-")}`'
-        :disabled='!search.query || (row && search.query === row.id)'
+        :href='`/donation-location/${settings.query?.replaceAll(/ /g, "-")}`'
+        :disabled='settings.query === row?.donationLocation.name'
       />
     </v-card-actions>
   </v-card>

@@ -2,9 +2,8 @@
 import SelectLocale from '@/components/SelectLocale.vue'
 import SearchCard from '@/components/SearchCard.vue'
 import { Row } from '@/types'
-import { onBeforeMount, ref } from 'vue'
+import { ref } from 'vue'
 import { usePageContext } from '@/composables/usePageContext'
-import { useI18n } from 'vue-i18n'
 
 const { urlPathname } = usePageContext()
 const props = defineProps<Props>()
@@ -15,15 +14,6 @@ type Props = {
 }
 
 const modal = ref(false)
-
-const { t } = useI18n()
-
-
-onBeforeMount(() => {
-  let dir = t('settings.dir')
-  document.dir = dir
-  document.body.classList.add(dir)
-})
 
 const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
   import.meta.env['VITE_HOST_URL']
@@ -68,6 +58,7 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
                 </v-card-title>
                 <v-card-text>
                   <p v-t="'meta.description'" />
+                  <p v-t="'meta.contactText'" />
                 </v-card-text>
               </v-col>
               <v-col cols='12' md='6'>
@@ -75,7 +66,7 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
                   <h3 v-t="'meta.contact'" />
                 </v-card-title>
                 <v-card-text>
-                  <p v-t="'meta.contactText'" />
+                  <a href='mailto://info@taramti.com'>info✉️taramti.com</a>
                 </v-card-text>
               </v-col>
             </v-row>

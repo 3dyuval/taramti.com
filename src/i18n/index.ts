@@ -8,6 +8,7 @@ import vEn from 'vuetify/lib/locale/en'
 
 const OPTIONS = {
   legacy: false,
+  globalInjection: true,
   fallbackLocale: 'en',
   availableLocales: ['he', 'en', 'ru'],
   messages: {
