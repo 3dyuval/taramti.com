@@ -37,10 +37,10 @@ export class DB extends Surreal {
       console.warn('DB was not initialized')
     }
 
-    const namespace = process.env['SURREAL_NS']
-    const database = process.env['SURREAL_DB']
-    const username = process.env['SURREAL_USER']
-    const password = process.env['SURREAL_PASS']
+    const namespace = process.env['SURREAL_NAMESPACE']
+    const database = process.env['SURREAL_DATABASE']
+    const username = process.env['SURREAL_USERNAME']
+    const password = process.env['SURREAL_PASSWORD']
     const url = process.env['SURREAL_URL']
 
     // TODO check variables
@@ -93,7 +93,7 @@ export class DB extends Surreal {
     return donationLocationDates
   }
 
-   async saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]> {
+  async saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]> {
 
     console.log(
       `trying to save data with '${dates.length}' records`
@@ -101,18 +101,26 @@ export class DB extends Surreal {
 
     const resultLocations = await this.insert('donationLocation', dates.map(({ donationLocation }) => donationLocation))
 
-    const dateWithLocation = dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => {
+    await this.let('dates', dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => {
       const donationLocationRecordId = String(resultLocations.find((location) => location.name === name)?.id)
       return {
         dateOpen,
         dateClose,
-        donationLocation: donationLocationRecordId,
-        id: [donationLocationRecordId, dateOpen, dateClose]
+        donationLocation: donationLocationRecordId
       }
-    })
+    }))
 
-
-    const resultLocationDates = await this.insert('donationLocationDates', dateWithLocation)
+    const resultLocationDates = await this.query(`
+      FOR $date IN $dates {
+          CREATE donationLocationDates:[$date.dateOpen, $date.dateClose, $date.donationLocation] CONTENT {
+              dateOpen: $date.dateOpen,
+              dateClose: $date.dateClose,
+              donationLocation: $date.donationLocation
+          }
+        }
+        
+    `)
+    // const resultLocationDates = await this.insert('donationLocationDates', dateWithLocation)
 
     console.log(`successully saved '${resultLocations.length}' resultLocations records, and ${resultLocationDates.length} resultLocationDates records`)
 
@@ -120,7 +128,7 @@ export class DB extends Surreal {
   }
 
 
-   async getRows() {
+  async getRows() {
     const data = await this.query(
       `SELECT *, donationLocation.* 
     FROM donationLocationDates
