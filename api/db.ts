@@ -2,11 +2,16 @@ import { default as Surreal } from 'surrealdb.js'
 import dotenv from 'dotenv'
 import madaRequest from './madaRequest'
 import { getAddress } from '../src/helpers/getAddress'
-import { getDates } from '../src/helpers/getDates'
 import type { DonationLocationDate } from '../src/types'
 
-dotenv.config()
 
+export interface IDataBase extends Surreal {
+  getData(): Promise<DonationLocationDate[]>
+
+  saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]>
+
+  getRows(): Promise<DonationLocationDate[]>
+}
 
 export type ResponseRow = {
   DateDonation: string
@@ -34,21 +39,32 @@ export class DB extends Surreal {
 
   async init() {
     if (!db) {
-      console.warn('DB was not initialized')
+      console.warn('DB was not initialized. Initializing now')
+    }
+    console.warn('Loading env variables')
+
+    dotenv.config()
+
+    const envVars = {
+      ['namespace']: process.env['SURREAL_NAMESPACE']!,
+      ['database']: process.env['SURREAL_DATABASE']!,
+      ['username']: process.env['SURREAL_USERNAME']!,
+      ['password']: process.env['SURREAL_PASSWORD']!,
+      ['url']: process.env['SURREAL_URL']!
     }
 
-    const namespace = process.env['SURREAL_NAMESPACE']
-    const database = process.env['SURREAL_DATABASE']
-    const username = process.env['SURREAL_USERNAME']
-    const password = process.env['SURREAL_PASSWORD']
-    const url = process.env['SURREAL_URL']
+    for (const [key, value] of Object.entries(envVars)) {
+      if (value == undefined) {
+        return Promise.reject(`Missing env variable "${key}"`)
+      }
+    }
 
-    // TODO check variables
-
-    await this.connect(url)
+    const { namespace, database, username, password, url } = envVars
+    await this.connect(url!)
     await this.signin({ username, password })
     await this.use({ namespace, database })
-    console.log(`connected to db at ${url}`)
+    console.log(`Succesfully Connected DB at path ${url!}`)
+
   }
 
   async getData() {

@@ -1,8 +1,9 @@
-import type { DonationLocation } from '../api'
+import type { DonationLocation, IDataBase } from '../api'
 import type {
   PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
   PageContextBuiltInServer
 } from 'vike/types'
+
 import type { ComponentPublicInstance } from 'vue'
 
 export type Coords = {
@@ -42,6 +43,7 @@ type PageProps = {
 export type PageContextCustom = {
   Page: Page
   pageProps?: PageProps
+  db: IDataBase
   urlPathname: string
   exports: {
     getDocumentProps?: (pageProps: PageProps) => {
