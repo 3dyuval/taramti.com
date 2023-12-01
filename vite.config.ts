@@ -2,7 +2,7 @@ import type { UserConfigExport } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
-import vike, { UserConfig } from 'vike/plugin'
+import vike from 'vike/plugin'
 import vuetify from 'vite-plugin-vuetify'
 import { vavite } from 'vavite'
 import { compression } from 'vite-plugin-compression2'
@@ -27,12 +27,11 @@ export default defineConfig(async ({ mode }) => {
             links: OPTIONS.availableLocales.map(locale => ({
               url: `/${locale}/donation-location/${item.donationLocation.name}`,
               lang: locale
-          }))
+            }))
           })
       })
     }
   }
-
 
 
   const buildSteps = [
@@ -51,7 +50,7 @@ export default defineConfig(async ({ mode }) => {
     }
   ]
 
-  const ssr =  {
+  const ssr = {
     noExternal: [
       '@fawmi/vue-google-maps',
       'vuetify',
@@ -60,7 +59,7 @@ export default defineConfig(async ({ mode }) => {
   }
 
   const optimizeDeps = {
-    include: ['@fawmi/vue-google-maps', 'fast-deep-equal']
+    include: ['@fawmi/vue-google-maps', 'fast-deep-equal', 'fp-ts', 'date-fns']
   }
 
   return {
@@ -74,13 +73,14 @@ export default defineConfig(async ({ mode }) => {
       vike({ disableAutoFullBuild: true }),
       vavite({
         serverEntry: '/server/index.ts',
-        serveClientAssetsInDev: true
+        serveClientAssetsInDev: true,
+        reloadOn: 'static-deps-change'
       }),
       sitemap(
         {
           outDir: 'dist/client',
           hostname: process.env.VITE_HOST_URL || 'http://localhost/',
-          links,
+          links
           // readable: true,
           // generateRobotsTxt: true,
           // robots: [{
@@ -100,6 +100,6 @@ export default defineConfig(async ({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, 'src')
       }
-    },
+    }
   } satisfies UserConfigExport
 })

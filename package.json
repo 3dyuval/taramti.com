@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev-debug": "vavite-loader vite dev",
+    "dev-debug": "vavite-loader vite",
     "build": "set NODE_ENV=production && vavite build",
     "serve": "node -r dotenv/config dist/server/index.mjs",
     "seed": "node --loader  ts-node/esm --experimental-specifier-resolution=node -r dotenv/config ./api/seed.ts",
@@ -17,15 +17,21 @@
     "visualize": "npx vite-bundle-visualizer -c vite.configvisualize.ts"
   },
   "dependencies": {
-    "vue": "^3.3.9",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "vue": "^3.3.9"
   },
   "devDependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
     "@intlify/unplugin-vue-i18n": "^1.5.0",
+    "@intlify/vue-i18n-extensions": "^5.0.1",
     "@mdi/font": "^7.3.67",
     "@netlify/functions": "^2.4.0",
     "@phosphor-icons/web": "^2.0.3",
+    "@types/compression": "^1.7.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@types/promise-fs": "^2.1.5",
+    "@vavite/node-loader": "^3.0.0",
     "@vitejs/plugin-vue": "^4.5.0",
     "@vue/compiler-sfc": "^3.3.9",
     "@vue/server-renderer": "^3.3.9",
@@ -40,6 +46,8 @@
     "lottie-web-vue": "^2.0.7",
     "phosphor-css": "^3.0.0",
     "pinia": "^2.1.7",
+    "pnpm": "^8.11.0",
+    "prettier": "3.1.0",
     "primeicons": "^6.0.1",
     "primevue": "^3.41.1",
     "sass": "^1.69.5",
@@ -52,20 +60,12 @@
     "vike": "^0.4.147",
     "vite": "^4.0.2",
     "vite-plugin-compression2": "^0.11.0",
+    "vite-plugin-sitemap": "^0.5.3",
     "vite-plugin-vuetify": "^1.0.2",
+    "vitest": "^0.34.6",
     "vue-i18n": "^9.8.0",
     "vue-tsc": "^1.8.22",
-    "vuetify": "^3.4.3",
-    "@intlify/vue-i18n-extensions": "^5.0.1",
-    "@types/compression": "^1.7.5",
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.10.0",
-    "@types/promise-fs": "^2.1.5",
-    "@vavite/node-loader": "^3.0.0",
-    "pnpm": "^8.11.0",
-    "prettier": "3.1.0",
-    "vite-plugin-sitemap": "^0.5.3",
-    "vitest": "^0.34.6"
+    "vuetify": "^3.4.3"
   },
   "engines": {
     "node": ">=18"
