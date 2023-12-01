@@ -27,7 +27,8 @@
       },
       "openUntil": "Open untill {time}",
       "openingTime": "Opening hour",
-      "willClose": "Will close {time}"
+      "willClose": "Will close {time}",
+      "willOpen": "Opening {time}"
     }
   },
   "meta": {
@@ -40,7 +41,8 @@
   "search": {
     "description": "Find a place",
     "isOpen": "Open now",
-    "title": "Search",
+    "noData": "No results found",
+    "title": "Search Donation Location",
     "willOpen": "Will open today"
   },
   "settings": {

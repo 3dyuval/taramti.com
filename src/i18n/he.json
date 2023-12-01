@@ -27,7 +27,8 @@
       },
       "openUntil": "פתוח עד {time}",
       "openingTime": "שעת פתיחה",
-      "willClose": "נסגר {time}"
+      "willClose": "נסגר {time}",
+      "willOpen": "נפתח {time}"
     }
   },
   "meta": {
@@ -40,8 +41,9 @@
   "search": {
     "description": "חפש מקום",
     "isOpen": "פתוח עכשיו?",
+    "noData": "לא נמצאו תוצאות",
     "title": "חפש מקום לתרום דם",
-    "willOpen": "פותח היום?"
+    "willOpen": "נפתח היום?"
   },
   "settings": {
     "changeLocale": {
