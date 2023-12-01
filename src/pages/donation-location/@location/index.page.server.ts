@@ -1,7 +1,6 @@
 import { Coords, PageContext, PageProps } from '@/types'
 import { render } from 'vike/abort'
 import { getAddress } from '@/helpers/getAddress'
-import { db } from '../../../../api/db'
 
 export const passToClient = ['pageProps', 'routeParams']
 
@@ -55,17 +54,12 @@ export async function onBeforeRender(pageContext: PageContext) {
 
   try {
 
-    const location = pageContext.routeParams.location?.replaceAll(/\-/g, ' ')
+    const location = pageContext.routeParams.location
 
-    // console.log(`converted ${pageContext.routeParams?.location} to ${location}`)
+    const [result] = await pageContext.db.query(`SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $location;`,
+      { location })
 
-
-    const [result] = await db.query(`
-            SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $location;
-    `,{ location })
-
-    // console.log(response.result[0].donationLocation)
-    if (!result.length) {
+    if (!location || !result.length) {
       throw render(404)
     }
 

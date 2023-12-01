@@ -125,7 +125,7 @@ const items = computed(() => {
         color='primary'
         variant='tonal'
         class='my-4 flex-1-1'
-        :href='`/donation-location/${settings.query?.replaceAll(/ /g, "-")}`'
+        :href='`donation-location/${settings.query}`'
         :disabled='settings.query === row?.donationLocation.name'
       />
     </v-card-actions>
