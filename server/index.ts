@@ -28,7 +28,8 @@ async function startServer() {
 
     const pageContextInit = {
       urlOriginal: req.originalUrl,
-      localeHeader
+      localeHeader,
+      db
     }
 
     const pageContext = await renderPage(pageContextInit)
