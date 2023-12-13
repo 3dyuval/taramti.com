@@ -1,16 +1,29 @@
 import en from './en.json'
 import he from './he.json'
 import ru from './ru.json'
+import vHe from 'vuetify/lib/locale/he'
+import vRu from 'vuetify/lib/locale/ru'
+import vEn from 'vuetify/lib/locale/en'
 
 
 const OPTIONS = {
   legacy: false,
+  globalInjection: true,
   fallbackLocale: 'en',
   availableLocales: ['he', 'en', 'ru'],
   messages: {
-    he,
-    en,
-    ru
+    he: {
+      ...he,
+      $vuetify: vHe
+    },
+    ru: {
+      ...ru,
+      $vuetify: vRu
+    },
+    en: {
+      ...en,
+      $vuetify: vEn
+    }
   }
 }
 

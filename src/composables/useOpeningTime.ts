@@ -1,4 +1,4 @@
-import { isPast, isFuture } from 'date-fns'
+import { isFuture, isPast, lightFormat } from 'date-fns'
 
 type OpeningTime = {
   willOpen: boolean
@@ -10,36 +10,26 @@ type OpeningTime = {
   closingDate: Date
 }
 
-export function useOpeningTime(from: string, to: string): OpeningTime {
-  if (!from || !to) {
-    throw 'Missing args "from" or "to"'
+export function useOpeningTime(fromDateString: string, toDateString: string): OpeningTime {
+  if (!fromDateString || !toDateString) {
+    throw new Error(`Missing args ${fromDateString} ${toDateString}`)
   }
 
-  const fromHourToday = new Date()
-  const toHourToday = new Date()
+  const from = new Date(fromDateString)
+  const to = new Date(toDateString)
 
-  const parseHoursAndMinutes = (time: string): [number, number] => {
-    const [hours, minutes] = time.split(':').map(Number)
-    return [hours, minutes]
-  }
+  const willOpen = isFuture(from)
+  const isOpen = isPast(from) && isFuture(to)
+  const wasOpen = isPast(from) && isPast(to)
 
-  const [fromHour, fromMinute] = parseHoursAndMinutes(from)
-  const [toHour, toMinute] = parseHoursAndMinutes(to)
-
-  fromHourToday.setHours(fromHour, fromMinute, 0)
-  toHourToday.setHours(toHour, toMinute, 0)
-
-  const willOpen = isFuture(fromHourToday)
-  const isOpen = isPast(fromHourToday) && isFuture(toHourToday)
-  const wasOpen = isPast(fromHourToday) && isPast(toHourToday)
 
   return {
-    openingTime: from,
-    closingTime: to,
-    openingDate: fromHourToday,
-    closingDate: toHourToday,
+    openingTime: lightFormat(from, 'HH:mm'),
+    closingTime: lightFormat(to, 'HH:mm'),
+    openingDate: from,
+    closingDate: to,
     willOpen,
     isOpen,
-    wasOpen,
+    wasOpen
   }
 }

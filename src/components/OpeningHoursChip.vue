@@ -1,8 +1,6 @@
 <script setup lang='ts'>
-import { computed } from 'vue'
-import { intlFormatDistance } from 'date-fns'
+import { intlFormatDistance, isAfter, isBefore, subHours } from 'date-fns'
 import { useOpeningTime } from '@/composables/useOpeningTime'
-import { usePageContext } from '@/composables/usePageContext'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
@@ -10,9 +8,8 @@ const props = defineProps<{
   toHour: string
 }>()
 
-const { locale } = usePageContext()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const {
   willOpen,
   isOpen,
@@ -23,35 +20,18 @@ const {
   closingTime
 } = useOpeningTime(props.fromHour, props.toHour)
 
-const caption = computed(() => {
-  if (willOpen) {
-    return t('location.time.willOpen', {
-      time: intlFormatDistance(openingDate, new Date(), { locale })
-    })
-  }
-  if (isOpen) {
-    return t('location.time.willOpen', { time: closingTime })
-  }
 
-  if (closingDate.getTime() - Date.now() < 2 * 60 * 60 * 1000) {
-    // check if closing date is in the next 2 hours
-    return t('location.time.willClose', {
-      time: intlFormatDistance(closingDate, new Date(), { locale })
-    })
-  }
-
-  if (wasOpen) {
-    return t('location.time.closed')
-  }
-})
 </script>
 <template>
   <v-chip
+    :text=" (willOpen) ?  $t('location.time.willOpen', {time: intlFormatDistance(openingDate, new Date(), { locale })})
+          : (isOpen) ? $t('location.time.willOpen', { time: closingTime })
+          : (isAfter(new Date(), subHours(closingDate, 2))) && isBefore(new Date(), closingDate) ? $t('location.time.willClose', { time: intlFormatDistance(closingDate, new Date(), { locale })})
+          : (wasOpen) ? $t('location.time.closed', { time: openingTime }) : `${openingTime} - ${closingTime}`"
+    prepend-icon='ph-clock'
     size='large'
     class='opening-hours'
     :color="isOpen ? 'primary' : 'default'"
-    :text='caption'
-    prepend-icon='ph-clock'
   />
 </template>
 

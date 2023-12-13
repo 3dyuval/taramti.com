@@ -2,9 +2,8 @@
 import SelectLocale from '@/components/SelectLocale.vue'
 import SearchCard from '@/components/SearchCard.vue'
 import { Row } from '@/types'
-import { onBeforeMount, ref } from 'vue'
+import { ref } from 'vue'
 import { usePageContext } from '@/composables/usePageContext'
-import { useI18n } from 'vue-i18n'
 
 const { urlPathname } = usePageContext()
 const props = defineProps<Props>()
@@ -16,21 +15,12 @@ type Props = {
 
 const modal = ref(false)
 
-const { t } = useI18n()
-
-
-onBeforeMount(() => {
-  let dir = t('settings.dir')
-  document.dir = dir
-  document.body.classList.add(dir)
-})
-
 const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
   import.meta.env['VITE_HOST_URL']
 
 </script>
 <template>
-  <v-layout class='taramti-layout-bar'>
+  <v-app class='taramti-layout-bar' full-height>
     <v-app-bar color='surface-variant'>
       <template #prepend>
         <a :href='url' class='tamati-toolbar-title'>
@@ -39,12 +29,13 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
       </template>
       <template #append>
         <select-locale />
-        <h2 v-t="'meta.tag'" />
+        <h2 role='doc-subtitle' v-t="'meta.tag'" />
         <v-btn
           @click='modal = true'
           rounded
           variant='outlined'
           class='mx-3'
+          role='search'
         >
           <v-icon icon='magnifying-glass' size='20' />
         </v-btn>
@@ -56,24 +47,58 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
     <main>
       <slot />
     </main>
-  </v-layout>
+    <v-footer>
+      <v-card elevation='0'>
+        <v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col cols='12' md='6'>
+                <v-card-title class='text-center'>
+                  <h3 v-t="'meta.title'" />
+                </v-card-title>
+                <v-card-text>
+                  <p v-t="'meta.description'" />
+                  <p v-t="'meta.contactText'" />
+                </v-card-text>
+              </v-col>
+              <v-col cols='12' md='6'>
+                <v-card-title class='text-center'>
+                  <h3 v-t="'meta.contact'" />
+                </v-card-title>
+                <v-card-text>
+                  <a href='mailto://info@taramti.com'>info✉️taramti.com</a>
+                </v-card-text>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card-title>
+      </v-card>
+    </v-footer>
+  </v-app>
 </template>
 
 <style lang='scss'>
 
 .taramti-layout-bar {
-  height: 100lvmin;
+  //height: 100lvmin;
 
   .tamati-toolbar-title {
     text-decoration: none;
     color: inherit;
+
+  }
+
+  h2 {
+    font-size: 3.25vmin;
+    line-height: 3vmin;
+    text-align: center;
   }
 }
 
 main {
-  width: 100%;
+  //width: 100%;
   top: 64px;
-  height: 100%;
+  height: 100svh;
 }
 
 </style>

@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-import type { Row } from '@/types'
 import SearchCard from '@/components/SearchCard.vue'
+import type { DonationLocationDate } from '@/types'
 
 const props = defineProps<{
-  rows: Row[]
+  rows: DonationLocationDate[]
 }>()
 
 </script>

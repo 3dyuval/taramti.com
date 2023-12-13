@@ -1,112 +1,159 @@
 import { default as Surreal } from 'surrealdb.js'
-import mada from './mada'
-import type { Row } from '../src/types'
-import { getDates } from '../src/helpers/getDates'
+import dotenv from 'dotenv'
+import madaRequest from './madaRequest'
 import { getAddress } from '../src/helpers/getAddress'
+import type { DonationLocationDate } from '../src/types'
+
+
+export interface IDataBase extends Surreal {
+  getData(): Promise<DonationLocationDate[]>
+
+  saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]>
+
+  getRows(): Promise<DonationLocationDate[]>
+}
+
+export type ResponseRow = {
+  DateDonation: string
+  FromHour: string
+  ToHour: string
+  Name: string
+  City: string
+  Street: string
+  NumHouse: string
+  AccountType: string
+  SchedulingURL: string
+}
 
 export let db: Surreal
 
 export class DB extends Surreal {
+
   constructor() {
     super()
-    this.init()
+    if (db) {
+      console.warn('DB was already initialized')
+    }
+    return db = this
   }
 
   async init() {
-    if (db) {
-      throw new Error('New instance cannot be created!!')
+    if (!db) {
+      console.warn('DB was not initialized. Initializing now')
     }
-    db = this
+    console.warn('Loading env variables')
 
-    const ns = process.env['SURREAL_NAMESPACE']
-    const dbname = process.env['SURREAL_DB']
-    const user = process.env['SURREAL_USER']
-    const pass = process.env['SURREAL_PASS']
-    const url = process.env['DB_URL']
+    dotenv.config()
 
-    await this.connect(url)
-    await this.signin({ user, pass })
-    await this.use({ ns, db: dbname })
-    console.log(`connected to db at ${url}`)
+    const envVars = {
+      ['namespace']: process.env['SURREAL_NAMESPACE']!,
+      ['database']: process.env['SURREAL_DATABASE']!,
+      ['username']: process.env['SURREAL_USERNAME']!,
+      ['password']: process.env['SURREAL_PASSWORD']!,
+      ['url']: process.env['SURREAL_URL']!
+    }
+
+    for (const [key, value] of Object.entries(envVars)) {
+      if (value == undefined) {
+        return Promise.reject(`Missing env variable "${key}"`)
+      }
+    }
+
+    const { namespace, database, username, password, url } = envVars
+    await this.connect(url!)
+    await this.signin({ username, password })
+    await this.use({ namespace, database })
+    console.log(`Succesfully Connected DB at path ${url!}`)
+
   }
 
-  async seed() {
-    try {
-      const donationLocations = new Map<
-        string,
-        Row & { timeOpen: string; timeClose: string }
-      >()
-      const addresses = new Set<Record<string, string>>()
+  async getData() {
 
-      const { Result, Success } = await fetch(mada()).then((res) => res.json())
+    const { Result, Success } = await fetch(madaRequest()).then((res) => res.json())
 
-      if (Success) {
-        for (let rec of JSON.parse(Result) as Row[]) {
-          const [timeOpen, timeClose] = getDates(rec).map((date) =>
-            date.toISOString(),
-          )
+    if (!Success) {
+      return Promise.reject('No data was fetched')
+    }
 
-          const getName = (rec: Row) =>
-            (rec.Name
-              ? rec.Name
-              : rec.AccountType
-              ? rec.AccountType
-              : getAddress(rec)
-            )
-              .replace(/\s+/g, ' ')
-              .trim()
+    const donationLocationDates = new Array<DonationLocationDate>()
+    for (let row of JSON.parse(Result)) {
+      const [dateOpen, dateClose] = getDates(row)
+        .map((date) => date.toISOString())
 
-          if (timeOpen && timeClose) {
-            donationLocations.set(getName(rec), {
-              timeOpen,
-              timeClose,
-              ...rec,
-            })
+      const name = (row.Name
+          ? row.Name
+          : row.AccountType
+            ? row.AccountType
+            : getAddress(row)
+      )
+        .replace(/\s+/g, ' ')
+        .trim()
+
+      if (name && dateOpen && dateClose)
+        donationLocationDates.push({
+          dateOpen,
+          dateClose,
+          donationLocation: {
+            name,
+            schedulingUrl: row.SchedulingURL,
+            address: {
+              city: !row?.City || row.City === '' ? null : row.City,
+              street: !row?.Street || row.Street === '' ? null : row.Street,
+              number: !row?.NumHouse || row.NumHouse === '' ? null : row.NumHouse
+            }
+          }
+        })
+    }
+
+
+    return donationLocationDates
+  }
+
+  async saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]> {
+
+    console.log(
+      `trying to save data with '${dates.length}' records`
+    )
+
+    const resultLocations = await this.insert('donationLocation', dates.map(({ donationLocation }) => donationLocation))
+
+    await this.let('dates', dates.map(({ dateOpen, dateClose, donationLocation: { name } }, index) => {
+      const donationLocationRecordId = String(resultLocations.find((location) => location.name === name)?.id)
+      return {
+        dateOpen,
+        dateClose,
+        donationLocation: donationLocationRecordId
+      }
+    }))
+
+    const resultLocationDates = await this.query(`
+      FOR $date IN $dates {
+          CREATE donationLocationDates:[$date.dateOpen, $date.dateClose, $date.donationLocation] CONTENT {
+              dateOpen: $date.dateOpen,
+              dateClose: $date.dateClose,
+              donationLocation: $date.donationLocation
           }
         }
-      }
+        
+    `)
+    // const resultLocationDates = await this.insert('donationLocationDates', dateWithLocation)
 
-      for (const [name, rec] of donationLocations.entries()) {
-        addresses.add({
-          name,
-          city: !rec?.City || rec.City === '' ? null : rec.City,
-          street: !rec?.Street || rec.Street === '' ? null : rec.Street,
-          number: !rec?.NumHouse || rec.NumHouse === '' ? null : rec.NumHouse,
-        })
-      }
+    console.log(`successully saved '${resultLocations.length}' resultLocations records, and ${resultLocationDates.length} resultLocationDates records`)
 
-      console.log(
-        `trying to populate 'addresses' with '${addresses.length}' records`,
-      )
-
-      const addressResult = await this.insert(
-        'addresses',
-        Array.from(addresses),
-      )
-
-      console.log(`successully written '${addressResult.length}' records`)
-      console.log(
-        `trying to populate 'donationLocation' with '${donationLocations.length}' records`,
-      )
-      const donationLocationsResult = await this.insert(
-        'donationLocation',
-        addressResult.map(({ id, name }) => {
-          const rec = donationLocations.get(name)
-          return {
-            name,
-            address: id,
-            timeOpen: rec?.timeOpen,
-            timeClose: rec?.timeClose,
-          }
-        }),
-      )
-      console.log(
-        `successully written '${donationLocationsResult.length}' records`,
-      )
-      await this.close()
-      console.log('connection closed')
-    } catch (e) {
-      console.error('ERROR', e)
-    }
+    return dates
   }
+
+  async getRows() {
+    let [result] = await this.query(
+      `SELECT  *, donationLocation.* FROM donationLocationDates WHERE time::floor(dateOpen, 1d) >= time::floor(time::now(), 1d);
+    `)
+
+    if (!result?.length) {
+      const data = await this.getData()
+      result = await this.saveData(data)
+    }
+    return result
+  }
+
 }
+

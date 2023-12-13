@@ -25,21 +25,30 @@
         "text": "Disclaimer: The scheduling times for blood donations displayed on this site are sourced from external providers, and while we strive for accuracy, we cannot guarantee 100% verification of the data",
         "title": "Before you go"
       },
-      "openUntill": "Open untill {time}",
+      "openUntil": "Open untill {time}",
       "openingTime": "Opening hour",
       "willClose": "Will close {time}",
-      "willOpen": "Will open {time}"
+      "willOpen": "Opening {time}"
     }
   },
   "meta": {
+    "contact": "Contact",
+    "contactText": "This site was build with non profit. Do you want to help or know more? Please contact!",
     "description": "Easily search and find place to donate blood in Israel",
     "tag": "Find Blood Donation Locations",
     "title": "Taramti"
   },
   "search": {
-    "description": "Find a place"
+    "description": "Find a place",
+    "isOpen": "Open now",
+    "noData": "No results found",
+    "title": "Search Donation Location",
+    "willOpen": "Will open today"
   },
   "settings": {
+    "changeLocale": {
+      "name": "Change Languague"
+    },
     "dir": "ltr",
     "locale": {
       "en": "English",

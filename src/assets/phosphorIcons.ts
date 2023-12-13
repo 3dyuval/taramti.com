@@ -10,7 +10,7 @@ const aliases: IconAliases = {
   cancel: 'ph-x-circle',
   close: 'ph-x',
   delete: 'ph-x-circle',
-  clear: 'ph-x-eraser',
+  clear: 'x-circle solid',
   success: 'ph-check',
   info: 'ph-info',
   clock: 'ph-clock',
@@ -38,16 +38,18 @@ const aliases: IconAliases = {
   unfold: '...',
   file: '...',
   plus: '...',
-  minus: '...',
+  minus: '...'
 }
 
 const ph: IconSet = {
   component: (props: IconProps) => {
-    return h('i', { ...props, class: `ph 
+    return h('i', {
+      ...props, class: `ph 
     ${props.icon?.startsWith('ph-') ? props.icon : 'ph-' + props.icon}
     ${props.weight ? 'ph-' + props.weight : ''}
-    ` })
-  },
+    `
+    })
+  }
 }
 
 export { aliases, ph }

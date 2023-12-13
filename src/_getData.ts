@@ -1,19 +1,16 @@
-export { onBeforeRender }
 import { PageContext } from '@/types'
-import { getData } from '../api'
+
+export { onBeforeRender }
 
 
-async function onBeforeRender(pageContext?: PageContext) {
-  const rows = await getData().catch(e => {
-    console.error(e)
-    return []
-  })
+async function onBeforeRender(pageContext: PageContext) {
+
 
   return {
     pageContext: {
       pageProps: {
-        rows,
-      },
-    },
+        rows: await pageContext.db.getRows() || []
+      }
+    }
   }
 }
