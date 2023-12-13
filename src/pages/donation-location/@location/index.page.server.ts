@@ -10,8 +10,8 @@ enum Errors {
 }
 
 export function getDocumentProps(pageProps: PageProps) {
-  const address = getAddress(pageProps.row)
-  const title = `תרומת דם ב "${pageProps.row?.Name || address}"`
+  const address = getAddress(pageProps.location)
+  const title = `תרומת דם ב "${pageProps.location?.Name || address}"`
   return { title, description: address }
 }
 
@@ -56,8 +56,10 @@ export async function onBeforeRender(pageContext: PageContext) {
 
     const location = pageContext.routeParams.location
 
-    const [result] = await pageContext.db.query(`SELECT *, donationLocation.* FROM donationLocationDates WHERE donationLocation.name == $location;`,
-      { location })
+
+    //TODO query the getLocationByName
+
+    const location = await pageContext.db.getLocationByName()
 
     if (!location || !result.length) {
       throw render(404)

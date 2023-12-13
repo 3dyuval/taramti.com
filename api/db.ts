@@ -10,7 +10,7 @@ export interface IDataBase extends Surreal {
 
   saveData(dates: DonationLocationDate[]): Promise<DonationLocationDate[]>
 
-  getRows(): Promise<DonationLocationDate[]>
+  getLocations(): Promise<DonationLocationDate[]>
 }
 
 export type ResponseRow = {
@@ -143,7 +143,7 @@ export class DB extends Surreal {
     return dates
   }
 
-  async getRows() {
+  async getLocations() {
     let [result] = await this.query(
       `SELECT  *, donationLocation.* FROM donationLocationDates WHERE time::floor(dateOpen, 1d) >= time::floor(time::now(), 1d);
     `)

@@ -4,7 +4,7 @@ import { renderPage } from 'vike/server'
 import httpDevServer from 'vavite/http-dev-server'
 import compression from 'compression'
 import { root } from './root'
-import { DB } from '../api/db'
+import { DB } from '../api'
 
 
 startServer()
@@ -28,7 +28,7 @@ async function startServer() {
 
     const pageContextInit = {
       urlOriginal: req.originalUrl,
-      localeHeader,
+      locale: localeHeader || 'en',
       db
     }
 

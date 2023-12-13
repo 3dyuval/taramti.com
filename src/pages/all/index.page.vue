@@ -3,10 +3,9 @@
 import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { useI18n } from 'vue-i18n'
 import { ref } from 'vue'
-import { Row } from '@/types'
 
 const props = defineProps<{
-  rows: Row[]
+  locations: DonationLocationDate[]
 }>()
 
 
@@ -38,7 +37,7 @@ const groupBy = ref([{ key: 'City', order: 'asc', title: 'עיר' }])
     :search='search'
     dir='rtl'
     :headers='headers'
-    :items='rows'
+    :items='locations'
     items-per-page='20'
     show-expand
     prev-icon='ph-caret-next'

@@ -13,12 +13,12 @@ export const passToClient = [
   'locale'
 ]
 
-export { onBeforeRender } from '@/_getData'
 
 async function render(pageContext: PageContextServer) {
 
   const { page, store } = createPageApp(pageContext, false)
   let pageHTML = ''
+
 
   if (pageContext.Page) {
     pageHTML = await renderToString(page)
@@ -91,7 +91,7 @@ async function render(pageContext: PageContextServer) {
   return {
     documentHtml,
     pageContext: {
-      initialStoreState: store.state.value,
+      initialStoreState: store.state.value
     }
   }
 }

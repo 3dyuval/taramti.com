@@ -3,11 +3,11 @@ import { DonationLocationDate } from '@/types'
 import { computed, reactive } from 'vue'
 import { useOpeningTime } from '@/composables/useOpeningTime'
 
-const { rows, row } = defineProps<Props>()
+const { locations, row } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 type Props = {
-  rows: DonationLocationDate[] //TODO change to locations
+  locations: DonationLocationDate[] //TODO change to locations
   row?: DonationLocationDate,
   closeBtn?: boolean
 }
@@ -28,7 +28,7 @@ const settings = reactive<{
 
 
 const items = computed(() => {
-  return rows.map((item) => ({
+  return locations.map((item) => ({
     title: item.donationLocation.name,
     value: item.donationLocation.name,
     subtitle: item.donationLocation.address.city,

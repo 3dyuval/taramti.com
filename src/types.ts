@@ -1,15 +1,22 @@
-import type { DonationLocation, IDataBase } from '../api'
 import type {
   PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
   PageContextBuiltInServer
 } from 'vike/types'
-
+import type { IDataBase } from '../api/db'
 import type { ComponentPublicInstance } from 'vue'
 
 export type Coords = {
   lat: string;
   lng: string
 }
+
+export interface IStorage {
+  init: () => this;
+  getLocations: (dateFrom?: string, dateTo?: string) => Promise<DonationLocationDate>;
+  getLocationByName: (name: string) => Promise<DonationLocationDate>;
+}
+
+
 export type DonationLocationDate = {
   dateOpen: string
   dateClose: string
@@ -34,17 +41,21 @@ export type { Component }
 type Component = ComponentPublicInstance // https://stackoverflow.com/questions/63985658/how-to-type-vue-instance-out-of-definecomponent-in-vue-3/63986086#63986086
 type Page = Component
 type PageProps = {
-  rows: DonationLocation[],
-  row?: DonationLocation,
+  locations: DonationLocationDate[],
+  location?: DonationLocationDate,
   coords?: Coords,
   error?: string
 }
 
 export type PageContextCustom = {
+  locale: string
   Page: Page
   pageProps?: PageProps
   db: IDataBase
   urlPathname: string
+  routeParams: {
+    location?: string
+  },
   exports: {
     getDocumentProps?: (pageProps: PageProps) => {
       title?: string;

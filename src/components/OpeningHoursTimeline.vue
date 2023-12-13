@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { DonationLocationDate, Row } from '@/types'
+import type { DonationLocationDate } from '@/types'
 import { useOpeningTime } from '@/composables/useOpeningTime'
 
 const props = defineProps<{ row: DonationLocationDate }>()

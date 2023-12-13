@@ -9,7 +9,8 @@ function onBeforeRoute(pageContext: PageContextServer) {
   if (pageContext.urlOriginal.startsWith('/' + pageContext.locale)) {
     return {
       pageContext: {
-        urlLogical: pageContext.urlOriginal.replace(`/${pageContext.locale}`, '')
+        urlLogical: '/'
+        // urlLogical: pageContext.urlOriginal.replace(`/${pageContext.locale}`, '')
       }
     }
   } else {

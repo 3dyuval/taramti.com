@@ -3,7 +3,7 @@ import SearchCard from '@/components/SearchCard.vue'
 import type { DonationLocationDate } from '@/types'
 
 const props = defineProps<{
-  rows: DonationLocationDate[]
+  locations: DonationLocationDate[]
 }>()
 
 </script>

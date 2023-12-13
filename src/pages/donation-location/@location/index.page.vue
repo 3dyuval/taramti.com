@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { Coords, Row } from '@/types'
+import type { Coords, DonationLocationDate } from '@/types'
 import { ref } from 'vue'
 import Map from '@/components/Map.vue'
 import OpeningHoursTimeline from '@/components/OpeningHoursTimeline.vue'
@@ -10,8 +10,8 @@ import { useShare } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
-  rows: Row[]
-  row: Row
+  locations: DonationLocationDate[]
+  location: DonationLocationDate
   coords: Coords
   error?: string
 }>()

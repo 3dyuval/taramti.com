@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import SelectLocale from '@/components/SelectLocale.vue'
 import SearchCard from '@/components/SearchCard.vue'
-import { Row } from '@/types'
 import { ref } from 'vue'
 import { usePageContext } from '@/composables/usePageContext'
 
@@ -9,8 +8,8 @@ const { urlPathname } = usePageContext()
 const props = defineProps<Props>()
 
 type Props = {
-  rows: Row[]
-  row: Row
+  locations: DonationLocationDate[]
+  row: Location
 }
 
 const modal = ref(false)
