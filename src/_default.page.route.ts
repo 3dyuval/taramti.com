@@ -16,7 +16,7 @@ export function onBeforeRoute(pageContext: PageContextServer) {
   // Check if the first part of the URL path is a valid locale
   if (!OPTIONS.availableLocales.includes(firstPart)) {
     // If it's not, redirect to a URL that includes the locale
-    throw redirect(`/${pageContext.locale}${url}`, 302)
+    throw redirect(`/${pageContext.locale}/${url}`, 301)
   }
 
   // Remove trailing slash if it exists
@@ -33,7 +33,7 @@ export function onBeforeRoute(pageContext: PageContextServer) {
   // Handle locale
   return {
     pageContext: {
-      urlLogical: url.replace(`/${currentLocale}`, '/'),
+      urlLogical: url.replace(`/${currentLocale}`, ''),
       locale: currentLocale
     }
   }

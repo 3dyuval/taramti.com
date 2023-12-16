@@ -2,7 +2,6 @@ import type {
   PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
   PageContextBuiltInServer
 } from 'vike/types'
-import type { IDataBase } from '../api/db'
 import type { ComponentPublicInstance } from 'vue'
 
 export type Coords = {
@@ -12,7 +11,7 @@ export type Coords = {
 
 export interface IStorage {
   init: () => Promise<this>;
-  getLocations: (dateFrom?: string, dateTo?: string) => Promise<DonationLocationDate>;
+  getLocations: (dateFrom?: string, dateTo?: string) => Promise<DonationLocationDate[]>;
   getLocationByName: (name: string) => Promise<DonationLocationDate>;
 }
 
@@ -51,7 +50,7 @@ export type PageContextCustom = {
   locale: string
   Page: Page
   pageProps?: PageProps
-  db: IDataBase
+  db: IStorage
   urlPathname: string
   routeParams: {
     location?: string

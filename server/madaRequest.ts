@@ -1,6 +1,5 @@
 import { getDates } from '../src/helpers/getDates'
 import type { DonationLocationDate } from '../src/types'
-import { getAddress } from '../src/helpers/getAddress'
 
 type MadaRespone = {
   'ErrorCode': null,
@@ -62,11 +61,7 @@ export const requestMadaData = async (): Promise<DonationLocationDate[]> => {
         dateOpen,
         dateClose,
         donationLocation: {
-          name: item.Name || item.AccountType || getAddress({
-            city: item.City,
-            street: item.Street,
-            number: item.NumHouse
-          }),
+          name: item.Name || item.AccountType,
           schedulingUrl: item.SchedulingURL,
           address: {
             city: item.City,

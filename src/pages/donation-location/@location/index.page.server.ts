@@ -1,5 +1,5 @@
 import { Coords, PageContext, PageProps } from '@/types'
-import { render } from 'vike/abort'
+import { redirect, render } from 'vike/abort'
 import { getAddress } from '@/helpers/getAddress'
 
 export const passToClient = ['pageProps', 'routeParams']
@@ -11,8 +11,8 @@ enum Errors {
 
 export function getDocumentProps(pageProps: PageProps) {
   const address = getAddress(pageProps.location)
-  const title = `תרומת דם ב "${pageProps.location?.Name || address}"`
-  return { title, description: address }
+  const title = `תרומת דם ב"${pageProps.location?.donationLocation.name}"`
+  return { title, description: address, address }
 }
 
 export async function onBeforeRender(pageContext: PageContext) {
@@ -54,23 +54,24 @@ export async function onBeforeRender(pageContext: PageContext) {
 
   try {
 
-    const location = pageContext.routeParams.location
+    const locationName = pageContext.routeParams.location
 
+    if (!locationName) {
+      throw redirect('/')
+    }
 
-    //TODO query the getLocationByName
+    const location = await pageContext.db.getLocationByName(locationName)
 
-    const location = await pageContext.db.getLocationByName()
-
-    if (!location || !result.length) {
+    if (!location) {
       throw render(404)
     }
 
-    const coords = await getCoordsFromGoogleMaps(getAddress(result[0].donationLocation.address))
+    const coords = await getCoordsFromGoogleMaps(getAddress(location))
 
     return {
       pageContext: {
         pageProps: {
-          row: result[0],
+          location,
           coords
         }
       }

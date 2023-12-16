@@ -22,12 +22,12 @@ export class DB implements IStorage {
   async getLocations(dateFrom?: string, dateTo?: string) {
     // from and to parsed from url params
 
-    let items = this.cache.get('all')
+    let items: DonationLocationDate[] = this.cache.get('all') as DonationLocationDate[]
     if (!items) {
       items = await requestMadaData()
       this.cache.set('all', items)
     }
-    
+
     return items.filter(({ dateOpen }) =>
       !dateFrom || isAfter(dateOpen, new Date(dateFrom))
     ).filter(({ dateClose }) =>

@@ -20,7 +20,7 @@ const { t } = useI18n()
 
 const center = ref<Coords>(props.coords)
 
-const address = getAddress(props.row)
+const address = getAddress(props.location)
 
 const pageContext = usePageContext()
 
@@ -45,10 +45,10 @@ const { share } = useShare({
       <v-card elevation='0'>
         <template #title>
           <div class='d-flex flex-row justify-space-between flex-wrap'>
-            <h3 class='mb-4'>{{ row.donationLocation.name }}</h3>
+            <h3 class='mb-4'>{{ location.donationLocation.name }}</h3>
             <opening-hours-chip
-              :from-hour='row.dateOpen'
-              :to-hour='row.dateClose'
+              :from-hour='location.dateOpen'
+              :to-hour='location.dateClose'
             />
           </div>
         </template>
@@ -95,7 +95,7 @@ const { share } = useShare({
       <div class='details-card-expand'>
         <v-card
           @click='drawer = !drawer'
-          :subtitle='row.donationLocation.name'
+          :subtitle='location.donationLocation.name'
           class='details-card px-12'
           elevation='0'
         >
@@ -111,7 +111,7 @@ const { share } = useShare({
               />
             </v-card-actions>
           </template>
-          <opening-hours-timeline :row='row' />
+          <opening-hours-timeline :row='location' />
           <v-alert icon='ph-heart'
                    :title="t('location.time.disclaimer.title')"
                    :text="t('location.time.disclaimer.text')"
@@ -128,7 +128,7 @@ const { share } = useShare({
       <v-list-item
         variant='text'
         color='primary'
-        :href='props.row.donationLocation.schedulingUrl'
+        :href='props.location.donationLocation.schedulingUrl'
         target='_blank'
         :title="t('location.schedule')"
         append-icon='hand-pointing'
