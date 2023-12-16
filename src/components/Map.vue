@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import mapStylesSilver from '@/assets/map-styles-silver.json'
 import { ref } from 'vue'
 import { Coords } from '@/types'
@@ -17,37 +17,38 @@ function onHover() {
 const open = ref(true)
 
 const icon = new URL('@/assets/drop.png', import.meta.url).href
+
 </script>
 
 <template>
-  <error v-if="error" :error-message="'אין כתובת להצגה במפה'" />
-  <GMapMap :center="center" :zoom="15" :clickable="true" :draggable="false">
+  <error v-if='error' :error-message="'אין כתובת להצגה במפה'" />
+  <GMapMap :center='center' :zoom='15' :clickable='true' :draggable='false'>
     <GMapMarker
-      class="map-marker"
-      :position="center"
-      @mouseover="onHover"
-      @click="open = true"
-      :options="{
+      class='map-marker'
+      :position='center'
+      @mouseover='onHover'
+      @click='open = true'
+      :options='{
         styles: mapStylesSilver,
-      }"
-      :icon="{
+      }'
+      :icon='{
         url: icon,
         scaledSize: { width: 35, height: 60 },
-      }"
+      }'
     >
       <GMapInfoWindow
-        :opened="open"
-        :closeclick="false"
-        @closeclick="null"
-        :data-show-close="closeButton"
+        :opened='open'
+        :closeclick='false'
+        @closeclick='null'
+        :data-show-close='closeButton'
       >
-        <slot name="default" />
+        <slot name='default' />
       </GMapInfoWindow>
     </GMapMarker>
   </GMapMap>
 </template>
 
-<style lang="scss">
+<style lang='scss'>
 .vue-map-container {
   width: 100%;
   height: 100vh;

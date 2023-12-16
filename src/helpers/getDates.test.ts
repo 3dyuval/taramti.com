@@ -1,8 +1,9 @@
 import { expect, it } from 'vitest'
 import { getDates } from './getDates'
+import { MadaResponseItem } from '../../server/madaRequest'
 
 
-const row: Row = {
+const row: MadaResponseItem = {
   'DateDonation': '2023-09-24T00:00:00',
   'FromHour': '08:00',
   'ToHour': '13:30',

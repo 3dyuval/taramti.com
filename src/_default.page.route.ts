@@ -14,7 +14,7 @@ export function onBeforeRoute(pageContext: PageContextServer) {
   const firstPart = url.split('/')[0]
 
   // Check if the first part of the URL path is a valid locale
-  if (!OPTIONS.availableLocales.includes(firstPart)) {
+  if (!OPTIONS.availableLocales.includes(firstPart as any)) {
     // If it's not, redirect to a URL that includes the locale
     throw redirect(`/${pageContext.locale}/${url}`, 301)
   }

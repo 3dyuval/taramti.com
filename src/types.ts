@@ -48,6 +48,7 @@ type PageProps = {
 
 export type PageContextCustom = {
   locale: string
+  refererUrl?: string
   Page: Page
   pageProps?: PageProps
   db: IStorage

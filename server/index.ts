@@ -24,13 +24,24 @@ async function startServer() {
 
   app.get('*', async (req, res, next) => {
 
-    const acceptLanguage = req.headers['accept-language']?.split(',')[0].split('-')[0]
+    let acceptLanguage = req.headers['accept-language']?.split(',')[0].split('-')[0]
+    acceptLanguage = acceptLanguage in OPTIONS.availableLocales && acceptLanguage
 
+    let refererUrl: string | URL = req.headers['referer']
+    let referer
+    if (refererUrl) {
+      refererUrl = new URL(refererUrl)
+      const firstPart = refererUrl.pathname.split('/')[1]
+
+      if (OPTIONS.availableLocales.includes(firstPart)) {
+        referer = firstPart
+      }
+    }
 
     // add precedence for first url part
     const pageContextInit = {
       urlOriginal: req.originalUrl,
-      locale: acceptLanguage in OPTIONS.availableLocales ? acceptLanguage : OPTIONS.fallbackLocale,
+      locale: referer || acceptLanguage || OPTIONS.fallbackLocale,
       db
     }
 

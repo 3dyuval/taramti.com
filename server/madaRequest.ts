@@ -1,20 +1,23 @@
 import { getDates } from '../src/helpers/getDates'
 import type { DonationLocationDate } from '../src/types'
 
-type MadaRespone = {
+export type MadaResponse = {
   'ErrorCode': null,
   'ErrorMsg': '',
   'Success': true,
   'Result': string
 }
 
-type MadaResponseItem = {
+export type MadaResponseItem = {
+  DateDonation: string
   Name: string
   City: string
   Street: string
   NumHouse: string
   AccountType: string
   SchedulingURL: string
+  FromHour: string
+  ToHour: string
 }
 
 export const requestMadaData = async (): Promise<DonationLocationDate[]> => {
@@ -46,7 +49,7 @@ export const requestMadaData = async (): Promise<DonationLocationDate[]> => {
       }
     })
 
-  const { Success, Result } = await response.json() as MadaRespone
+  const { Success, Result } = await response.json() as MadaResponse
 
 
   if (Success) {

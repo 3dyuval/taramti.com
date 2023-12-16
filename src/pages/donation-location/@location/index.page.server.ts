@@ -10,7 +10,7 @@ enum Errors {
 }
 
 export function getDocumentProps(pageProps: PageProps) {
-  const address = getAddress(pageProps.location)
+  const address = getAddress(pageProps.location!)
   const title = `תרומת דם ב"${pageProps.location?.donationLocation.name}"`
   return { title, description: address, address }
 }

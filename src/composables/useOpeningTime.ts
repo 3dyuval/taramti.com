@@ -10,13 +10,11 @@ type OpeningTime = {
   closingDate: Date
 }
 
-export function useOpeningTime(fromDateString: string, toDateString: string): OpeningTime {
-  if (!fromDateString || !toDateString) {
-    throw new Error(`Missing args ${fromDateString} ${toDateString}`)
+export function useOpeningTime(from: number, to: number): OpeningTime {
+  if (!from || !to) {
+    throw new Error(`Missing args ${from} ${to}`)
   }
 
-  const from = new Date(fromDateString)
-  const to = new Date(toDateString)
 
   const willOpen = isFuture(from)
   const isOpen = isPast(from) && isFuture(to)
@@ -26,8 +24,8 @@ export function useOpeningTime(fromDateString: string, toDateString: string): Op
   return {
     openingTime: lightFormat(from, 'HH:mm'),
     closingTime: lightFormat(to, 'HH:mm'),
-    openingDate: from,
-    closingDate: to,
+    openingDate: new Date(from),
+    closingDate: new Date(to),
     willOpen,
     isOpen,
     wasOpen

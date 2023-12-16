@@ -47,6 +47,13 @@ const items = computed(() => {
 })
 
 
+const customFilter: any = (_value: any, query: any, any) => {
+  return !!(item?.raw.title?.includes(query)
+    || item?.raw.subtitle?.includes(query)
+  )
+}
+
+
 </script>
 
 <template>
@@ -77,10 +84,7 @@ const items = computed(() => {
       :placeholder="$t('search.description')"
       v-model='settings.query'
       :model-value:menu='settings.menu'
-      :custom-filter='(_value, query, item) =>
-          !!(item?.raw.title?.includes(query)
-          || item?.raw.subtitle?.includes(query)
-    )'
+      :custom-filter='customFilter'
       hide-details
       auto-select-first
       variant='outlined'

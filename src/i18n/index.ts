@@ -10,7 +10,7 @@ const OPTIONS = {
   legacy: false,
   globalInjection: true,
   fallbackLocale: 'en',
-  availableLocales: ['he', 'en', 'ru'],
+  availableLocales: ['he', 'en', 'ru'] as const,
   messages: {
     he: {
       ...he,

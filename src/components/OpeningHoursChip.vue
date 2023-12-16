@@ -4,8 +4,8 @@ import { useOpeningTime } from '@/composables/useOpeningTime'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
-  fromHour: string
-  toHour: string
+  fromHour: number
+  toHour: number
 }>()
 
 

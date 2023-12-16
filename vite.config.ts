@@ -10,16 +10,19 @@ import vueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { nodeLoaderPlugin } from '@vavite/node-loader/plugin'
 import { OPTIONS } from './src/i18n'
 import { sitemap } from './sitemap'
+import { DB } from './server/storage'
 
 export default defineConfig(async ({ mode }) => {
+
+  const db = await new DB().init()
 
   Object.assign(process.env, loadEnv(mode, process.cwd()))
 
   let links = []
   if (mode === 'production') {
-    const response = await onBeforeRender().catch(console.error)
-    if (response) {
-      response.pageContext.pageProps.rows.forEach((item) => {
+    const locations = await db.getLocations()
+    if (locations) {
+      locations.forEach((item) => {
         links.push(
           {
             url: `/donation-location/${item.donationLocation.name}`,

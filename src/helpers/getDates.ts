@@ -1,9 +1,9 @@
 import { setHours, setMinutes, setSeconds } from 'date-fns/fp'
 import { pipe } from 'fp-ts/lib/function'
 import * as O from 'fp-ts/lib/Option'
-import { ResponseRow } from '../../server/storage.ts'
+import type { MadaResponseItem } from '../../server/madaRequest'
 
-export function getDates(row: ResponseRow): readonly Date[] {
+export function getDates(row: MadaResponseItem): readonly Date[] {
 
   const parseHoursAndMinutes = (time: string): O.Option<Date> => {
     return pipe(

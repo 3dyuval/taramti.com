@@ -3,13 +3,14 @@ import SelectLocale from '@/components/SelectLocale.vue'
 import SearchCard from '@/components/SearchCard.vue'
 import { ref } from 'vue'
 import { usePageContext } from '@/composables/usePageContext'
+import { DonationLocationDate } from '@/types'
 
 const { urlPathname } = usePageContext()
 const props = defineProps<Props>()
 
 type Props = {
   locations: DonationLocationDate[]
-  row: Location
+  location: Location
 }
 
 const modal = ref(false)
