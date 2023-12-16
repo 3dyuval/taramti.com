@@ -1,5 +1,4 @@
 import { PageContextServer } from '@/types'
-import { render } from 'vike/abort'
 
 export async function onBeforeRender(pageContext: PageContextServer) {
 
@@ -8,10 +7,10 @@ export async function onBeforeRender(pageContext: PageContextServer) {
     pageContext: {
       pageProps: {
         locations: await pageContext.db.getLocations()
-          .catch((error) => {
-            console.error(error)
-            throw render(500)
-          })
+        // .catch((error: Error) => {
+        //   console.error(error)
+        //   throw render(500)
+        // })
       }
     }
   }

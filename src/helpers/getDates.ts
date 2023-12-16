@@ -1,7 +1,7 @@
 import { setHours, setMinutes, setSeconds } from 'date-fns/fp'
 import { pipe } from 'fp-ts/lib/function'
 import * as O from 'fp-ts/lib/Option'
-import { ResponseRow } from '../../api'
+import { ResponseRow } from '../../server/storage.ts'
 
 export function getDates(row: ResponseRow): readonly Date[] {
 

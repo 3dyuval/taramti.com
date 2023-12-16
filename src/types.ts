@@ -11,15 +11,15 @@ export type Coords = {
 }
 
 export interface IStorage {
-  init: () => this;
+  init: () => Promise<this>;
   getLocations: (dateFrom?: string, dateTo?: string) => Promise<DonationLocationDate>;
   getLocationByName: (name: string) => Promise<DonationLocationDate>;
 }
 
 
 export type DonationLocationDate = {
-  dateOpen: string
-  dateClose: string
+  dateOpen: number
+  dateClose: number
   donationLocation: {
     name: string;
     schedulingUrl: string;

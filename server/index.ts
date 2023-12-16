@@ -4,7 +4,8 @@ import { renderPage } from 'vike/server'
 import httpDevServer from 'vavite/http-dev-server'
 import compression from 'compression'
 import { root } from './root'
-import { DB } from '../api'
+import { DB } from './storage'
+import { OPTIONS } from '@/i18n'
 
 
 startServer()
@@ -23,12 +24,13 @@ async function startServer() {
 
   app.get('*', async (req, res, next) => {
 
-    const localeHeader = req.headers['accept-language']?.split(',')[0].split('-')[0]
+    const acceptLanguage = req.headers['accept-language']?.split(',')[0].split('-')[0]
 
 
+    // add precedence for first url part
     const pageContextInit = {
       urlOriginal: req.originalUrl,
-      locale: localeHeader || 'en',
+      locale: acceptLanguage in OPTIONS.availableLocales ? acceptLanguage : OPTIONS.fallbackLocale,
       db
     }
 
