@@ -1,5 +1,6 @@
 import { isFuture, isPast, lightFormat } from 'date-fns'
 
+
 type OpeningTime = {
   willOpen: boolean
   isOpen: boolean
@@ -15,11 +16,9 @@ export function useOpeningTime(from: number, to: number): OpeningTime {
     throw new Error(`Missing args ${from} ${to}`)
   }
 
-
   const willOpen = isFuture(from)
   const isOpen = isPast(from) && isFuture(to)
   const wasOpen = isPast(from) && isPast(to)
-
 
   return {
     openingTime: lightFormat(from, 'HH:mm'),

@@ -32,7 +32,9 @@ const items = computed(() => {
     title: item.donationLocation.name,
     value: item.donationLocation.name,
     subtitle: item.donationLocation.address.city,
-    time: useOpeningTime(item.dateOpen, item.dateClose)
+    time: useOpeningTime(item.dateOpen, item.dateClose),
+    from: item.dateOpen,
+    to: item.dateClose
   }))
     .filter((item) =>
       settings.time === 'isOpen' ? item.time.isOpen
@@ -100,13 +102,13 @@ const customFilter: any = (_value: any, query: any, any) => {
             <template v-if='settings.time'>
               <v-chip
                 color='primary'
-                v-if='item?.raw?.time.isOpen'
-                :text="$t('location.time.openUntil', { time: item?.raw?.time.closingTime })"
+                v-if='item?.raw?.time.isOpen && typeof item?.raw.from  === "number"'
+                :text='$t("location.time.openingTimeRelative", [item?.raw.from, item?.raw.to])'
               />
               <v-chip
                 color='secondary'
-                v-if='item?.raw?.time.willOpen'
-                :text="$t('location.time.willOpen', { time: item?.raw?.time.openingTime })"
+                v-if='item?.raw?.time.willOpen && typeof item?.raw.to  === "number"'
+                :text='$t("location.time.openingTimeRelative", [item?.raw.from, item?.raw.to])'
               />
             </template>
           </v-list-item-title>
