@@ -33,7 +33,7 @@ export function onBeforeRoute(pageContext: PageContextServer) {
   // Handle locale
   return {
     pageContext: {
-      urlLogical: url.replace(`/${currentLocale}`, ''),
+      urlLogical: url.replace(`/${currentLocale}`, '') || '/',
       locale: currentLocale
     }
   }
