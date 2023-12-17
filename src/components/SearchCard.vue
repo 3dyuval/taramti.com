@@ -59,7 +59,7 @@ const customFilter: any = (_value: any, query: any, any) => {
 </script>
 
 <template>
-  <v-card elevation='0' class='pa-3 search-card'>
+  <v-card elevation='0' class='pa-5 search-card'>
     <div class='search-header d-flex flex-row'>
       <h2 v-t="'search.title'" />
       <v-radio-group
@@ -138,6 +138,8 @@ const customFilter: any = (_value: any, query: any, any) => {
 <style lang='scss'>
 
 .search-card {
+  width: clamp(200px, 80vw, 800px) !important;
+
   .select-time {
     justify-items: end;
   }

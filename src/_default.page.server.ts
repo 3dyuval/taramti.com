@@ -4,14 +4,23 @@ import { dangerouslySkipEscape, escapeInject } from 'vike/server'
 import { createPageApp } from './page'
 import type { PageContextServer } from '@/types'
 
-export { render }
-export const doNotPrerender = true
+export { render, onBeforeRender }
 export const passToClient = [
   'pageProps',
   'urlPathname',
-  'initialStoreState',
   'locale'
 ]
+
+async function onBeforeRender(pageContext: PageContextServer) {
+
+  return {
+    pageContext: {
+      pageProps: {
+        locations: await pageContext.db.getLocations()
+      }
+    }
+  }
+}
 
 
 async function render(pageContext: PageContextServer) {
@@ -106,3 +115,4 @@ async function renderToString(app: App) {
   if (err) throw err
   return appHtml
 }
+
