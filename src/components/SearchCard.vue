@@ -7,7 +7,7 @@ const { locations, row } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 type Props = {
-  locations: DonationLocationDate[] //TODO change to locations
+  locations: DonationLocationDate[]
   row?: DonationLocationDate,
   closeBtn?: boolean
 }
@@ -59,7 +59,7 @@ const customFilter: any = (_value: any, query: any, any) => {
 </script>
 
 <template>
-  <v-card elevation='0' class='search-card'>
+  <v-card elevation='0' class='pa-3 search-card'>
     <div class='search-header d-flex flex-row'>
       <h2 v-t="'search.title'" />
       <v-radio-group
@@ -101,14 +101,10 @@ const customFilter: any = (_value: any, query: any, any) => {
             <span v-text='item.raw.title' />
             <template v-if='settings.time'>
               <v-chip
-                color='primary'
-                v-if='item?.raw?.time.isOpen && typeof item?.raw.from  === "number"'
-                :text='$t("location.time.openingTimeRelative", [item?.raw.from, item?.raw.to])'
-              />
-              <v-chip
-                color='secondary'
-                v-if='item?.raw?.time.willOpen && typeof item?.raw.to  === "number"'
-                :text='$t("location.time.openingTimeRelative", [item?.raw.from, item?.raw.to])'
+                class='mx-3'
+                v-if='typeof item?.raw.from === "number" && typeof item?.raw.to === "number"'
+                :color='item?.raw?.time.isOpen ? "primary" : "default"'
+                :text='$t("location.time.timeRelative", [item?.raw.from, item?.raw.to])'
               />
             </template>
           </v-list-item-title>

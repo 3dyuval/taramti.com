@@ -59,12 +59,15 @@ export const requestMadaData = async (): Promise<DonationLocationDate[]> => {
       const [dateOpen, dateClose] = getDates(item)
         .map((date) => date.valueOf())
 
+      function safeName(name: string) {
+        return name.replaceAll('/', '-')
+      }
 
       return {
         dateOpen,
         dateClose,
         donationLocation: {
-          name: item.Name || item.AccountType,
+          name: safeName(item.Name || item.AccountType),
           schedulingUrl: item.SchedulingURL,
           address: {
             city: item.City,

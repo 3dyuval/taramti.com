@@ -75,7 +75,6 @@ onMounted(async () => {
 }
 
 .card-center {
-  padding: 1rem;
   position: absolute;
   top: 50%;
   left: 50%;

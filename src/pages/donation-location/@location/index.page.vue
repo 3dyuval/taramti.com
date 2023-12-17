@@ -76,7 +76,7 @@ const { share } = useShare({
               @click='expanded = !expanded'
               class='my-2 flex-grow-1'
             />
-            <!--          TODO  <v-btn--> pinia state
+            <!--          TODO  <v-btn-->
             <!--              variant="outlined"-->
             <!--              icon="mdi-heart"-->
             <!--              :color="'#f2f2f2'"-->

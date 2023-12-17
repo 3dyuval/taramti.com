@@ -54,13 +54,19 @@ export async function onBeforeRender(pageContext: PageContext) {
 
   try {
 
+    function decodeSlash(str: string) {
+      return str.replace(new RegExp(encodeURIComponent('/'), 'g'), '/')
+    }
+    
     const locationName = pageContext.routeParams.location
 
     if (!locationName) {
       throw redirect('/')
     }
 
-    const location = await pageContext.db.getLocationByName(locationName)
+    const location = await pageContext.db.getLocationByName(
+      decodeSlash(locationName)
+    )
 
     if (!location) {
       throw render(404)

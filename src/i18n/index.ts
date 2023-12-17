@@ -8,14 +8,23 @@ import { MessageContext } from 'vue-i18n'
 import { intlFormatDistance } from 'date-fns'
 
 
-const openFromRelative = ({ locale }) => ({ list, linked }: MessageContext) => {
-  const time = intlFormatDistance(list(0), new Date(), { locale })
-  return `${linked('location.time.openUntil')} ${time}`
+const timeRelative = (locale) => ({ list, linked }: MessageContext) => {
+  const now = new Date().getTime()
+  const from = list(0) as number
+  const to = list(1) as number
+
+  if (now >= from && now <= to) {
+    const time = intlFormatDistance(to, now, { locale })
+    console.log(locale)
+    return `${linked('location.time.openNow')} ${time}`
+  } else if (now < from) {
+    const time = intlFormatDistance(from, now, { locale })
+    return `${linked('location.time.willOpen')} ${time}`
+  } else if (now > to) {
+    return `${linked('location.time.hasBeenOpenedAndClosed')}`
+  }
 }
-const openToRelative = ({ locale }) => ({ list, linked }: MessageContext) => {
-  const time = intlFormatDistance(list(0), new Date(), { locale })
-  return `${linked('location.time.openUntil')} ${time}`
-}
+
 
 const OPTIONS = {
   legacy: false,
@@ -39,8 +48,8 @@ const OPTIONS = {
 }
 
 for (const locale of OPTIONS.availableLocales) {
-  OPTIONS.messages[locale].location.time.openFromRelative = openFromRelative(locale)
-  OPTIONS.messages[locale].location.time.openToRelative = openToRelative(locale)
+  OPTIONS.messages[locale].location.time!.timeRelative = timeRelative(locale)
+
 }
 
 export const localesTranslated = OPTIONS.availableLocales

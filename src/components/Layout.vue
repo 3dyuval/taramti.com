@@ -47,33 +47,33 @@ const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
     <main>
       <slot />
     </main>
-    <v-footer>
-      <v-card elevation='0'>
-        <v-card-title>
-          <v-card-text>
-            <v-row>
-              <v-col cols='12' md='6'>
-                <v-card-title class='text-center'>
-                  <h3 v-t="'meta.title'" />
-                </v-card-title>
-                <v-card-text>
-                  <p v-t="'meta.description'" />
-                  <p v-t="'meta.contactText'" />
-                </v-card-text>
-              </v-col>
-              <v-col cols='12' md='6'>
-                <v-card-title class='text-center'>
-                  <h3 v-t="'meta.contact'" />
-                </v-card-title>
-                <v-card-text>
-                  <a href='mailto://info@taramti.com'>info✉️taramti.com</a>
-                </v-card-text>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card-title>
-      </v-card>
-    </v-footer>
+    <!--    <v-footer>-->
+    <!--      <v-card elevation='0'>-->
+    <!--        <v-card-title>-->
+    <!--          <v-card-text>-->
+    <!--            <v-row>-->
+    <!--              <v-col cols='12' md='6'>-->
+    <!--                <v-card-title class='text-center'>-->
+    <!--                  <h3 v-t="'meta.title'" />-->
+    <!--                </v-card-title>-->
+    <!--                <v-card-text>-->
+    <!--                  <p v-t="'meta.description'" />-->
+    <!--                  <p v-t="'meta.contactText'" />-->
+    <!--                </v-card-text>-->
+    <!--              </v-col>-->
+    <!--              <v-col cols='12' md='6'>-->
+    <!--                <v-card-title class='text-center'>-->
+    <!--                  <h3 v-t="'meta.contact'" />-->
+    <!--                </v-card-title>-->
+    <!--                <v-card-text>-->
+    <!--                  <a href='mailto://info@taramti.com'>info✉️taramti.com</a>-->
+    <!--                </v-card-text>-->
+    <!--              </v-col>-->
+    <!--            </v-row>-->
+    <!--          </v-card-text>-->
+    <!--        </v-card-title>-->
+    <!--      </v-card>-->
+    <!--    </v-footer>-->
   </v-app>
 </template>
 
