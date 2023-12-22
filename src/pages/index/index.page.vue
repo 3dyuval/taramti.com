@@ -13,8 +13,10 @@ const images = ref([])
 
 onMounted(async () => {
   const query = 'blood donation'
-  const response = await client.photos.search({ query, per_page: 5 })
-  images.value = response.photos.map(photo => photo.src.landscape)
+  const response = await client.photos.search({ query, per_page: 5 }).catch(console.error)
+  if (response.photos) {
+    images.value = response?.photos.map(photo => photo.src.landscape)
+  }
 })
 
 
