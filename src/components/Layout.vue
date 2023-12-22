@@ -15,7 +15,7 @@ type Props = {
 
 const modal = ref(false)
 
-const url = import.meta.env.PROD ? 'localhost' + import.meta.env.VITE_PORT :
+const url = import.meta.env['DEV'] ? 'localhost' + import.meta.env.VITE_PORT :
   import.meta.env['VITE_HOST_URL']
 
 </script>
