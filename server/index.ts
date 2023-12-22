@@ -24,6 +24,10 @@ async function startServer() {
 
   app.get('*', async (req, res, next) => {
 
+    if (/\.(css|js|png|jpg|jpeg|gif|svg|ico|webp)$/i.test(req.originalUrl)) {
+      return next()
+    }
+
     let acceptLanguage = req.headers['accept-language']?.split(',')[0].split('-')[0]
     acceptLanguage = acceptLanguage in OPTIONS.availableLocales && acceptLanguage
 
