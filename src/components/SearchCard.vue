@@ -127,7 +127,7 @@ const customFilter: any = (_value: any, query: any, any) => {
         color='primary'
         variant='tonal'
         class='my-4 flex-1-1'
-        :href='`donation-location/${settings.query}`'
+        :href='`/donation-location/${settings.query}`'
         :disabled='settings.query === location?.donationLocation.name'
       />
     </v-card-actions>
