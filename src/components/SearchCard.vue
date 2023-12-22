@@ -103,7 +103,7 @@ const customFilter: any = (_value: any, query: any, any) => {
               <v-chip
                 class='mx-3'
                 v-if='typeof item?.raw.from === "number" && typeof item?.raw.to === "number"'
-                :color='item?.raw?.time.isOpen ? "primary" : "default"'
+                :color='item.raw.time.willCloseSoon ? "primary" : item?.raw?.time.isOpen ? "secondary" : "default"'
                 :text='$t("location.time.timeRelative", [item?.raw.from, item?.raw.to])'
               />
             </template>

@@ -25,6 +25,7 @@
         "text": "Disclaimer: The scheduling times for blood donations displayed on this site are sourced from external providers, and while we strive for accuracy, we cannot guarantee 100% verification of the data",
         "title": "Before you go"
       },
+      "hasBeenOpenedAndClosed": "Closed today at {time}",
       "openUntil": "Open untill {time}",
       "openingTime": "Opening hour",
       "willClose": "Will close {time}",
@@ -43,7 +44,7 @@
     "isOpen": "Open now",
     "noData": "No results found",
     "title": "Search Donation Location",
-    "willOpen": "Will open today"
+    "willOpen": "Will open"
   },
   "settings": {
     "changeLocale": {

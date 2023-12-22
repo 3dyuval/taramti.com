@@ -5,23 +5,28 @@ import vHe from 'vuetify/lib/locale/he'
 import vRu from 'vuetify/lib/locale/ru'
 import vEn from 'vuetify/lib/locale/en'
 import { MessageContext } from 'vue-i18n'
-import { intlFormatDistance } from 'date-fns'
+import { differenceInMinutes, format, intlFormatDistance } from 'date-fns'
 
 
 const timeRelative = (locale) => ({ list, linked }: MessageContext) => {
   const now = new Date().getTime()
   const from = list(0) as number
   const to = list(1) as number
-
+  const hoursUntilClose = differenceInMinutes(to, now)
+  debugger
+  const time = intlFormatDistance(now, from, { locale })
+  const timeFormat = format(to, 'hh:MM')
   if (now >= from && now <= to) {
-    const time = intlFormatDistance(to, now, { locale })
-    console.log(locale)
-    return `${linked('location.time.openNow')} ${time}`
+    const time = intlFormatDistance(now, from, { locale })
+    if (hoursUntilClose <= 120) {
+      return `${linked('location.time.willClose')} ${time}`
+    }
+    return `${linked('location.time.openUntil')} ${timeFormat}`
   } else if (now < from) {
-    const time = intlFormatDistance(from, now, { locale })
+    const time = intlFormatDistance(to, now, { locale })
     return `${linked('location.time.willOpen')} ${time}`
   } else if (now > to) {
-    return `${linked('location.time.hasBeenOpenedAndClosed')}`
+    return `${linked('location.time.hasBeenOpenedAndClosed')} (${timeFormat})`
   }
 }
 
