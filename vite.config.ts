@@ -56,7 +56,8 @@ export default defineConfig(async ({ mode }) => {
     noExternal: [
       '@fawmi/vue-google-maps',
       'vuetify',
-      '@googlemaps/markerclusterer'
+      '@googlemaps/markerclusterer',
+      'date-fns'
     ]
   }
 
