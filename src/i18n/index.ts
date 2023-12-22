@@ -13,7 +13,6 @@ const timeRelative = (locale) => ({ list, linked }: MessageContext) => {
   const from = list(0) as number
   const to = list(1) as number
   const hoursUntilClose = differenceInMinutes(to, now)
-  debugger
   const time = intlFormatDistance(now, from, { locale })
   const timeFormat = format(to, 'hh:MM')
   if (now >= from && now <= to) {

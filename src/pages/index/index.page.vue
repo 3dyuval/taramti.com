@@ -1,23 +1,11 @@
 <script setup lang='ts'>
 import SearchCard from '@/components/SearchCard.vue'
 import type { DonationLocationDate } from '@/types'
-import { createClient } from 'pexels'
-import { onMounted, ref } from 'vue'
 
 const props = defineProps<{
-  locations: DonationLocationDate[]
+  locations: DonationLocationDate[],
+  photos: string[]
 }>()
-
-const client = createClient(import.meta.env['VITE_PEXELS_API_KEY'])
-const images = ref([])
-
-onMounted(async () => {
-  const query = 'blood donation'
-  const response = await client.photos.search({ query, per_page: 5 }).catch(console.error)
-  if (response.photos) {
-    images.value = response?.photos.map(photo => photo.src.landscape)
-  }
-})
 
 
 </script>
@@ -26,7 +14,7 @@ onMounted(async () => {
               selected-class='active-slide'
               :show-arrows='false' continuous
               :interval='4000' cycle :direction='$t("settings.dir")'>
-    <v-carousel-item v-for='(image, i) in images' :key='i'>
+    <v-carousel-item v-for='(image, i) in photos' :key='i'>
       <v-img :src='image' cover></v-img>
     </v-carousel-item>
   </v-carousel>

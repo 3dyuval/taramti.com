@@ -2,7 +2,7 @@ import { OPTIONS } from '@/i18n'
 import { redirect } from 'vike/abort'
 import { PageContextServer } from '@/types'
 
-export function onBeforeRoute(pageContext: PageContextServer) {
+export async function onBeforeRoute(pageContext: PageContextServer) {
   let url = pageContext.urlOriginal
 
   // Remove leading slash if it exists

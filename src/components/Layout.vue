@@ -10,7 +10,7 @@ const props = defineProps<Props>()
 
 type Props = {
   locations: DonationLocationDate[]
-  location: Location
+  location?: Location
 }
 
 const modal = ref(false)

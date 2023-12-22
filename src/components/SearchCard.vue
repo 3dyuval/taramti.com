@@ -3,12 +3,12 @@ import { DonationLocationDate } from '@/types'
 import { computed, reactive } from 'vue'
 import { useOpeningTime } from '@/composables/useOpeningTime'
 
-const { locations, row } = defineProps<Props>()
+const { locations, location } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 type Props = {
   locations: DonationLocationDate[]
-  row?: DonationLocationDate,
+  location?: DonationLocationDate,
   closeBtn?: boolean
 }
 
@@ -21,7 +21,7 @@ const settings = reactive<{
   query: string | undefined,
   menu: boolean
 }>({
-  query: row?.donationLocation.name,
+  query: location?.donationLocation.name,
   time: 'isOpen',
   menu: false
 })
@@ -128,7 +128,7 @@ const customFilter: any = (_value: any, query: any, any) => {
         variant='tonal'
         class='my-4 flex-1-1'
         :href='`donation-location/${settings.query}`'
-        :disabled='settings.query === row?.donationLocation.name'
+        :disabled='settings.query === location?.donationLocation.name'
       />
     </v-card-actions>
   </v-card>

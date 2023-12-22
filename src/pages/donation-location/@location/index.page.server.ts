@@ -57,7 +57,7 @@ export async function onBeforeRender(pageContext: PageContext) {
     function decodeSlash(str: string) {
       return str.replace(new RegExp(encodeURIComponent('/'), 'g'), '/')
     }
-    
+
     const locationName = pageContext.routeParams.location
 
     if (!locationName) {
@@ -77,6 +77,7 @@ export async function onBeforeRender(pageContext: PageContext) {
     return {
       pageContext: {
         pageProps: {
+          locations: await pageContext.db.getLocations(),
           location,
           coords
         }
