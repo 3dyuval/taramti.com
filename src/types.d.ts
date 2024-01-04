@@ -17,8 +17,10 @@ export interface IStorage {
 
 
 export type DonationLocationDate = {
+  id: string;
   dateOpen: number
   dateClose: number
+  fullAddress: string;
   donationLocation: {
     name: string;
     schedulingUrl: string;

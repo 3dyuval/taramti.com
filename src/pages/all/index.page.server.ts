@@ -1,6 +1,5 @@
 import { Coords, PageContext, PageProps } from '@/types'
 import { redirect, render } from 'vike/abort'
-import { getAddress } from '@/helpers/getAddress'
 import { getCoordsFromGoogleMaps } from '@/helpers/getCoords'
 
 export const passToClient = ['pageProps', 'routeParams']
@@ -11,7 +10,7 @@ export async function onBeforeRender(pageContext: PageContext) {
 
 
   locations.forEach(location => {
-    const coords = getCoordsFromGoogleMaps(getAddress(location)).catch(console.error)
+    const coords = getCoordsFromGoogleMaps(location.donationLocation.address.fullAddress).catch(console.error)
   })
 
   return {

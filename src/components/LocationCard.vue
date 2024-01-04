@@ -4,7 +4,6 @@ import { ref } from 'vue'
 import OpeningHoursTimeline from '@/components/OpeningHoursTimeline.vue'
 import OpeningHoursChip from '@/components/OpeningHoursChip.vue'
 import { usePageContext } from '@/composables/usePageContext'
-import { getAddress } from '@/helpers/getAddress'
 import { useShare } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 
@@ -16,7 +15,7 @@ const props = defineProps<{
 const { t } = useI18n()
 
 
-const address = getAddress(props.location)
+const address = props.location.fullAddress
 
 const pageContext = usePageContext()
 

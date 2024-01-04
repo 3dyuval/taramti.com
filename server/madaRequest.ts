@@ -1,5 +1,6 @@
-import { getDates } from '../src/helpers/getDates'
-import type { DonationLocationDate } from '@/types.js'
+import { getDates } from '@/helpers/getDates'
+import type { DonationLocationDate } from '@/types'
+import { safeName as safeFileName } from '@/helpers/safeName'
 
 export type MadaResponse = {
   'ErrorCode': null,
@@ -60,14 +61,26 @@ export const requestMadaData = async (): Promise<DonationLocationDate[]> => {
         .map((date) => date.valueOf())
 
       function safeName(name: string) {
-        return name.replaceAll('/', '-')
+        return name
       }
+
+
+      const { City = '', Street = '', NumHouse = '' } = item
+      let fullAddress = ''
+
+      ;[City, Street, NumHouse].forEach((prop) => {
+        fullAddress += prop.replace(/\s+/g, ' ').trim()
+      })
+
+
 
       return {
         dateOpen,
         dateClose,
+        id: safeFileName(item.Name || item.AccountType),
+        fullAddress,
         donationLocation: {
-          name: safeName(item.Name || item.AccountType),
+          name: (item.Name || item.AccountType).replaceAll('/', '-'),
           schedulingUrl: item.SchedulingURL,
           address: {
             city: item.City,
