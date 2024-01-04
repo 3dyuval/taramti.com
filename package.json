@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "dotenv": "^16.3.1",
+    "jsoning": "^0.13.23",
+    "key-file-storage": "^2.3.3",
     "lru-cache": "^10.1.0",
     "sitemap": "^7.1.1",
     "vavite": "^3.0.0",

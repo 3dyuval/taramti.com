@@ -1,8 +1,7 @@
-import { DonationLocationDate, IStorage } from '@/types.js'
+import { DonationLocationDate, IStorage } from '../src/types'
 import { requestMadaData } from './madaRequest.js'
 import { LRUCache } from 'lru-cache'
 import { isAfter, isBefore } from 'date-fns'
-
 
 export class DB implements IStorage {
   private cache

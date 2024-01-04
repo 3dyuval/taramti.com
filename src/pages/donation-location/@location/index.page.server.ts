@@ -1,7 +1,7 @@
 import { Coords, PageContext, PageProps } from '@/types'
 import { redirect, render } from 'vike/abort'
 import { getAddress } from '@/helpers/getAddress'
-
+import { getCoordsFromGoogleMaps } from '@/helpers/getCoords'
 export const passToClient = ['pageProps', 'routeParams']
 
 enum Errors {
@@ -17,43 +17,7 @@ export function getDocumentProps(pageProps: PageProps) {
 
 export async function onBeforeRender(pageContext: PageContext) {
 
-
-  async function getCoordsFromGoogleMaps(
-    address: string
-  ): Promise<Coords | undefined> {
-
-    const key = import.meta.env.VITE_GOOGLE_MAP_API_KEY
-
-    if (!key) {
-      return Promise.reject('No Google Maps API key found')
-    }
-
-
-    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?&key=${key}&address=${address}`)
-      .then(async (response) => {
-        const results = (await response.json()).results
-        if (results.length) {
-          for (const result of results) {
-            if (
-              result.geometry &&
-              typeof result.geometry.location.lat === 'number' &&
-              typeof result.geometry.location.lng === 'number'
-            ) {
-              return result.geometry.location as Coords
-            }
-          }
-        } else {
-          throw new Error(Errors.MISSING_RESPONSE)
-        }
-      })
-      .catch((error) => {
-        console.error(error?.error_message)
-        throw new Error(Errors.RESPONSE_NOT_VALID)
-      })
-  }
-
   try {
-
     function decodeSlash(str: string) {
       return str.replace(new RegExp(encodeURIComponent('/'), 'g'), '/')
     }

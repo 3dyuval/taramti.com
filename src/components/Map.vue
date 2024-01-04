@@ -7,7 +7,8 @@ import Error from '@/components/Error.vue'
 const props = defineProps<{
   center: Coords
   error?: string
-  closeButton?: boolean
+  closeButton?: boolean,
+  locations: any[]
 }>()
 
 function onHover() {
@@ -22,15 +23,16 @@ const icon = new URL('@/assets/drop.png', import.meta.url).href
 
 <template>
   <error v-if='error' :error-message="'אין כתובת להצגה במפה'" />
-  <GMapMap :center='center' :zoom='15' :clickable='true' :draggable='false'>
+  <GMapMap :center='center' :zoom='15' :clickable='true' :draggable='false' :options='{
+        styles: mapStylesSilver,
+      }'>
+    <GMapMarker v-for='location in locations || []' :icon='{url: icon, scaledSize: { width: 35, height: 60 }}'
+    />
     <GMapMarker
       class='map-marker'
       :position='center'
       @mouseover='onHover'
       @click='open = true'
-      :options='{
-        styles: mapStylesSilver,
-      }'
       :icon='{
         url: icon,
         scaledSize: { width: 35, height: 60 },

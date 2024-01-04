@@ -1,5 +1,5 @@
 import { getDates } from '../src/helpers/getDates'
-import type { DonationLocationDate } from '../src/types'
+import type { DonationLocationDate } from '@/types.js'
 
 export type MadaResponse = {
   'ErrorCode': null,
