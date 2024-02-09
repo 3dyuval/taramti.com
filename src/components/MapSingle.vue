@@ -1,19 +1,15 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
-import { type Coords } from '@/types'
 import mapStylesSilver from '@/assets/map-styles-silver.json'
+import { ref } from 'vue'
+import { Coords } from '@/types'
 import Error from '@/components/Error.vue'
 
-const props = defineProps<Props>()
-
-
-type Props = {
-  locations: Coords[]
+const props = defineProps<{
   center: Coords
   error?: string
   closeButton?: boolean,
-}
-
+  locations: any[]
+}>()
 
 function onHover() {
   console.log('hover')
@@ -26,28 +22,28 @@ const icon = new URL('@/assets/drop.png', import.meta.url).href
 </script>
 
 <template>
-  <GMapMap :center='{ lat: 10, lng: 10}' :clickable='true' :draggable='false' :zoom='15'>
+  <error v-if='error' :error-message="'אין כתובת להצגה במפה'" />
+  <GMapMap :center='center' :zoom='15' :clickable='true' :draggable='false'>
     <GMapMarker
-      v-for='(coord, index) in locations'
+      class='map-marker'
+      :position='center'
+      @mouseover='onHover'
+      @click='open = true'
+      :options='{
+        styles: mapStylesSilver,
+      }'
       :icon='{
         url: icon,
         scaledSize: { width: 35, height: 60 },
       }'
-      :options='{
-        styles: mapStylesSilver,
-      }'
-      :position='coord'
-      class='map-marker'
-      @click='open = true'
-      @mouseover='onHover'
     >
       <GMapInfoWindow
-        :closeclick='false'
-        :data-show-close='closeButton'
         :opened='open'
+        :closeclick='false'
         @closeclick='null'
+        :data-show-close='closeButton'
       >
-        {{ coord }}
+        <slot name='default' />
       </GMapInfoWindow>
     </GMapMarker>
   </GMapMap>
@@ -69,5 +65,4 @@ button[title='Close'] {
     visibility: visible;
   }
 }
-
 </style>

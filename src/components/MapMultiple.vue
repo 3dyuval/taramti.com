@@ -23,16 +23,15 @@ const icon = new URL('@/assets/drop.png', import.meta.url).href
 
 <template>
   <error v-if='error' :error-message="'אין כתובת להצגה במפה'" />
-  <GMapMap :center='center' :zoom='15' :clickable='true' :draggable='false' :options='{
-        styles: mapStylesSilver,
-      }'>
-    <GMapMarker v-for='location in locations || []' :icon='{url: icon, scaledSize: { width: 35, height: 60 }}'
-    />
+  <GMapMap :center='center' :zoom='15' :clickable='true' :draggable='false'>
     <GMapMarker
       class='map-marker'
       :position='center'
       @mouseover='onHover'
       @click='open = true'
+      :options='{
+        styles: mapStylesSilver,
+      }'
       :icon='{
         url: icon,
         scaledSize: { width: 35, height: 60 },

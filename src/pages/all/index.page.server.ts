@@ -5,7 +5,6 @@ export const passToClient = ['pageProps', 'routeParams']
 
 export async function onBeforeRender(pageContext: PageContext) {
 
-  const locations = await pageContext.db.getLocations()
 
   return {
     pageContext: {
