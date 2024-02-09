@@ -2,11 +2,19 @@
   "ts-node": {
     "transpileOnly": true,
     "esm": true,
+    "require": [
+      "tsconfig-paths/register"
+    ],
     "compilerOptions": {
       "module": "NodeNext",
       "moduleResolution": "NodeNext",
-      "rootDir": "."
-    },
+      "baseUrl": ".",
+      "paths": {
+        "@/*": [
+          "./src/*"
+        ]
+      }
+    }
   },
   "compilerOptions": {
     "types": [
