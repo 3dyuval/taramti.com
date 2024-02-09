@@ -1,14 +1,15 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { type Coords } from '@/types'
 import mapStylesSilver from '@/assets/map-styles-silver.json'
 import Error from '@/components/Error.vue'
 
 const props = defineProps<Props>()
 
+const israel = { lat: 31.0461, lng: 34.8516 }
 
 type Props = {
-  locations: Coords[]
+  locations: Record<string, Coords>
   center: Coords
   error?: string
   closeButton?: boolean,
@@ -23,12 +24,19 @@ const open = ref(true)
 
 const icon = new URL('@/assets/drop.png', import.meta.url).href
 
+const selectedlocationName = ref<string>('')
+
+const selectedLocation = computed(() => {
+  return selectedlocationName.value ? props.locations[selectedlocationName.value] : israel
+})
+
+
 </script>
 
 <template>
-  <GMapMap :center='{ lat: 10, lng: 10}' :clickable='true' :draggable='false' :zoom='15'>
+  <GMapMap :center='selectedLocation' :clickable='true' :draggable='false' :zoom='10'>
     <GMapMarker
-      v-for='(coord, index) in locations'
+      v-for='(coord, key) in locations'
       :icon='{
         url: icon,
         scaledSize: { width: 35, height: 60 },
@@ -38,16 +46,17 @@ const icon = new URL('@/assets/drop.png', import.meta.url).href
       }'
       :position='coord'
       class='map-marker'
-      @click='open = true'
+      @click=' selectedlocationName = key'
       @mouseover='onHover'
     >
-      <GMapInfoWindow
-        :closeclick='false'
-        :data-show-close='closeButton'
-        :opened='open'
-        @closeclick='null'
-      >
-        {{ coord }}
+      <GMapInfoWindow v-if='selectedlocationName === key'>
+        <suspense>
+          <template #default>
+            <h1>test</h1>
+          </template>
+          <template #fallback>
+          </template>
+        </suspense>
       </GMapInfoWindow>
     </GMapMarker>
   </GMapMap>
