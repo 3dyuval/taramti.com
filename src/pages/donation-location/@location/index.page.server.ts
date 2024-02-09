@@ -1,6 +1,6 @@
 import { Coords, PageContext, PageProps } from '@/types'
 import { redirect, render } from 'vike/abort'
-import { getCoordsFromGoogleMaps } from '@/helpers/getCoords'
+import { getCoordsFromGoogleMaps } from '../../../helpers/getCoords'
 export const passToClient = ['pageProps', 'routeParams']
 
 enum Errors {

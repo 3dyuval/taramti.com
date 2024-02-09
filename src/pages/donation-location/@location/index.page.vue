@@ -5,8 +5,7 @@ import LocationCard from '@/components/LocationCard.vue'
 import { ref } from 'vue'
 
 const props = defineProps<{
-  locations: DonationLocationDate[]
-  location: DonationLocationDate
+  locations: Coords[]
   coords: Coords
   error?: string
 }>()
@@ -18,7 +17,8 @@ const center = ref<Coords>(props.coords)
 
 <template>
   <Map :center='center' :error='error'>
-    <location-card :location='location' :coords='coords' />
+    {{ coords }}
+<!--    <location-card :location='location' :coords='coords' />-->
   </Map>
 
 </template>

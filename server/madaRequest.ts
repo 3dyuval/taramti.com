@@ -1,6 +1,6 @@
-import { getDates } from '@/helpers/getDates'
-import type { DonationLocationDate } from '@/types'
-import { safeName as safeFileName } from '@/helpers/safeName'
+import { getDates } from '../src/helpers/getDates.js'
+import type { DonationLocationDate } from '../src/types'
+import { safeName as safeFileName } from '../src/helpers/safeName'
 
 export type MadaResponse = {
   'ErrorCode': null,
